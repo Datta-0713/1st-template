@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ABYSS — Deep-Ocean Intelligence</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter / Syne / Plus Jakarta Sans for refined editorial typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"Space Grotesk"', 'monospace'],
+          },
+          colors: {
+            ocean: {
+              950: '#030b14',
+              900: '#071626',
+              850: '#0c2238',
+              800: '#112f4d',
+              700: '#1d486f',
+              600: '#276294',
+              500: '#3480be',
+              400: '#5aa3dc',
+              300: '#8ec4ec',
+            },
+            deep: '#04101e',
+            marine: '#1b4b68',
+            surface: '#f3f6f9',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom fluid transitions & refined typography */
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #030b14;
+      color: #111827;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* LinusBio-like blue backdrop seamlessly matching video tone */
+    .bg-ocean-ambient {
+      background-color: #1e5170;
+    }
+    
+    .bg-ocean-dark {
+      background-color: #0d273a;
+    }
+
+    /* Logo Spin Interaction */
+    .abyss-logo-icon {
+      transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+      transform-origin: center center;
+    }
+    .abyss-logo-wrap:hover .abyss-logo-icon {
+      transform: rotate(180deg);
+    }
+
+    /* Glassmorphism navbar styling */
+    .nav-glass-active {
+      background: rgba(15, 35, 52, 0.72) !important;
+      backdrop-filter: blur(16px) saturate(180%) !important;
+      -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+      border: 1px solid rgba(255, 255, 255, 0.12) !important;
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.45) !important;
+    }
+
+    .nav-glass-dropdown {
+      background: rgba(13, 31, 46, 0.88);
+      backdrop-filter: blur(20px) saturate(190%);
+      -webkit-backdrop-filter: blur(20px) saturate(190%);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Video frame wrapper styling */
+    .video-viewport-wrapper {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 20px 50px -10px rgba(2, 10, 20, 0.5);
+    }
+
+    /* Accordion transitions */
+    .tech-content-body {
+      transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, margin-top 0.4s ease;
+      overflow: hidden;
+    }
+    .tech-content-body.collapsed {
+      max-height: 0;
+      opacity: 0;
+      margin-top: 0;
+      pointer-events: none;
+    }
+    .tech-content-body.expanded {
+      max-height: 380px;
+      opacity: 1;
+      margin-top: 1.25rem;
+      pointer-events: auto;
+    }
+
+    .plus-icon {
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .plus-icon.active {
+      transform: rotate(45deg);
+    }
+
+    /* Video reel transition */
+    .video-slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transform: scale(1.04) translateY(12px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+    .video-slide.active {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+      pointer-events: auto;
+    }
+
+    /* Subtle custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #071626;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #276294;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body class="bg-[#030b14] text-slate-100 antialiased selection:bg-cyan-500 selection:text-white">
+
+  <!-- ========================================================================= -->
+  <!-- 2. NAVIGATION BAR (3 States: Hero invisible, scroll down hidden, scroll up glass) -->
+  <!-- ========================================================================= -->
+  <header id="main-nav-container" class="fixed top-0 left-0 w-full z-50 px-6 sm:px-10 lg:px-16 pt-6 pb-6 transition-all duration-500 ease-in-out">
+    <div id="nav-inner-pill" class="max-w-[1440px] mx-auto flex items-center justify-between px-6 py-4 rounded-full border border-transparent transition-all duration-500">
+      
+      <!-- Brand Logo (Original ABYSS spinning mark) -->
+      <a href="#" class="abyss-logo-wrap flex items-center gap-3 group focus:outline-none select-none">
+        <div class="relative w-8 h-8 flex items-center justify-center">
+          <!-- Geometric Deep-Ocean Bathymetric Spiral / Pulsar Ring (Custom SVG) -->
+          <svg class="abyss-logo-icon w-8 h-8 text-white group-hover:text-cyan-300 drop-shadow-sm" viewBox="0 0 48 48" fill="none" stroke="currentColor">
+            <!-- Central Node -->
+            <circle cx="24" cy="24" r="3.5" fill="currentColor" stroke="none" />
+            <!-- Concentric Bathymetry Discs with calibrated radial perforations -->
+            <circle cx="24" cy="24" r="9" stroke-width="1.8" stroke-dasharray="3 3" class="opacity-80"/>
+            <circle cx="24" cy="24" r="15" stroke-width="1.8" stroke-dasharray="4 4" class="opacity-90"/>
+            <circle cx="24" cy="24" r="21" stroke-width="1.6" stroke-dasharray="5 5" class="opacity-70"/>
+            <!-- 8 Hydrographic Sensor Ray Points -->
+            <circle cx="24" cy="3" r="1.5" fill="currentColor"/>
+            <circle cx="39" cy="9" r="1.5" fill="currentColor"/>
+            <circle cx="45" cy="24" r="1.5" fill="currentColor"/>
+            <circle cx="39" cy="39" r="1.5" fill="currentColor"/>
+            <circle cx="24" cy="45" r="1.5" fill="currentColor"/>
+            <circle cx="9" cy="39" r="1.5" fill="currentColor"/>
+            <circle cx="3" cy="24" r="1.5" fill="currentColor"/>
+            <circle cx="9" cy="9" r="1.5" fill="currentColor"/>
+          </svg>
+        </div>
+        <span class="font-mono text-xl tracking-[0.25em] font-semibold text-white uppercase group-hover:text-cyan-200 transition-colors">
+          ABYSS
+        </span>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex items-center gap-8 text-[14px] font-normal tracking-wide text-white/90">
+        <!-- Dropdown trigger 1 -->
+        <div class="relative" id="dropdown-platform-parent">
+          <button id="btn-dropdown-platform" class="flex items-center gap-1.5 hover:text-white transition-colors focus:outline-none py-1 group cursor-pointer">
+            <span>Platform</span>
+            <svg class="w-3.5 h-3.5 text-white/70 transition-transform duration-300 group-hover:translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+
+          <!-- 3. NAV DROPDOWN / GLASS MENU -->
+          <div id="dropdown-menu" class="nav-glass-dropdown absolute top-full left-0 mt-3 w-56 py-3 px-2 rounded-2xl opacity-0 translate-y-2 pointer-events-none transition-all duration-300 ease-out z-50">
+            <a href="#platform" class="dropdown-link flex items-center justify-between px-3 py-2.5 rounded-xl text-[13px] text-white/80 hover:text-white hover:bg-white/10 transition-colors">
+              <span>Deep-Sea Platform</span>
+              <svg class="w-3 h-3 text-cyan-400 opacity-0 -translate-x-1 group-hover:opacity-100 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#science" class="dropdown-link flex items-center justify-between px-3 py-2.5 rounded-xl text-[13px] text-white/80 hover:text-white hover:bg-white/10 transition-colors">
+              <span>Oceanographic Sensorics</span>
+            </a>
+            <a href="#publications" class="dropdown-link flex items-center justify-between px-3 py-2.5 rounded-xl text-[13px] text-white/80 hover:text-white hover:bg-white/10 transition-colors">
+              <span>Scientific Publications</span>
+            </a>
+            <div class="h-px bg-white/10 my-1 mx-2"></div>
+            <a href="#projects" class="dropdown-link flex items-center justify-between px-3 py-2.5 rounded-xl text-[13px] text-white/80 hover:text-white hover:bg-white/10 transition-colors">
+              <span>Autonomous Fleet</span>
+            </a>
+          </div>
+        </div>
+
+        <a href="#pipeline" class="hover:text-white transition-colors">Pipeline</a>
+        
+        <!-- Dropdown trigger 2 -->
+        <div class="relative group">
+          <button class="flex items-center gap-1.5 hover:text-white transition-colors focus:outline-none py-1">
+            <span>Environments</span>
+            <svg class="w-3.5 h-3.5 text-white/70 transition-transform duration-300 group-hover:translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="relative group">
+          <button class="flex items-center gap-1.5 hover:text-white transition-colors focus:outline-none py-1">
+            <span>Company</span>
+            <svg class="w-3.5 h-3.5 text-white/70 transition-transform duration-300 group-hover:translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+        </div>
+
+        <a href="#partnerships" class="hover:text-white transition-colors">Partnerships</a>
+        <a href="#products" class="hover:text-white transition-colors">Products</a>
+      </nav>
+
+      <!-- Right Contact Action Button (Exact LinusBio round pill geometry with arrow icon) -->
+      <div class="flex items-center">
+        <a href="#contact" class="group flex items-center gap-3 bg-white/15 hover:bg-white/25 border border-white/20 px-5 py-2.5 rounded-full text-[14px] text-white font-medium transition-all duration-300">
+          <span>Contact us</span>
+          <span class="w-6 h-6 rounded-full bg-white flex items-center justify-center text-slate-900 group-hover:translate-x-0.5 transition-transform duration-300">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+            </svg>
+          </span>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- 1. HERO / LANDING SECTION -->
+  <!-- ========================================================================= -->
+  <section id="hero" class="relative w-full h-screen min-h-[720px] flex items-center justify-start overflow-hidden bg-ocean-950">
+    <!-- Immersive Cinematic Deep-Ocean Background Video Layer -->
+    <div class="absolute inset-0 w-full h-full z-0 overflow-hidden">
+      <!-- High definition organic deep ocean particulate & bioluminescence video -->
+      <video autoplay loop muted playsinline class="w-full h-full object-cover opacity-80 filter brightness-[0.92] contrast-[1.05] scale-[1.01]">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-underwater-bubbles-and-sunlight-light-rays-41378-large.mp4" type="video/mp4">
+        <!-- Fallback video source -->
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-sea-water-background-texture-42111-large.mp4" type="video/mp4">
+      </video>
+      <!-- Atmospheric Gradient Scrim Matching Reference (Cinematic cyan-tinted ocean mist) -->
+      <div class="absolute inset-0 bg-gradient-to-t from-[#1b4e6c] via-[#1b4e6c]/40 to-[#071d2b]/60 mix-blend-multiply"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-[#0c2e44]/90 via-[#133e5b]/45 to-transparent"></div>
+    </div>
+
+    <!-- Pause / Play overlay control as shown in reference top-right -->
+    <button id="hero-video-toggle" class="absolute bottom-12 right-12 z-20 flex items-center gap-2 text-white/70 hover:text-white text-xs font-mono tracking-widest uppercase transition-colors px-3 py-1.5 rounded-full border border-white/20 bg-black/20 backdrop-blur-md cursor-pointer">
+      <span id="hero-pause-label">Pause</span>
+      <svg id="hero-pause-icon" class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+    </button>
+
+    <!-- Large Editorial Typography (Exact LinusBio hierarchy adapted for ABYSS) -->
+    <div class="relative z-10 max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20 w-full pt-20">
+      <div class="max-w-4xl">
+        <h1 class="text-white text-5xl sm:text-7xl lg:text-[88px] font-normal leading-[1.04] tracking-[-0.03em] select-none">
+          The Next<br>
+          Revolution in<br>
+          <span class="text-cyan-100 font-light italic">Ocean Intelligence</span>
+        </h1>
+        <p class="mt-8 text-cyan-100/80 text-lg sm:text-xl font-light tracking-wide max-w-xl leading-relaxed">
+          Autonomous acoustic mapping and temporal molecular exposomics beneath the bathypelagic frontier.
+        </p>
+
+        <!-- Optional action jump -->
+        <div class="mt-10">
+          <a href="#technology-sequence" class="inline-flex items-center gap-3 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 text-white text-sm font-medium px-6 py-3.5 rounded-full transition-all duration-300">
+            <span>Discover our platform</span>
+            <span class="w-6 h-6 rounded-full bg-white flex items-center justify-center text-slate-900">
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+              </svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========================================================================= -->
+  <!-- 5. TEMPORAL / TECHNOLOGY SECTION (Color Continuity & Scroll Sync) -->
+  <!-- ========================================================================= -->
+  <!-- Top transition band matching reference: white background introduction with high editorial title -->
+  <section class="w-full bg-white text-slate-900 py-28 px-6 sm:px-12 lg:px-20 border-b border-slate-100">
+    <div class="max-w-[1440px] mx-auto">
+      <span class="text-xs font-mono uppercase tracking-[0.2em] text-slate-400 block mb-4">
+        Our proprietary technology
+      </span>
+      <h2 class="text-4xl sm:text-6xl lg:text-[64px] font-light leading-[1.12] tracking-[-0.03em] max-w-5xl text-slate-900">
+        Temporal <span class="text-[#25658e] font-normal">bathymetric</span> sequencing powering autonomous marine discoveries.
+      </h2>
+    </div>
+  </section>
+
+  <!-- Split Screen: LEFT color-matched video synced with RIGHT scrollable items -->
+  <section id="technology-sequence" class="relative w-full bg-white">
+    <div class="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20 py-16 lg:py-24">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        
+        <!-- LEFT COLUMN: Sticky / Anchored Video Frame seamlessly embedded in color-matched ocean backdrop -->
+        <div class="lg:col-span-6 lg:sticky lg:top-28 z-20">
+          <div class="bg-[#1b4f70] p-4 sm:p-7 rounded-3xl shadow-xl transition-all duration-700 relative overflow-hidden">
+            
+            <!-- Video Container with 3 Synced Ocean Intelligence Video Loops -->
+            <div class="video-viewport-wrapper aspect-[4/3] w-full rounded-2xl bg-black relative">
+              
+              <!-- Video State 1: Hydrographic Sonar / Micro-particulate analysis -->
+              <video id="video-slide-0" autoplay loop muted playsinline class="video-slide active">
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-close-up-of-waves-in-a-turquoise-sea-42095-large.mp4" type="video/mp4">
+              </video>
+
+              <!-- Video State 2: Subsea laser spectrometer / robotic arm -->
+              <video id="video-slide-1" autoplay loop muted playsinline class="video-slide">
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-reflection-of-light-on-the-water-of-a-swimming-pool-42110-large.mp4" type="video/mp4">
+              </video>
+
+              <!-- Video State 3: Deep ocean biological insights / bio-signatures -->
+              <video id="video-slide-2" autoplay loop muted playsinline class="video-slide">
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-movement-of-clean-clear-water-42112-large.mp4" type="video/mp4">
+              </video>
+
+              <!-- Video Playhead / Pause indicator -->
+              <div class="absolute top-4 right-4 z-10 bg-black/40 backdrop-blur-md px-3 py-1 rounded-full text-[11px] font-mono tracking-widest text-white/80 flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span>TELEMETRY LIVE</span>
+              </div>
+
+              <!-- Bottom active badge -->
+              <div class="absolute bottom-4 left-4 z-10 bg-black/50 backdrop-blur-md px-3.5 py-1.5 rounded-xl text-xs font-mono text-cyan-200" id="video-active-label">
+                SEQ 01 // HYDRO-TIME
+              </div>
+            </div>
+
+            <!-- Subtle contextual metadata bar underneath video -->
+            <div class="mt-4 flex items-center justify-between text-xs font-mono text-white/70 px-2">
+              <span>RESOLUTION: 0.02mm / SPECTRAL</span>
+              <span id="video-indicator-step">01 / 03</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN: Interactive Accordion & Scroll-driven Content System -->
+        <div class="lg:col-span-6 flex flex-col gap-10 lg:py-4">
+          
+          <!-- ITEM 1 -->
+          <div class="tech-item border-b border-slate-200 pb-10 cursor-pointer group" data-index="0">
+            <div class="flex items-center justify-between">
+              <h3 class="text-2xl sm:text-3xl font-light tracking-tight text-slate-900 group-hover:text-[#20587d] transition-colors">
+                Mapping ocean physiology over time
+              </h3>
+              <!-- 7. PLUS BUTTON INTERACTION -->
+              <button type="button" class="plus-btn w-10 h-10 rounded-full border border-slate-300 group-hover:border-slate-800 flex items-center justify-center transition-all duration-300 focus:outline-none" aria-label="Toggle item 1">
+                <svg class="plus-icon w-4 h-4 text-slate-700 active" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Description Body (Expanded by default for Item 1) -->
+            <div class="tech-content-body expanded">
+              <p class="text-slate-600 text-base sm:text-lg leading-relaxed font-light">
+                The ABYSS platform maps cyclical growth rings in abyssal biostructures and benthic mineral horizons to reveal thousands of chemical features across multi-year intervals. A single temporal acoustic assay yields as much longitudinal data as hundreds of deep-sea sampling expeditions, illuminating how ocean biosystems evolve over millennia.
+              </p>
+              <div class="mt-6">
+                <a href="#platform" class="inline-flex items-center gap-3 bg-[#24628a] hover:bg-[#1b4b68] text-white text-sm font-medium px-5 py-3 rounded-full transition-colors duration-300">
+                  <span>Go to platform</span>
+                  <span class="w-6 h-6 rounded-full bg-white flex items-center justify-center text-[#1b4b68]">
+                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- ITEM 2 -->
+          <div class="tech-item border-b border-slate-200 pb-10 cursor-pointer group" data-index="1">
+            <div class="flex items-center justify-between">
+              <h3 class="text-2xl sm:text-3xl font-light tracking-tight text-slate-900 group-hover:text-[#20587d] transition-colors">
+                Proprietary autonomous sensorics
+              </h3>
+              <button type="button" class="plus-btn w-10 h-10 rounded-full border border-slate-300 group-hover:border-slate-800 flex items-center justify-center transition-all duration-300 focus:outline-none" aria-label="Toggle item 2">
+                <svg class="plus-icon w-4 h-4 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Description Body -->
+            <div class="tech-content-body collapsed">
+              <p class="text-slate-600 text-base sm:text-lg leading-relaxed font-light">
+                Leveraging pressure-resilient micro-robotics and high-frequency subsea spectrometry, our autonomous probes isolate complex pelagic signatures in real time. We process bathymetric readouts through our onboard neural compute engine, isolating molecular markers of deep-trench hydrothermal activity, biogenic carbon sinks, and unseen geothermal flows.
+              </p>
+              <div class="mt-6">
+                <a href="#science" class="inline-flex items-center gap-3 bg-[#24628a] hover:bg-[#1b4b68] text-white text-sm font-medium px-5 py-3 rounded-full transition-colors duration-300">
+                  <span>Our Technology</span>
+                  <span class="w-6 h-6 rounded-full bg-white flex items-center justify-center text-[#1b4b68]">
+                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- ITEM 3 -->
+          <div class="tech-item border-b border-slate-200 pb-10 cursor-pointer group" data-index="2">
+            <div class="flex items-center justify-between">
+              <h3 class="text-2xl sm:text-3xl font-light tracking-tight text-slate-900 group-hover:text-[#20587d] transition-colors">
+                AI-powered ocean intelligence
+              </h3>
+              <button type="button" class="plus-btn w-10 h-10 rounded-full border border-slate-300 group-hover:border-slate-800 flex items-center justify-center transition-all duration-300 focus:outline-none" aria-label="Toggle item 3">
+                <svg class="plus-icon w-4 h-4 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Description Body -->
+            <div class="tech-content-body collapsed">
+              <p class="text-slate-600 text-base sm:text-lg leading-relaxed font-light">
+                ABYSS has created an acoustic machine-learning neural mesh and a one-of-a-kind planetary ocean database that transforms raw bathymetric telemetry into actionable climate, energy, and biological models. By fusing petabytes of marine sensor data with machine intelligence, we uncover the hidden regulatory dynamics of the global hydrosphere.
+              </p>
+              <div class="mt-6">
+                <a href="#pipeline" class="inline-flex items-center gap-3 bg-[#24628a] hover:bg-[#1b4b68] text-white text-sm font-medium px-5 py-3 rounded-full transition-colors duration-300">
+                  <span>Explore Data Pipeline</span>
+                  <span class="w-6 h-6 rounded-full bg-white flex items-center justify-center text-[#1b4b68]">
+                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 9. NEXT VIDEO SECTION (Large Immersive Video Break & Quote) -->
+  <!-- ========================================================================= -->
+  <section class="relative w-full min-h-[640px] flex items-center overflow-hidden bg-[#164866]">
+    <!-- Immersive Video Footage Layer -->
+    <div class="absolute inset-0 w-full h-full z-0">
+      <video autoplay loop muted playsinline class="w-full h-full object-cover opacity-60 filter contrast-[1.1] brightness-[0.85]">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-diving-deep-into-the-ocean-water-42106-large.mp4" type="video/mp4">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-underwater-bubbles-and-sunlight-light-rays-41378-large.mp4" type="video/mp4">
+      </video>
+      <!-- Seamless color tone gradient matching Reference Screenshot 4 & 5 -->
+      <div class="absolute inset-0 bg-gradient-to-r from-[#174663] via-[#1b4e6d]/85 to-[#164562]/50"></div>
+    </div>
+
+    <!-- Quote Card matching Reference Dr. Manish Arora quote block layout -->
+    <div class="relative z-10 max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20 w-full py-20">
+      <div class="max-w-xl bg-[#143d56]/75 backdrop-blur-xl p-8 sm:p-12 rounded-3xl border border-white/15 shadow-2xl text-white">
+        <!-- Giant Quotation Mark SVG -->
+        <svg class="w-12 h-12 text-cyan-300/80 mb-6" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+        </svg>
+
+        <p class="text-xl sm:text-2xl font-light leading-relaxed text-white/95">
+          “We are autonomous explorers and ocean scientists shaping ABYSS’s mission to decode Earth’s least understood ecosystem through deep-sea temporal robotics.”
+        </p>
+
+        <div class="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <div class="text-sm font-semibold text-white tracking-wide">Dr. Valeriya Vane</div>
+            <div class="text-xs font-mono text-cyan-200/70 mt-0.5">Founding Scientist & Chief Executive</div>
+          </div>
+          <a href="#team" class="inline-flex items-center gap-2.5 bg-white/10 hover:bg-white/20 border border-white/20 px-4 py-2 rounded-full text-xs font-medium text-white transition-colors">
+            <span>Meet the team</span>
+            <span class="w-5 h-5 rounded-full bg-white flex items-center justify-center text-slate-900">
+              <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========================================================================= -->
+  <!-- 10. FEATURED PROJECTS SECTION (Static Left / Scrollable Right Pipeline) -->
+  <!-- ========================================================================= -->
+  <section id="projects" class="w-full bg-white text-slate-900 py-24 sm:py-32 px-6 sm:px-12 lg:px-20 border-t border-slate-100">
+    <div class="max-w-[1440px] mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        
+        <!-- LEFT COLUMN: Static Label & Overview (Remains visually anchored) -->
+        <div class="lg:col-span-5 lg:sticky lg:top-32 space-y-6">
+          <span class="text-xs font-mono uppercase tracking-[0.2em] text-slate-400 block">
+            Subsea Initiatives
+          </span>
+          <h2 class="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight text-slate-900 leading-[1.08]">
+            Featured projects
+          </h2>
+          <p class="text-slate-600 text-base sm:text-lg font-light leading-relaxed max-w-md">
+            ABYSS has developed the world’s first autonomous deep-trench acoustic sensor array — BathySense-1. Capable of continuous sub-abyssal deployment at depths beyond 9,000 meters, our sensors capture real-time geodynamic and biochemical equilibrium markers.
+          </p>
+          <p class="text-slate-600 text-base sm:text-lg font-light leading-relaxed max-w-md">
+            Alongside this, ABYSS researchers are manufacturing autonomous benthic gliders for extreme climate monitoring, undersea methane plume detection, and pelagic ecosystem preservation.
+          </p>
+          <div class="pt-2">
+            <a href="#pipeline" class="inline-flex items-center gap-3 bg-[#236087] hover:bg-[#1b4b68] text-white text-sm font-medium px-6 py-3.5 rounded-full transition-all duration-300">
+              <span>View full pipeline</span>
+              <span class="w-6 h-6 rounded-full bg-white flex items-center justify-center text-[#1b4b68]">
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN: Project Pipeline Cards & Milestone Trackers -->
+        <div class="lg:col-span-7 space-y-12">
+
+          <!-- PROJECT CARD 1 -->
+          <div class="bg-slate-50 border border-slate-200/80 rounded-3xl p-8 sm:p-10 transition-all hover:border-cyan-700/30 hover:shadow-lg">
+            <div class="flex items-center justify-between border-b border-slate-200 pb-4 mb-6">
+              <span class="text-xs font-mono text-cyan-800 font-semibold uppercase tracking-wider">01 // BENTHIC SENSORICS</span>
+              <span class="px-3 py-1 bg-emerald-100 text-emerald-800 rounded-full text-xs font-medium">Decommissioned Test Active</span>
+            </div>
+            <h3 class="text-2xl sm:text-3xl font-normal text-slate-900 tracking-tight mb-3">
+              Early Pelagic Biomarker Matrix — DeepStrand-1
+            </h3>
+            <p class="text-slate-600 font-light leading-relaxed mb-8">
+              DeepStrand-1 is an in-situ oceanic probe that monitors bio-molecular changes in benthic organisms and hydrothermal emissions to predict thermal stress across coral ecosystems.
+            </p>
+
+            <!-- 4-Phase Progress Pipeline as seen in Reference Screenshot 6 & 7 -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-white p-4 rounded-2xl border border-slate-200/60">
+              <div class="text-center p-3 rounded-xl bg-slate-50 border border-emerald-200">
+                <div class="w-7 h-7 mx-auto mb-2 rounded-full bg-emerald-500 text-white flex items-center justify-center">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <div class="text-[11px] font-medium text-slate-800 leading-tight">Patent submitted</div>
+              </div>
+
+              <div class="text-center p-3 rounded-xl bg-slate-50 border border-emerald-200">
+                <div class="w-7 h-7 mx-auto mb-2 rounded-full bg-emerald-500 text-white flex items-center justify-center">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <div class="text-[11px] font-medium text-slate-800 leading-tight">Field trials</div>
+              </div>
+
+              <div class="text-center p-3 rounded-xl bg-slate-50 border border-emerald-200">
+                <div class="w-7 h-7 mx-auto mb-2 rounded-full bg-emerald-500 text-white flex items-center justify-center">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <div class="text-[11px] font-medium text-slate-800 leading-tight">Acoustic characterization</div>
+              </div>
+
+              <div class="text-center p-3 rounded-xl bg-emerald-50/70 border border-emerald-300">
+                <div class="w-7 h-7 mx-auto mb-2 rounded-full bg-emerald-600 text-white flex items-center justify-center">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <div class="text-[11px] font-medium text-emerald-900 leading-tight">Mission ready</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PROJECT CARD 2 -->
+          <div class="bg-slate-50 border border-slate-200/80 rounded-3xl p-8 sm:p-10 transition-all hover:border-cyan-700/30 hover:shadow-lg">
+            <div class="flex items-center justify-between border-b border-slate-200 pb-4 mb-6">
+              <span class="text-xs font-mono text-cyan-800 font-semibold uppercase tracking-wider">02 // AUTONOMOUS DRIFT</span>
+              <span class="px-3 py-1 bg-sky-100 text-sky-800 rounded-full text-xs font-medium">In Development</span>
+            </div>
+            <h3 class="text-2xl sm:text-3xl font-normal text-slate-900 tracking-tight mb-3">
+              Abyssal Trench Autonomous Glider — Mariana-X
+            </h3>
+            <p class="text-slate-600 font-light leading-relaxed mb-8">
+              A high-endurance titanium autonomous glider engineered for persistent surveying at full ocean depth (11,000m). Tracks micro-current shears and sub-floor seismic tremors.
+            </p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-white p-4 rounded-2xl border border-slate-200/60">
+              <div class="text-center p-3 rounded-xl bg-slate-50 border border-emerald-200">
+                <div class="w-7 h-7 mx-auto mb-2 rounded-full bg-emerald-500 text-white flex items-center justify-center">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <div class="text-[11px] font-medium text-slate-800 leading-tight">Patent submitted</div>
+              </div>
+
+              <div class="text-center p-3 rounded-xl bg-slate-50 border border-emerald-200">
+                <div class="w-7 h-7 mx-auto mb-2 rounded-full bg-emerald-500 text-white flex items-center justify-center">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <div class="text-[11px] font-medium text-slate-800 leading-tight">Pressure testing</div>
+              </div>
+
+              <div class="text-center p-3 rounded-xl bg-slate-50 border border-emerald-200">
+                <div class="w-7 h-7 mx-auto mb-2 rounded-full bg-emerald-500 text-white flex items-center justify-center">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <div class="text-[11px] font-medium text-slate-800 leading-tight">Acoustic link</div>
+              </div>
+
+              <div class="text-center p-3 rounded-xl bg-slate-50 opacity-40">
+                <div class="w-7 h-7 mx-auto mb-2 rounded-full border border-slate-300 flex items-center justify-center">
+                  <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+                </div>
+                <div class="text-[11px] font-medium text-slate-500 leading-tight">Commercial fleet</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PROJECT CARD 3 -->
+          <div class="bg-slate-50 border border-slate-200/80 rounded-3xl p-8 sm:p-10 transition-all hover:border-cyan-700/30 hover:shadow-lg">
+            <div class="flex items-center justify-between border-b border-slate-200 pb-4 mb-6">
+              <span class="text-xs font-mono text-cyan-800 font-semibold uppercase tracking-wider">03 // CARBON CYCLING</span>
+              <span class="px-3 py-1 bg-amber-100 text-amber-800 rounded-full text-xs font-medium">Validation Phase</span>
+            </div>
+            <h3 class="text-2xl sm:text-3xl font-normal text-slate-900 tracking-tight mb-3">
+              Pelagic Carbon Sequestration Verification Network
+            </h3>
+            <p class="text-slate-600 font-light leading-relaxed mb-8">
+              A permanent seabed monitoring station validating real marine carbon flux and geochemical mineralization across deep ocean trenches with cryptographically verified readouts.
+            </p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-white p-4 rounded-2xl border border-slate-200/60">
+              <div class="text-center p-3 rounded-xl bg-slate-50 border border-emerald-200">
+                <div class="w-7 h-7 mx-auto mb-2 rounded-full bg-emerald-500 text-white flex items-center justify-center">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <div class="text-[11px] font-medium text-slate-800 leading-tight">Patent submitted</div>
+              </div>
+
+              <div class="text-center p-3 rounded-xl bg-slate-50 border border-emerald-200">
+                <div class="w-7 h-7 mx-auto mb-2 rounded-full bg-emerald-500 text-white flex items-center justify-center">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <div class="text-[11px] font-medium text-slate-800 leading-tight">Pilot deployment</div>
+              </div>
+
+              <div class="text-center p-3 rounded-xl bg-slate-50 opacity-40">
+                <div class="w-7 h-7 mx-auto mb-2 rounded-full border border-slate-300 flex items-center justify-center">
+                  <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+                </div>
+                <div class="text-[11px] font-medium text-slate-500 leading-tight">Ecosystem metrics</div>
+              </div>
+
+              <div class="text-center p-3 rounded-xl bg-slate-50 opacity-40">
+                <div class="w-7 h-7 mx-auto mb-2 rounded-full border border-slate-300 flex items-center justify-center">
+                  <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+                </div>
+                <div class="text-[11px] font-medium text-slate-500 leading-tight">Commercial ops</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========================================================================= -->
+  <!-- 11. ANOTHER VIDEO SECTION (Transition to next frontier) -->
+  <!-- ========================================================================= -->
+  <section class="relative w-full h-[80vh] min-h-[560px] flex items-center justify-center overflow-hidden bg-ocean-950">
+    <!-- Immersive Deep-Sea Submarine Exploration Footage -->
+    <div class="absolute inset-0 w-full h-full z-0">
+      <video autoplay loop muted playsinline class="w-full h-full object-cover opacity-75 filter contrast-[1.08] brightness-[0.9]">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-sea-water-background-texture-42111-large.mp4" type="video/mp4">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-close-up-of-waves-in-a-turquoise-sea-42095-large.mp4" type="video/mp4">
+      </video>
+      <!-- Deep Blue Radial Vignette Scrim -->
+      <div class="absolute inset-0 bg-gradient-to-b from-white/10 via-[#0a2336]/60 to-[#030b14]"></div>
+    </div>
+
+    <!-- Centered Editorial Text Prompting the Next Tier -->
+    <div class="relative z-10 max-w-4xl mx-auto px-6 text-center text-white">
+      <span class="text-xs font-mono tracking-[0.3em] uppercase text-cyan-300/90 block mb-4">
+        Acoustic Telemetry Horizon
+      </span>
+      <h2 class="text-4xl sm:text-6xl font-light tracking-tight leading-tight">
+        Observing the pulse of Earth’s final frontier.
+      </h2>
+      <div class="mt-8 flex justify-center">
+        <a href="#hero" class="group flex items-center gap-3 bg-white/15 hover:bg-white/25 border border-white/30 backdrop-blur-md px-6 py-3.5 rounded-full text-sm font-medium text-white transition-all duration-300">
+          <span>Return to surface</span>
+          <svg class="w-4 h-4 text-cyan-200 group-hover:-translate-y-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Clean minimal footer bar for structural polish -->
+  <footer class="bg-[#030b14] border-t border-white/10 py-10 px-6 sm:px-12 text-xs font-mono text-slate-400 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="flex items-center gap-3">
+      <span class="text-white font-semibold tracking-widest uppercase">ABYSS</span>
+      <span>© 2026 ABYSS OCEAN INTELLIGENCE SYSTEMS INC.</span>
+    </div>
+    <div class="flex items-center gap-6">
+      <a href="#" class="hover:text-white transition-colors">BATHYMETRY SPEC</a>
+      <a href="#" class="hover:text-white transition-colors">ETHICAL EXPLORATION</a>
+      <a href="#" class="hover:text-white transition-colors">RESTRICTED ACCESS</a>
+    </div>
+  </footer>
+
+
+  <!-- ========================================================================= -->
+  <!-- JAVASCRIPT: Complete Interaction Behaviors -->
+  <!-- ========================================================================= -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+      /* --------------------------------------------------------------------- */
+      /* 2. THREE-STATE NAVIGATION SCROLL BEHAVIOR                             */
+      /* State 1: At top (hero) -> text visible, pill invisible               */
+      /* State 2: Scrolling down -> navbar translates up/offscreen            */
+      /* State 3: Scrolling up -> navbar reappears with glassmorphic pill     */
+      /* --------------------------------------------------------------------- */
+      const navContainer = document.getElementById('main-nav-container');
+      const navPill = document.getElementById('nav-inner-pill');
+      let lastScrollY = window.scrollY;
+      let ticking = false;
+
+      function updateNavbar() {
+        const currentScrollY = window.scrollY;
+        const heroHeight = window.innerHeight * 0.85;
+
+        // State 1: At top / Hero boundary
+        if (currentScrollY <= 60) {
+          navContainer.style.transform = 'translateY(0)';
+          navPill.classList.remove('nav-glass-active');
+        } 
+        // State 2: Scrolling Down
+        else if (currentScrollY > lastScrollY && currentScrollY > 120) {
+          navContainer.style.transform = 'translateY(-115%)';
+          closeDropdown();
+        } 
+        // State 3: Scrolling Upwards
+        else if (currentScrollY < lastScrollY) {
+          navContainer.style.transform = 'translateY(0)';
+          navPill.classList.add('nav-glass-active');
+        }
+
+        lastScrollY = currentScrollY;
+        ticking = false;
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(updateNavbar);
+          ticking = true;
+        }
+      });
+
+
+      /* --------------------------------------------------------------------- */
+      /* 3. NAV DROPDOWN / GLASS MENU INTERACTION                              */
+      /* --------------------------------------------------------------------- */
+      const btnPlatform = document.getElementById('btn-dropdown-platform');
+      const dropdownMenu = document.getElementById('dropdown-menu');
+      let dropdownOpen = false;
+
+      function toggleDropdown(e) {
+        if (e) e.stopPropagation();
+        dropdownOpen = !dropdownOpen;
+        if (dropdownOpen) {
+          dropdownMenu.classList.remove('opacity-0', 'translate-y-2', 'pointer-events-none');
+          dropdownMenu.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+        } else {
+          closeDropdown();
+        }
+      }
+
+      function closeDropdown() {
+        dropdownOpen = false;
+        dropdownMenu.classList.add('opacity-0', 'translate-y-2', 'pointer-events-none');
+        dropdownMenu.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+      }
+
+      if (btnPlatform && dropdownMenu) {
+        btnPlatform.addEventListener('click', toggleDropdown);
+        document.addEventListener('click', (e) => {
+          if (!dropdownMenu.contains(e.target) && !btnPlatform.contains(e.target)) {
+            closeDropdown();
+          }
+        });
+      }
+
+
+      /* --------------------------------------------------------------------- */
+      /* 6, 7 & 8. TECH SECTION VIDEO + CONTENT SYNC ACCORDION                */
+      /* Clicking item or plus toggles active video and expands description    */
+      /* --------------------------------------------------------------------- */
+      const techItems = document.querySelectorAll('.tech-item');
+      const videoSlides = [
+        document.getElementById('video-slide-0'),
+        document.getElementById('video-slide-1'),
+        document.getElementById('video-slide-2')
+      ];
+      const videoStepText = document.getElementById('video-indicator-step');
+      const videoLabel = document.getElementById('video-active-label');
+
+      const labels = [
+        'SEQ 01 // HYDRO-TIME',
+        'SEQ 02 // SUBSEA SPECTRA',
+        'SEQ 03 // HYDROMESH AI'
+      ];
+
+      function setActiveTechItem(targetIndex) {
+        techItems.forEach((item, idx) => {
+          const body = item.querySelector('.tech-content-body');
+          const plusIcon = item.querySelector('.plus-icon');
+          
+          if (idx === targetIndex) {
+            body.classList.remove('collapsed');
+            body.classList.add('expanded');
+            if (plusIcon) plusIcon.classList.add('active');
+          } else {
+            body.classList.remove('expanded');
+            body.classList.add('collapsed');
+            if (plusIcon) plusIcon.classList.remove('active');
+          }
+        });
+
+        // Switch active video
+        videoSlides.forEach((slide, idx) => {
+          if (slide) {
+            if (idx === targetIndex) {
+              slide.classList.add('active');
+              slide.currentTime = 0;
+              slide.play().catch(() => {});
+            } else {
+              slide.classList.remove('active');
+            }
+          }
+        });
+
+        if (videoStepText) videoStepText.textContent = `0${targetIndex + 1} / 03`;
+        if (videoLabel) videoLabel.textContent = labels[targetIndex] || '';
+      }
+
+      techItems.forEach((item) => {
+        const idx = parseInt(item.getAttribute('data-index'), 10);
+        const plusBtn = item.querySelector('.plus-btn');
+
+        // Clicking either the plus button or heading activates this item & video
+        if (plusBtn) {
+          plusBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            setActiveTechItem(idx);
+          });
+        }
+
+        item.addEventListener('click', () => {
+          setActiveTechItem(idx);
+        });
+      });
+
+      // Scroll-driven trigger linking right-side scroll to video index
+      const techSequenceSection = document.getElementById('technology-sequence');
+      if (techSequenceSection) {
+        window.addEventListener('scroll', () => {
+          const rect = techSequenceSection.getBoundingClientRect();
+          const windowHeight = window.innerHeight;
+
+          // When the tech section is within view, compute progress
+          if (rect.top <= windowHeight * 0.4 && rect.bottom >= windowHeight * 0.2) {
+            const progress = (windowHeight * 0.4 - rect.top) / (rect.height * 0.7);
+            const clampedProgress = Math.max(0, Math.min(progress, 0.99));
+            const calculatedIndex = Math.floor(clampedProgress * 3);
+            
+            // Check if active body differs to avoid jitter
+            const currentItem = techItems[calculatedIndex];
+            if (currentItem) {
+              const body = currentItem.querySelector('.tech-content-body');
+              if (body && body.classList.contains('collapsed')) {
+                setActiveTechItem(calculatedIndex);
+              }
+            }
+          }
+        });
+      }
+
+
+      /* --------------------------------------------------------------------- */
+      /* HERO VIDEO TOGGLE CONTROL                                             */
+      /* --------------------------------------------------------------------- */
+      const heroVideo = document.querySelector('#hero video');
+      const heroToggleBtn = document.getElementById('hero-video-toggle');
+      const pauseLabel = document.getElementById('hero-pause-label');
+
+      if (heroToggleBtn && heroVideo) {
+        heroToggleBtn.addEventListener('click', () => {
+          if (heroVideo.paused) {
+            heroVideo.play();
+            if (pauseLabel) pauseLabel.textContent = 'Pause';
+          } else {
+            heroVideo.pause();
+            if (pauseLabel) pauseLabel.textContent = 'Play';
+          }
+        });
+      }
+
+    });
+  </script>
+</body>
+</html>

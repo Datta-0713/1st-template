@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ABYSS | Temporal Exposomics Sequencing &amp; Precision Biomarkers</title>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;family=Newsreader:ital,wght@0,300;0,400;1,300&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<!-- Custom Tailwind Configuration -->
+<script data-purpose="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ocean: {
+              50: '#f0f7fa',
+              100: '#dbeff5',
+              200: '#bce0ed',
+              500: '#1c7293',
+              600: '#184b66',
+              700: '#133a4f',
+              800: '#0f2c3d',
+              900: '#091c27',
+              deep: '#164660',
+              canvas: '#184b66'
+            },
+            abyssCyan: '#2ca4c4',
+            abyssBlue: '#2582a8'
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+            body: ['Inter', 'sans-serif'],
+            serif: ['Newsreader', 'Georgia', 'serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+<style>
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #184b66;
+      color: #0b1c30;
+      overflow-x: hidden;
+    }
+
+    /* Rotating Logo Symbol on Hover */
+    .logo-symbol {
+      transition: transform 0.85s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .logo-container:hover .logo-symbol {
+      transform: rotate(180deg);
+    }
+
+    /* Smart Navbar Smooth Dynamics */
+    .nav-transition {
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .glass-nav-scrolled {
+      backdrop-filter: blur(20px) saturate(180%) !important;
+      -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+      background: rgba(15, 35, 52, 0.72) !important;
+      border: 1px solid rgba(255, 255, 255, 0.12) !important;
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.45) !important;
+    }
+
+    /* Glassmorphism Dropdowns */
+    .dropdown-frosted {
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      background: rgba(14, 43, 59, 0.96);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.45);
+    }
+
+    /* Floating Leadership Quote Badge */
+    .glass-quote-badge {
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    /* Accordion animation */
+    .accordion-content-panel {
+      transition: max-height 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-cyan-500 selection:text-white bg-[#184b66] relative">
+<!-- BACKGROUND AMBIENT CANVAS -->
+<div class="fixed inset-0 pointer-events-none z-0 opacity-40">
+<canvas class="w-full h-full object-cover" id="ambient-ocean-backdrop"></canvas>
+</div>
+<!-- ========================================================================= -->
+<!-- 1. HERO SECTION & SMART NAVIGATION                                        -->
+<!-- ========================================================================= -->
+<header class="fixed top-0 left-0 w-full z-50 px-6 sm:px-10 lg:px-16 pt-6 pb-6 transition-all duration-500 ease-in-out" id="site-header">
+    <div class="max-w-[1440px] mx-auto flex items-center justify-between px-6 py-3 sm:py-4 rounded-full border border-transparent transition-all duration-500" id="nav-pill">
+      <!-- Brand Logo with spinning dot matrix -->
+      <a aria-label="ABYSS Home" class="logo-container flex items-center space-x-3 text-white group" href="#">
+<svg class="logo-symbol w-8 h-8 sm:w-9 sm:h-9" fill="none" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<circle cx="50" cy="50" fill="#ffffff" r="6.5"></circle>
+<circle cx="50" cy="24" fill="#ffffff" opacity="0.9" r="4.5"></circle>
+<circle cx="50" cy="76" fill="#ffffff" opacity="0.9" r="4.5"></circle>
+<circle cx="24" cy="50" fill="#ffffff" opacity="0.9" r="4.5"></circle>
+<circle cx="76" cy="50" fill="#ffffff" opacity="0.9" r="4.5"></circle>
+<circle cx="32" cy="32" fill="#ffffff" opacity="0.8" r="3.8"></circle>
+<circle cx="68" cy="32" fill="#ffffff" opacity="0.8" r="3.8"></circle>
+<circle cx="32" cy="68" fill="#ffffff" opacity="0.8" r="3.8"></circle>
+<circle cx="68" cy="68" fill="#ffffff" opacity="0.8" r="3.8"></circle>
+<circle cx="50" cy="10" fill="#ffffff" opacity="0.6" r="2.8"></circle>
+<circle cx="50" cy="90" fill="#ffffff" opacity="0.6" r="2.8"></circle>
+<circle cx="10" cy="50" fill="#ffffff" opacity="0.6" r="2.8"></circle>
+<circle cx="90" cy="50" fill="#ffffff" opacity="0.6" r="2.8"></circle>
+<circle cx="20" cy="20" fill="#ffffff" opacity="0.4" r="2.2"></circle>
+<circle cx="80" cy="20" fill="#ffffff" opacity="0.4" r="2.2"></circle>
+<circle cx="20" cy="80" fill="#ffffff" opacity="0.4" r="2.2"></circle>
+<circle cx="80" cy="80" fill="#ffffff" opacity="0.4" r="2.2"></circle>
+</svg>
+<span class="tracking-[0.22em] font-semibold text-lg sm:text-xl text-white uppercase flex items-center gap-2">
+        ABYSS <span class="hidden md:inline-block text-[10px] font-normal tracking-widest text-cyan-200/70 pl-2 border-l border-white/20">OCEAN INTELLIGENCE</span>
+</span>
+</a>
+<!-- Desktop Navigation Menu -->
+<nav aria-label="Primary Navigation" class="hidden lg:flex items-center space-x-7 text-[14px] font-medium text-white/90">
+<!-- Platform Dropdown -->
+<div class="relative group">
+<button aria-expanded="false" class="flex items-center gap-1.5 hover:text-white py-2 focus:outline-none transition-colors">
+<span>Platform</span>
+<svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180 text-white/70" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"></path>
+</svg>
+</button>
+<div class="dropdown-frosted absolute top-full left-0 mt-2 w-56 rounded-2xl py-2 px-1.5 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0" role="menu">
+<a class="block px-4 py-2.5 rounded-xl text-xs sm:text-sm text-white/90 hover:text-white hover:bg-white/10 transition-colors" href="#platform">Our Platform</a>
+<a class="block px-4 py-2.5 rounded-xl text-xs sm:text-sm text-white/90 hover:text-white hover:bg-white/10 transition-colors" href="#science-jump">Our Science</a>
+<a class="block px-4 py-2.5 rounded-xl text-xs sm:text-sm text-white/90 hover:text-white hover:bg-white/10 transition-colors" href="#news-events">Publications</a>
+</div>
+</div>
+<a class="hover:text-white transition-colors" href="#pipeline-section">Pipeline</a>
+<!-- Biomarkers Dropdown -->
+<div class="relative group">
+<button class="flex items-center gap-1.5 hover:text-white py-2 focus:outline-none transition-colors">
+<span>Biomarkers</span>
+<svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180 text-white/70" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"></path>
+</svg>
+</button>
+<div class="dropdown-frosted absolute top-full left-0 mt-2 w-56 rounded-2xl py-2 px-1.5 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200" role="menu">
+<a class="block px-4 py-2.5 rounded-xl text-sm text-white/90 hover:text-white hover:bg-white/10" href="#pipeline-section">Autism Spectrum Markers</a>
+<a class="block px-4 py-2.5 rounded-xl text-sm text-white/90 hover:text-white hover:bg-white/10" href="#pipeline-section">Marine Neurotoxins</a>
+<a class="block px-4 py-2.5 rounded-xl text-sm text-white/90 hover:text-white hover:bg-white/10" href="#pipeline-section">Cellular Plasticity</a>
+</div>
+</div>
+<!-- Company Dropdown -->
+<div class="relative group">
+<button class="flex items-center gap-1.5 hover:text-white py-2 focus:outline-none transition-colors">
+<span>Company</span>
+<svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180 text-white/70" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"></path>
+</svg>
+</button>
+<div class="dropdown-frosted absolute top-full left-0 mt-2 w-48 rounded-2xl py-2 px-1.5 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200" role="menu">
+<a class="block px-4 py-2 rounded-xl text-sm text-white/90 hover:text-white hover:bg-white/10" href="#leadership-quote">About Abyss</a>
+<a class="block px-4 py-2 rounded-xl text-sm text-white/90 hover:text-white hover:bg-white/10" href="#leadership-quote">Leadership</a>
+<a class="block px-4 py-2 rounded-xl text-sm text-white/90 hover:text-white hover:bg-white/10" href="#contact">Careers</a>
+</div>
+</div>
+<a class="hover:text-white transition-colors" href="#collaborate-section">Partnerships</a>
+<!-- Solutions Dropdown -->
+<div class="relative group">
+<button class="flex items-center gap-1.5 hover:text-white py-2 focus:outline-none transition-colors">
+<span>Solutions</span>
+<svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180 text-white/70" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"></path>
+</svg>
+</button>
+<div class="dropdown-frosted absolute top-full left-0 mt-2 w-52 rounded-2xl py-2 px-1.5 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200" role="menu">
+<a class="block px-4 py-2 rounded-xl text-sm text-white/90 hover:text-white hover:bg-white/10" href="#solutions-jump">DeepStrand-ASD</a>
+<a class="block px-4 py-2 rounded-xl text-sm text-white/90 hover:text-white hover:bg-white/10" href="#platform">AbyssCore Sequencing</a>
+</div>
+</div>
+</nav>
+<!-- Right Action Button -->
+<div class="flex items-center space-x-4">
+<a class="inline-flex items-center gap-3 bg-[#1d5774]/90 hover:bg-[#236b8e] text-white text-[14px] font-medium pl-5 pr-2 py-1.5 rounded-full border border-white/20 transition-all shadow-md group" href="#contact">
+<span>Contact us</span>
+<span class="w-7 h-7 rounded-full bg-white text-[#184b66] flex items-center justify-center transition-transform group-hover:translate-x-0.5">
+<svg class="w-3.5 h-3.5 stroke-[2.5]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</span>
+  </a>
+</div>
+  </div>
+</header>
+<!-- Hero Section with Canvas Video -->
+<section class="relative w-full h-screen min-h-[720px] flex items-center justify-start overflow-hidden" data-purpose="hero-viewport">
+<div class="absolute inset-0 z-0 bg-[#164660]">
+<canvas class="w-full h-full object-cover block" id="marine-hero-canvas"></canvas>
+<div class="absolute inset-0 bg-gradient-to-t from-[#184b66] via-[#184b66]/20 to-transparent pointer-events-none"></div>
+</div>
+<!-- Pause/Play Hero Control -->
+<div class="absolute top-24 sm:top-28 right-6 sm:right-12 z-20">
+<button class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/25 hover:bg-black/40 backdrop-blur-md text-white/80 hover:text-white text-xs tracking-wider transition-colors border border-white/10" id="hero-pause-btn">
+<span id="hero-pause-text">Pause</span>
+<span class="font-mono text-xs">||</span>
+</button>
+</div>
+  <!-- Hero Headline & Copy -->
+  <div class="relative z-10 max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20 w-full pt-20">
+    <div class="max-w-6xl w-full">
+    <h1 class="text-white text-5xl sm:text-7xl lg:text-[5.75rem] font-light leading-[1.04] tracking-[-0.03em] max-w-5xl">
+      The Next <br class="hidden sm:inline"/>
+      Revolution in <br/>
+    <span class="font-normal text-white">Ocean Intelligence</span>
+    </h1>
+    <p class="mt-6 text-cyan-100/75 text-lg sm:text-xl font-light max-w-2xl leading-relaxed font-body">
+      Pioneering temporal exposomics sequencing to map marine physiology, ecological resilience, and deep-sea molecular biosignatures over time.
+    </p>
+    </div>
+  </div>
+<!-- Mouse Scroll Indicator -->
+<div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center opacity-60 hover:opacity-100 transition-opacity pointer-events-none">
+<div class="w-5 h-9 rounded-full border-2 border-white/50 flex items-start justify-center p-1">
+<div class="w-1 h-2.5 bg-white rounded-full animate-bounce"></div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- 2. FIRST WHITE CONTAINER (Platform Scrollytelling + Our Science + DeepStrand) -->
+<!-- ========================================================================= -->
+<main class="w-full relative z-10 space-y-8 md:space-y-12 pb-12">
+<div class="px-0 sm:px-4 md:px-8 lg:px-12 max-w-[1480px] mx-auto pt-6">
+<section class="bg-white rounded-none sm:rounded-[36px] md:rounded-[44px] shadow-2xl p-6 sm:p-12 lg:p-16 border-t sm:border border-white/30" id="platform">
+<!-- Header -->
+<div class="max-w-4xl mb-12 sm:mb-16">
+<span class="text-xs sm:text-sm font-semibold tracking-wider text-gray-400 block mb-4 uppercase font-mono">
+          Our proprietary technology
+        </span>
+<h2 class="text-3xl sm:text-5xl lg:text-[3.25rem] font-light text-gray-900 tracking-tight leading-[1.14]">
+          Temporal <span class="text-[#2ca4c4] font-normal">exposomics</span> sequencing powering novel biomarkers.
+        </h2>
+</div>
+<div class="border-t border-gray-100 mb-12 lg:mb-16"></div>
+<!-- STICKY PINNED INTERACTION AREA: 3 Videos stacked on Left, Sticky Accordion on Right -->
+<div class="relative grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start pb-12 lg:pb-16 border-b border-gray-200" id="temporal-scrolly-container">
+        <!-- LEFT COLUMN: 3 Vertically Stacked Video Mockup Containers -->
+        <div class="lg:col-span-6 space-y-10 md:space-y-16 flex flex-col items-center lg:items-start" id="videos-track">
+<!-- Video 1: Concentric ring laser ablation -->
+<div class="feature-video-card relative w-full max-w-[500px] aspect-[4/5] rounded-3xl overflow-hidden bg-[#08141f] shadow-2xl border border-gray-100 flex flex-col justify-between" data-video-index="0" id="video-card-0">
+<canvas class="absolute inset-0 w-full h-full object-cover block" id="canvas-video-0"></canvas>
+<div class="relative z-20 w-full flex justify-end p-5">
+<button aria-label="Pause Video 1" class="video-pause-btn flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur-md text-white text-xs tracking-wider transition-all border border-white/15" data-canvas="0">
+<span class="pause-label font-mono">Pause</span>
+<span class="font-mono text-xs">||</span>
+</button>
+</div>
+<div class="relative z-20 p-6 bg-gradient-to-t from-black/80 via-black/30 to-transparent">
+<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-400/30 text-cyan-200 text-xs font-mono">
+<span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                Chronological Growth Ring Ablation
+              </span>
+</div>
+</div>
+<!-- Video 2: Laser Desorption & Microscopic cellular grooves -->
+<div class="feature-video-card relative w-full max-w-[500px] aspect-[4/5] rounded-3xl overflow-hidden bg-[#06131c] shadow-2xl border border-gray-100 flex flex-col justify-between" data-video-index="1" id="video-card-1">
+<canvas class="absolute inset-0 w-full h-full object-cover block" id="canvas-video-1"></canvas>
+<div class="relative z-20 w-full flex justify-end p-5">
+<button aria-label="Pause Video 2" class="video-pause-btn flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur-md text-white text-xs tracking-wider transition-all border border-white/15" data-canvas="1">
+<span class="pause-label font-mono">Pause</span>
+<span class="font-mono text-xs">||</span>
+</button>
+</div>
+<div class="relative z-20 p-6 bg-gradient-to-t from-black/80 via-black/30 to-transparent">
+<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-950/80 border border-amber-400/30 text-amber-200 text-xs font-mono">
+<span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+                Laser Desorption &amp; Picogram Extraction
+              </span>
+</div>
+</div>
+<!-- Video 3: AI Neural Genomic Matrix -->
+<div class="feature-video-card relative w-full max-w-[500px] aspect-[4/5] rounded-3xl overflow-hidden bg-[#071622] shadow-2xl border border-gray-100 flex flex-col justify-between" data-video-index="2" id="video-card-2">
+<canvas class="absolute inset-0 w-full h-full object-cover block" id="canvas-video-2"></canvas>
+<div class="relative z-20 w-full flex justify-end p-5">
+<button aria-label="Pause Video 3" class="video-pause-btn flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur-md text-white text-xs tracking-wider transition-all border border-white/15" data-canvas="2">
+<span class="pause-label font-mono">Pause</span>
+<span class="font-mono text-xs">||</span>
+</button>
+</div>
+<div class="relative z-20 p-6 bg-gradient-to-t from-black/80 via-black/30 to-transparent">
+<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-950/80 border border-blue-400/30 text-blue-200 text-xs font-mono">
+<span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                Global Hydro-Genomic AI Matrix
+              </span>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Sticky Accordion (Follows left scroll) -->
+<div class="lg:col-span-6 sticky top-32 lg:top-36 self-start space-y-7 pt-2" id="accordion-container">
+<!-- Accordion Item 1 -->
+<div class="accordion-item border-b border-gray-200 pb-7 transition-all duration-300" data-acc-index="0" id="acc-item-0">
+<button class="accordion-trigger w-full flex items-center justify-between text-left py-2 group focus:outline-none cursor-pointer" onclick="handleAccordionClick(0)">
+<span class="text-xl sm:text-2xl lg:text-[1.65rem] font-light text-gray-900 group-hover:text-cyan-700 transition-colors leading-snug">
+                Mapping marine physiology over time
+              </span>
+<span class="accordion-icon ml-4 text-2xl sm:text-3xl font-light text-gray-400 group-hover:text-cyan-600 transition-all select-none">
+                −
+              </span>
+</button>
+<div class="accordion-content-panel overflow-hidden transition-all duration-500 ease-in-out" id="acc-panel-0" style="max-height: 500px; opacity: 1;">
+<p class="text-gray-600 leading-relaxed font-light text-base sm:text-lg mt-4 mb-6 font-body">
+                The Abyss platform maps the chronological growth rings in marine organisms (corals, shells, otoliths) to reveal thousands of molecular features across time horizons. A single temporal core assay yields as much environmental exposure history as hundreds of deep-sea water samples collected over decades.
+              </p>
+<div>
+<a class="inline-flex items-center gap-3 bg-[#1d5774] hover:bg-[#206385] text-white text-[14px] font-medium pl-6 pr-2 py-2 rounded-full transition-all shadow group" href="#platform">
+<span>Go to platform</span>
+<span class="w-7 h-7 rounded-full bg-white text-[#184b66] flex items-center justify-center transition-transform group-hover:translate-x-0.5">
+<svg class="w-3.5 h-3.5 stroke-[2.5]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Accordion Item 2 -->
+<div class="accordion-item border-b border-gray-200 pb-7 transition-all duration-300" data-acc-index="1" id="acc-item-1">
+<button class="accordion-trigger w-full flex items-center justify-between text-left py-2 group focus:outline-none cursor-pointer" onclick="handleAccordionClick(1)">
+<span class="text-xl sm:text-2xl lg:text-[1.65rem] font-light text-gray-900 group-hover:text-cyan-700 transition-colors leading-snug">
+                Proprietary technology
+              </span>
+<span class="accordion-icon ml-4 text-2xl sm:text-3xl font-light text-gray-400 group-hover:text-cyan-600 transition-all select-none">
+                +
+              </span>
+</button>
+<div class="accordion-content-panel overflow-hidden transition-all duration-500 ease-in-out" id="acc-panel-1" style="max-height: 0px; opacity: 0;">
+<p class="text-gray-600 leading-relaxed font-light text-base sm:text-lg mt-4 mb-6 font-body">
+                Leveraging proprietary oceanographic robotics and laser ablation systems, our platform releases complex biomolecules, analyzes them with mass spectrometry, and feeds high-dimensional biological readouts directly into our ocean intelligence pipeline.
+              </p>
+<div>
+<a class="inline-flex items-center gap-3 bg-[#1d5774] hover:bg-[#206385] text-white text-[14px] font-medium pl-6 pr-2 py-2 rounded-full transition-all shadow group" href="#science-jump">
+<span>Our Science</span>
+<span class="w-7 h-7 rounded-full bg-white text-[#184b66] flex items-center justify-center transition-transform group-hover:translate-x-0.5">
+<svg class="w-3.5 h-3.5 stroke-[2.5]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Accordion Item 3 -->
+<div class="accordion-item border-b border-gray-200 pb-7 transition-all duration-300" data-acc-index="2" id="acc-item-2">
+<button class="accordion-trigger w-full flex items-center justify-between text-left py-2 group focus:outline-none cursor-pointer" onclick="handleAccordionClick(2)">
+<span class="text-xl sm:text-2xl lg:text-[1.65rem] font-light text-gray-900 group-hover:text-cyan-700 transition-colors leading-snug">
+                AI-powered ocean insights
+              </span>
+<span class="accordion-icon ml-4 text-2xl sm:text-3xl font-light text-gray-400 group-hover:text-cyan-600 transition-all select-none">
+                +
+              </span>
+</button>
+<div class="accordion-content-panel overflow-hidden transition-all duration-500 ease-in-out" id="acc-panel-2" style="max-height: 0px; opacity: 0;">
+<p class="text-gray-600 leading-relaxed font-light text-base sm:text-lg mt-4 mb-6 font-body">
+                Abyss has built an AI-powered pipeline and the largest longitudinal marine exposome dataset to transform bioaccumulation profiles into proactive indicators that forecast coral bleaching and ecosystem tipping points.
+              </p>
+<div>
+<a class="inline-flex items-center gap-3 bg-[#1d5774] hover:bg-[#206385] text-white text-[14px] font-medium pl-6 pr-2 py-2 rounded-full transition-all shadow group" href="#pipeline-section">
+<span>Go to pipeline</span>
+<span class="w-7 h-7 rounded-full bg-white text-[#184b66] flex items-center justify-center transition-transform group-hover:translate-x-0.5">
+<svg class="w-3.5 h-3.5 stroke-[2.5]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- INSIDE FIRST CONTAINER: OUR SCIENCE & DEEPSTRAND-ASD -->
+<div class="pt-16 pb-6 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12" id="science-jump">
+<!-- Card 1: Our Science -->
+<article class="bg-[#f8fbfa] rounded-3xl p-8 sm:p-12 flex flex-col justify-between border border-gray-100 hover:shadow-lg transition-shadow">
+<div>
+<div class="w-full h-64 sm:h-72 rounded-2xl bg-gradient-to-tr from-amber-50 to-orange-50 flex items-center justify-center overflow-hidden mb-8 relative border border-amber-100/50">
+<svg class="w-52 h-52 transform hover:scale-105 transition-transform duration-700" fill="none" viewbox="0 0 200 200">
+<defs>
+<radialgradient cx="35%" cy="35%" id="sphereGrad1" r="65%">
+<stop offset="0%" stop-color="#ffb875"></stop>
+<stop offset="60%" stop-color="#dd6b20"></stop>
+<stop offset="100%" stop-color="#7b341e"></stop>
+</radialgradient>
+<radialgradient cx="30%" cy="30%" id="sphereGrad2" r="70%">
+<stop offset="0%" stop-color="#fed7aa"></stop>
+<stop offset="70%" stop-color="#ea580c"></stop>
+<stop offset="100%" stop-color="#9a3412"></stop>
+</radialgradient>
+</defs>
+<circle cx="100" cy="100" fill="url(#sphereGrad1)" r="34"></circle>
+<circle cx="68" cy="85" fill="url(#sphereGrad2)" r="26"></circle>
+<circle cx="132" cy="82" fill="url(#sphereGrad1)" r="25"></circle>
+<circle cx="130" cy="120" fill="url(#sphereGrad2)" r="28"></circle>
+<circle cx="75" cy="128" fill="url(#sphereGrad1)" r="24"></circle>
+<circle cx="100" cy="60" fill="url(#sphereGrad2)" r="20"></circle>
+<circle cx="100" cy="140" fill="url(#sphereGrad2)" r="22"></circle>
+<circle cx="50" cy="108" fill="url(#sphereGrad1)" r="16"></circle>
+<circle cx="148" cy="102" fill="url(#sphereGrad2)" r="18"></circle>
+</svg>
+<div class="absolute bottom-3 left-4 text-xs font-mono text-amber-800/70 uppercase tracking-widest">
+                Biomolecular Matrix Cluster
+              </div>
+</div>
+<h3 class="text-3xl sm:text-4xl font-light text-gray-900 tracking-tight mb-4">
+              Our science
+            </h3>
+<p class="text-gray-600 font-light text-base sm:text-lg leading-relaxed mb-8 font-body">
+              Abyss has engineered a world-first exposomic marine platform to comprehensively understand oceanic pathogen reservoirs, environmental toxicity cascades, and biological pathogenesis.
+            </p>
+</div>
+<div>
+<a class="inline-flex items-center gap-3 text-gray-900 hover:text-cyan-700 font-medium group transition-colors" href="#collaborate-section">
+<span class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center group-hover:border-cyan-600 transition-colors">
+<svg class="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</span>
+<span>Read more</span>
+</a>
+</div>
+</article>
+<!-- Card 2: DeepStrand-ASD Now Available -->
+<article class="bg-[#f8fbfa] rounded-3xl p-8 sm:p-12 flex flex-col justify-between border border-gray-100 hover:shadow-lg transition-shadow" id="solutions-jump">
+<div>
+<div class="w-full h-64 sm:h-72 rounded-2xl bg-gradient-to-tr from-cyan-50 via-slate-50 to-sky-100 flex items-center justify-center overflow-hidden mb-8 relative p-6 border border-sky-100/50">
+<div class="relative flex items-center justify-center w-full max-w-sm">
+<!-- Kit Box -->
+<div class="w-44 h-32 bg-[#0d7ea2] rounded-xl shadow-2xl border-2 border-white/70 p-3.5 transform -rotate-6 transition-transform hover:rotate-0 duration-300 text-white flex flex-col justify-between">
+<div>
+<div class="text-[9px] tracking-widest uppercase font-semibold text-cyan-200">Abyss Diagnostics</div>
+<div class="text-xs font-bold mt-0.5">DeepStrand-ASD</div>
+<div class="text-[8px] text-white/75">At-Sample Collection System</div>
+</div>
+<div class="flex items-center justify-between text-[7px] text-cyan-200 font-mono">
+<span>CLINICAL KIT</span>
+<span>LOT: #984-ABY</span>
+</div>
+</div>
+<!-- Instruction Card -->
+<div class="w-36 h-28 bg-white rounded-lg shadow-lg border border-gray-200 p-2.5 transform rotate-12 -ml-8 mt-6">
+<div class="w-8 h-1 bg-cyan-600 mb-1 rounded"></div>
+<div class="text-[9px] font-bold text-gray-800">Quick Guide</div>
+<div class="space-y-1 mt-1.5">
+<div class="w-full h-1 bg-gray-200 rounded"></div>
+<div class="w-4/5 h-1 bg-gray-200 rounded"></div>
+<div class="w-3/5 h-1 bg-gray-200 rounded"></div>
+</div>
+<div class="mt-2 text-[7px] text-cyan-800 font-semibold flex items-center gap-1">
+<span>✓ Non-Invasive Assay</span>
+</div>
+</div>
+</div>
+</div>
+<h3 class="text-3xl sm:text-4xl font-light text-gray-900 tracking-tight mb-4">
+              DeepStrand-ASD Now Available
+            </h3>
+<p class="text-gray-600 font-light text-base sm:text-lg leading-relaxed mb-4 font-body">
+              A non-invasive, regulatory-grade temporal diagnostic aid detecting environmental biomarkers in organic samples. Empowering marine researchers and clinical biosecurity teams in making precision interventions.
+            </p>
+<span class="inline-block px-2.5 py-1 rounded bg-slate-100 text-slate-500 font-mono text-xs">
+              Authorized Environmental &amp; Institutional Use
+            </span>
+</div>
+<div class="mt-8">
+<a class="inline-flex items-center gap-3 bg-[#1d5774] hover:bg-[#206385] text-white text-[14px] font-medium pl-6 pr-2 py-2 rounded-full transition-colors shadow" href="#pipeline-section">
+<span>Learn more about DeepStrand</span>
+<span class="w-7 h-7 rounded-full bg-white text-[#184b66] flex items-center justify-center">
+<svg class="w-3.5 h-3.5 stroke-[2.5]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</span>
+</a>
+</div>
+</article>
+</div>
+</section>
+</div>
+<!-- FIRST WHITE CONTAINER ENDS HERE -->
+<!-- ========================================================================= -->
+<!-- 3. STANDALONE UNBOXED VIDEO BACKGROUND SECTION 1 (Single Strand)          -->
+<!-- ========================================================================= -->
+<section class="relative w-full min-h-[580px] md:min-h-[680px] flex items-center overflow-hidden bg-[#184b66] px-6 sm:px-12 lg:px-20" id="strand-transitional-section">
+<!-- Dynamic strand simulation canvas -->
+<div class="absolute inset-0 w-full h-full z-0">
+<canvas class="w-full h-full object-cover block" id="transitional-strand-canvas"></canvas>
+<div class="absolute inset-0 bg-gradient-to-r from-[#11374d]/50 via-[#184b66]/25 to-transparent pointer-events-none z-10"></div>
+</div>
+  <!-- Thin white separator line at top edge to frame the video seamlessly -->
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/40 to-transparent z-20"></div>
+  <!-- Thin white separator line at bottom edge -->
+  <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/40 to-transparent z-20"></div>
+  <!-- Pause Control -->
+  <div class="absolute top-8 right-6 sm:right-12 z-20">
+    <button class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/30 hover:bg-black/50 backdrop-blur-md text-white text-xs tracking-wider transition-colors border border-white/15" id="strand-pause-btn">
+      <span id="strand-pause-text">Pause</span>
+      <span class="font-mono text-xs">||</span>
+    </button>
+  </div>
+  <!-- Transitional Content -->
+  <div class="relative z-20 max-w-3xl space-y-8 py-12">
+<h2 class="text-white text-4xl sm:text-6xl lg:text-[4.25rem] font-light leading-[1.08] tracking-[-0.025em]">
+        It all begins with a single strand of chronological biosignature.
+      </h2>
+<p class="text-cyan-100/80 text-lg sm:text-xl font-light max-w-xl leading-relaxed font-body">
+        Decoding dynamic temporal exposure records preserved inside biological growth matrices to unlock a new paradigm of environmental resilience.
+      </p>
+<div>
+<a class="inline-flex items-center gap-3 bg-[#206385] hover:bg-[#287b9e] text-white text-[15px] font-medium pl-6 pr-2 py-2 rounded-full border border-white/20 transition-all shadow-lg group" href="#platform">
+<span>Discover our platform</span>
+<span class="w-8 h-8 rounded-full bg-white text-[#184b66] flex items-center justify-center transition-transform group-hover:translate-x-0.5">
+<svg class="w-4 h-4 stroke-[2.5]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</span>
+</a>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- 4. SECOND WHITE CONTAINER: FEATURED PROJECTS / PIPELINE                   -->
+<!-- ========================================================================= -->
+<div class="px-0 sm:px-4 md:px-8 lg:px-12 max-w-[1480px] mx-auto">
+<section class="bg-white rounded-none sm:rounded-[36px] md:rounded-[44px] shadow-2xl p-8 sm:p-14 lg:p-20 border border-gray-100" id="pipeline-section">
+<div class="mb-12">
+<span class="text-xs sm:text-sm font-semibold tracking-wider text-gray-400 block mb-3 uppercase font-mono">
+          A comprehensive pipeline
+        </span>
+<h2 class="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-900 tracking-tight max-w-3xl leading-snug">
+          Our pipeline unites precision exposomic biomarkers with target discovery to advance precision medicine.
+        </h2>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start pt-6 border-t border-gray-100">
+<!-- Left Sticky Pipeline Intro -->
+<div class="lg:col-span-5 sticky top-32 h-fit space-y-6">
+<h3 class="text-2xl sm:text-4xl font-light text-gray-900 tracking-tight">
+            Featured projects
+          </h3>
+<p class="text-gray-600 font-light text-base sm:text-lg leading-relaxed font-body">
+            Abyss has developed the first molecular temporal exposomic biomarker platform. Having received environmental and breakthrough designation, our assays map temporal bio-accumulation with sub-millimeter precision.
+          </p>
+<p class="text-gray-600 font-light text-base sm:text-lg leading-relaxed font-body">
+            Alongside our primary assays, our researchers are developing advanced bio-trackers for neurodevelopmental conditions, cellular trauma, and environmental toxic exposures.
+          </p>
+<div class="pt-2">
+<a class="inline-flex items-center gap-3 bg-[#1d5774] hover:bg-[#206385] text-white text-[14px] font-medium pl-6 pr-2 py-2 rounded-full transition-colors shadow" href="#collaborate-section">
+<span>View full pipeline</span>
+<span class="w-7 h-7 rounded-full bg-white text-[#184b66] flex items-center justify-center">
+<svg class="w-3.5 h-3.5 stroke-[2.5]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</span>
+</a>
+</div>
+</div>
+<!-- Right Scrolling Pipeline Projects -->
+<div class="lg:col-span-7 space-y-12">
+<!-- Project 01: Early Autism Detection - DeepStrand -->
+<div class="space-y-4">
+<div class="flex items-baseline gap-3">
+<span class="font-mono text-sm text-gray-400">01</span>
+<h4 class="text-xl sm:text-2xl font-light text-gray-900">
+                Early Autism Detection - DeepStrand
+              </h4>
+</div>
+<p class="text-gray-600 font-light text-sm sm:text-base leading-relaxed pl-7 font-body">
+              DeepStrand is a breakthrough diagnostic aid detecting longitudinal exposomic biomarkers and environmental micro-elemental uptake directly from biological hair threads.
+            </p>
+<div class="ml-7 bg-[#f0f9f6] rounded-2xl p-5 border border-emerald-100 grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+<div class="flex flex-col items-center justify-between p-2">
+<div class="w-7 h-7 text-emerald-600 mb-2">
+<svg fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+</div>
+<div class="w-full border-t border-emerald-300 my-1"></div>
+<span class="text-xs text-gray-700 font-medium mt-1">Patent<br/>submitted</span>
+</div>
+<div class="flex flex-col items-center justify-between p-2">
+<div class="w-7 h-7 text-emerald-600 mb-2">
+<svg fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+</div>
+<div class="w-full border-t border-emerald-300 my-1"></div>
+<span class="text-xs text-gray-700 font-medium mt-1">Clinical<br/>studies</span>
+</div>
+<div class="flex flex-col items-center justify-between p-2">
+<div class="w-7 h-7 text-emerald-600 mb-2">
+<svg fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+</div>
+<div class="w-full border-t border-emerald-300 my-1"></div>
+<span class="text-xs text-gray-700 font-medium mt-1">Pathway<br/>characterization</span>
+</div>
+<div class="flex flex-col items-center justify-between p-2">
+<div class="w-7 h-7 text-emerald-600 mb-2">
+<svg fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+</div>
+<div class="w-full border-t border-emerald-300 my-1"></div>
+<span class="text-xs text-gray-700 font-medium mt-1">Commercially<br/>available</span>
+</div>
+</div>
+</div>
+<!-- Project 02: Attention Deficit Hyperactive Disorder -->
+<div class="space-y-4 pt-4 border-t border-gray-100">
+<div class="flex items-baseline gap-3">
+<span class="font-mono text-sm text-gray-400">02</span>
+<h4 class="text-xl sm:text-2xl font-light text-gray-900">
+                Attention Deficit Hyperactive Disorder
+              </h4>
+</div>
+<p class="text-gray-500 font-light text-sm italic pl-7 font-body">
+              In development — Active multi-center validation
+            </p>
+<div class="ml-7 bg-[#f0f7fb] rounded-2xl p-5 border border-sky-100 grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+<div class="flex flex-col items-center justify-between p-2">
+<div class="w-7 h-7 text-sky-700 mb-2">
+<svg fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+</div>
+<div class="w-full border-t border-sky-300 my-1"></div>
+<span class="text-xs text-gray-700 font-medium mt-1">Patent<br/>submitted</span>
+</div>
+<div class="flex flex-col items-center justify-between p-2">
+<div class="w-7 h-7 text-sky-700 mb-2">
+<svg fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+</div>
+<div class="w-full border-t border-sky-300 my-1"></div>
+<span class="text-xs text-gray-700 font-medium mt-1">Clinical<br/>studies</span>
+</div>
+<div class="flex flex-col items-center justify-between p-2">
+<div class="w-7 h-7 text-sky-700 mb-2">
+<svg fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+</div>
+<div class="w-full border-t border-sky-300 my-1"></div>
+<span class="text-xs text-gray-700 font-medium mt-1">Pathway<br/>characterization</span>
+</div>
+<div class="flex flex-col items-center justify-between p-2 opacity-40">
+<div class="w-7 h-7 mb-2 flex items-center justify-center">
+<div class="w-4 h-4 rounded-sm border border-gray-400"></div>
+</div>
+<div class="w-full border-t border-gray-300 my-1"></div>
+<span class="text-xs text-gray-500 font-medium mt-1">Commercially<br/>available</span>
+</div>
+</div>
+</div>
+<!-- Project 03: Psychosis and Schizophrenia -->
+<div class="space-y-4 pt-4 border-t border-gray-100">
+<div class="flex items-baseline gap-3">
+<span class="font-mono text-sm text-gray-400">03</span>
+<h4 class="text-xl sm:text-2xl font-light text-gray-900">
+                Psychosis and Schizophrenia
+              </h4>
+</div>
+<p class="text-gray-500 font-light text-sm italic pl-7 font-body">
+              Pre-clinical laboratory trial
+            </p>
+<div class="ml-7 bg-[#f7f9fa] rounded-2xl p-5 border border-slate-200 grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+<div class="flex flex-col items-center justify-between p-2">
+<div class="w-7 h-7 text-sky-700 mb-2">
+<svg fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+</div>
+<div class="w-full border-t border-sky-300 my-1"></div>
+<span class="text-xs text-gray-700 font-medium mt-1">Patent<br/>submitted</span>
+</div>
+<div class="flex flex-col items-center justify-between p-2">
+<div class="w-7 h-7 text-sky-700 mb-2">
+<svg fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+</div>
+<div class="w-full border-t border-sky-300 my-1"></div>
+<span class="text-xs text-gray-700 font-medium mt-1">Clinical<br/>studies</span>
+</div>
+<div class="flex flex-col items-center justify-between p-2 opacity-40">
+<div class="w-7 h-7 mb-2 flex items-center justify-center">
+<div class="w-4 h-4 rounded-sm border border-gray-400"></div>
+</div>
+<div class="w-full border-t border-gray-300 my-1"></div>
+<span class="text-xs text-gray-500 font-medium mt-1">Pathway<br/>characterization</span>
+</div>
+<div class="flex flex-col items-center justify-between p-2 opacity-40">
+<div class="w-7 h-7 mb-2 flex items-center justify-center">
+<div class="w-4 h-4 rounded-sm border border-gray-400"></div>
+</div>
+<div class="w-full border-t border-gray-300 my-1"></div>
+<span class="text-xs text-gray-500 font-medium mt-1">Commercially<br/>available</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- SECOND WHITE CONTAINER ENDS HERE -->
+<!-- ========================================================================= -->
+<!-- 5. STANDALONE UNBOXED VIDEO BACKGROUND SECTION 2 (LEADERSHIP QUOTE)       -->
+<!-- ========================================================================= -->
+<section class="relative w-full py-28 px-6 sm:px-12 lg:px-20 overflow-hidden" id="leadership-quote">
+<!-- Pause Control -->
+<div class="absolute top-8 right-6 sm:right-12 z-20">
+<button class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/30 hover:bg-black/50 backdrop-blur-md text-white text-xs tracking-wider transition-colors border border-white/15" id="quote-pause-btn">
+<span id="quote-pause-text">Pause</span>
+<span class="font-mono text-xs">||</span>
+</button>
+</div>
+<div class="max-w-4xl mx-auto relative z-10">
+<div class="glass-quote-badge rounded-[32px] sm:rounded-[40px] p-8 sm:p-14 lg:p-16 text-white shadow-2xl">
+<div class="text-6xl sm:text-7xl font-serif text-cyan-300/40 mb-2 leading-none select-none">
+          “
+        </div>
+<blockquote class="text-2xl sm:text-3xl lg:text-[2.25rem] font-light leading-[1.3] tracking-tight mb-8 text-white/95">
+          We are a group of individuals shaping Abyss’s mission to transform healthcare and ocean intelligence through groundbreaking research and development.
+        </blockquote>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pt-6 border-t border-white/15">
+<div>
+<div class="text-lg sm:text-xl font-medium tracking-tight text-white">Dr. Manish Arora, PhD &amp; Dr. Elena Vance</div>
+<div class="text-sm text-cyan-200/80 font-light mt-0.5 font-body">Founders &amp; Chief Scientific Officers — ABYSS Ocean Intelligence</div>
+</div>
+<a class="inline-flex items-center gap-3 bg-white/10 hover:bg-white/20 text-white text-[14px] font-medium pl-6 pr-2 py-2 rounded-full border border-white/20 transition-all backdrop-blur-md" href="#contact">
+<span>Meet the team</span>
+<span class="w-7 h-7 rounded-full bg-white text-[#184b66] flex items-center justify-center">
+<svg class="w-3.5 h-3.5 stroke-[2.5]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- 6. THIRD WHITE CONTAINER (COLLABORATE + NEWS & EVENTS)                    -->
+<!-- ========================================================================= -->
+<div class="px-0 sm:px-4 md:px-8 lg:px-12 max-w-[1480px] mx-auto">
+<section class="bg-white rounded-none sm:rounded-[36px] md:rounded-[44px] shadow-2xl p-8 sm:p-14 lg:p-20 border border-gray-100 overflow-hidden" id="collaborate-section">
+<!-- Part A: Partnerships / Collaborate -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center pb-20 border-b border-gray-100">
+<!-- Left Column: Content & CTA -->
+<div class="lg:col-span-6 space-y-6">
+<span class="text-xs sm:text-sm font-semibold tracking-wider text-gray-400 uppercase block font-mono">
+            Partnerships
+          </span>
+<h2 class="text-3xl sm:text-5xl lg:text-[3.25rem] font-light text-gray-900 tracking-tight leading-[1.12]">
+            Collaborate in leading the future of healthcare &amp; marine intelligence.
+          </h2>
+<p class="text-gray-600 font-light text-base sm:text-lg leading-relaxed pt-2 font-body">
+            Abyss's world-class team of molecular biologists, oceanographers, and clinical data engineers partner with leading academic research institutions, biotechnology leaders, and global marine observatories to deploy high-resolution temporal exposomics worldwide.
+          </p>
+<div class="pt-4">
+<a class="inline-flex items-center gap-3 bg-[#1d5774] hover:bg-[#206385] text-white text-[15px] font-medium pl-6 pr-2 py-2.5 rounded-full transition-all shadow-md group" href="#contact">
+<span>Partner with us</span>
+<span class="w-8 h-8 rounded-full bg-white text-[#184b66] flex items-center justify-center transition-transform group-hover:translate-x-0.5">
+<svg class="w-4 h-4 stroke-[2.5]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</span>
+</a>
+</div>
+</div>
+<!-- Right Column: 3D Topo Mesh Waveform Array -->
+<div class="lg:col-span-6 flex justify-center">
+<div class="w-full max-w-[500px] aspect-square rounded-3xl bg-gradient-to-br from-[#0c2636] to-[#184b66] relative overflow-hidden shadow-2xl border border-gray-100 flex items-center justify-center">
+<canvas class="w-full h-full object-cover block" id="mesh-particles-canvas"></canvas>
+<div class="absolute bottom-4 left-4 z-10 text-[11px] font-mono text-cyan-200/60 uppercase tracking-widest">
+              Temporal Waveform Sequencing Array
+            </div>
+</div>
+</div>
+</div>
+<!-- Part B: Our Latest News & Events -->
+<div class="pt-16" id="news-events">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+<div>
+<span class="text-xs sm:text-sm font-semibold tracking-wider text-gray-400 block mb-2 uppercase font-mono">
+              Insights &amp; Press
+            </span>
+<h3 class="text-3xl sm:text-4xl lg:text-5xl font-light text-gray-900 tracking-tight">
+              Our latest news and events
+            </h3>
+</div>
+<div>
+<a class="inline-flex items-center gap-3 bg-gray-100 hover:bg-gray-200 text-gray-800 text-[14px] font-medium pl-5 pr-2 py-1.5 rounded-full transition-colors" href="#">
+<span>View all news</span>
+<span class="w-7 h-7 rounded-full bg-white text-gray-800 flex items-center justify-center shadow-sm">
+<svg class="w-3.5 h-3.5 stroke-[2.5]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</span>
+</a>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- News Card 1 -->
+<article class="group cursor-pointer flex flex-col justify-between">
+<div>
+<div class="aspect-[16/10] rounded-2xl bg-gradient-to-br from-[#123649] to-[#1d5774] overflow-hidden mb-6 relative border border-gray-100 flex items-center justify-center p-6">
+<div class="w-full h-full rounded-xl bg-cyan-900/40 border border-cyan-400/20 flex items-center justify-center relative">
+<span class="text-white/90 text-sm font-mono tracking-widest uppercase bg-[#0d2a3a]/80 px-3 py-1.5 rounded-md">Traced™ Assay Kit</span>
+<div class="absolute -bottom-2 -right-2 w-16 h-16 bg-cyan-400/20 rounded-full blur-xl"></div>
+</div>
+</div>
+<div class="text-xs font-mono text-cyan-700 uppercase tracking-wider mb-2">Jul 07, 2026</div>
+<h4 class="text-xl font-normal text-gray-900 group-hover:text-cyan-700 transition-colors leading-snug mb-3">
+                LinusBio Launches Traced™, the First Consumer Wellness Test to Measure Longitudinal Metal Exposure
+              </h4>
+</div>
+<span class="text-xs font-semibold text-gray-400 uppercase tracking-wider mt-4 block">Product Release</span>
+</article>
+<!-- News Card 2 -->
+<article class="group cursor-pointer flex flex-col justify-between">
+<div>
+<div class="aspect-[16/10] rounded-2xl bg-gradient-to-br from-[#103042] to-[#256c8f] overflow-hidden mb-6 relative border border-gray-100 flex items-center justify-center p-6">
+<div class="w-full h-full rounded-xl bg-sky-900/40 border border-sky-400/20 flex items-center justify-center relative">
+<span class="text-white/90 text-sm font-mono tracking-widest uppercase bg-[#0a2332]/80 px-3 py-1.5 rounded-md">ClearStrand-ASD</span>
+<div class="absolute -top-2 -left-2 w-16 h-16 bg-sky-400/20 rounded-full blur-xl"></div>
+</div>
+</div>
+<div class="text-xs font-mono text-cyan-700 uppercase tracking-wider mb-2">Mar 19, 2026</div>
+<h4 class="text-xl font-normal text-gray-900 group-hover:text-cyan-700 transition-colors leading-snug mb-3">
+                ClearStrand-ASD Expands Age Range to Children Up to 10 for Early Biomarker Evaluation
+              </h4>
+</div>
+<span class="text-xs font-semibold text-gray-400 uppercase tracking-wider mt-4 block">Clinical Expansion</span>
+</article>
+<!-- News Card 3 -->
+<article class="group cursor-pointer flex flex-col justify-between">
+<div>
+<div class="aspect-[16/10] rounded-2xl bg-gradient-to-br from-[#0c2433] to-[#1c5573] overflow-hidden mb-6 relative border border-gray-100 flex items-center justify-center p-6">
+<div class="w-full h-full rounded-xl bg-blue-900/40 border border-blue-400/20 flex items-center justify-center relative">
+<span class="text-white/90 text-sm font-mono tracking-widest uppercase bg-[#081b26]/80 px-3 py-1.5 rounded-md">Nature Medicine</span>
+<div class="absolute bottom-1 left-1 w-16 h-16 bg-blue-400/20 rounded-full blur-xl"></div>
+</div>
+</div>
+<div class="text-xs font-mono text-cyan-700 uppercase tracking-wider mb-2">Sep 09, 2025</div>
+<h4 class="text-xl font-normal text-gray-900 group-hover:text-cyan-700 transition-colors leading-snug mb-3">
+                Breakthrough Study by LinusBio Suggests Path to First Molecular Diagnostic for Complex Syndromes
+              </h4>
+</div>
+<span class="text-xs font-semibold text-gray-400 uppercase tracking-wider mt-4 block">Peer-Reviewed Science</span>
+</article>
+</div>
+</div>
+</section>
+</div>
+<!-- THIRD WHITE CONTAINER ENDS HERE -->
+<!-- ========================================================================= -->
+<!-- 7. FOOTER: STICKY HEADLINE + SCROLLING SITEMAP & EXPANDED CONTACT        -->
+<!-- ========================================================================= -->
+<footer class="w-full pt-20 sm:pt-28 pb-16 px-6 sm:px-12 lg:px-20 text-white/85" id="contact">
+<div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+<!-- Left Column: Fixed / Sticky Headline Directly on ocean blue background -->
+<div class="lg:col-span-6 lg:sticky lg:top-[120px] space-y-6">
+<div class="flex items-center space-x-3 text-white mb-4">
+<svg class="w-8 h-8" fill="none" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="#ffffff" r="7"></circle>
+<circle cx="50" cy="24" fill="#ffffff" opacity="0.9" r="5"></circle>
+<circle cx="50" cy="76" fill="#ffffff" opacity="0.9" r="5"></circle>
+<circle cx="24" cy="50" fill="#ffffff" opacity="0.9" r="5"></circle>
+<circle cx="76" cy="50" fill="#ffffff" opacity="0.9" r="5"></circle>
+</svg>
+<span class="tracking-[0.25em] font-semibold text-xl text-white">ABYSS</span>
+</div>
+<h3 class="text-3xl sm:text-5xl lg:text-[3.25rem] font-light text-white tracking-tight leading-[1.12]">
+          Transforming the way complex health conditions are diagnosed and treated.
+        </h3>
+<p class="text-cyan-200/70 text-base font-light max-w-md leading-relaxed font-body">
+          Harnessing temporal molecular chronology to unlock unprecedented clinical windows and biosystem resilience.
+        </p>
+</div>
+<!-- Right Column: Natural Scrolling Sitemap, Legal, Conditions & Contacts -->
+<div class="lg:col-span-6 space-y-16 pb-12">
+<!-- Contact details box matching screenshots -->
+<div class="space-y-4 bg-white/5 p-8 rounded-3xl border border-white/10 backdrop-blur-sm">
+<h4 class="text-xs uppercase tracking-widest text-cyan-200 font-semibold mb-4 font-mono">Contact Us</h4>
+<p class="text-lg font-light text-white">
+<a class="text-white hover:text-cyan-300 transition-colors" href="mailto:hello@linusbio.com">hello@linusbio.com</a>
+</p>
+<p class="text-lg font-light text-white">
+<a class="text-white hover:text-cyan-300 transition-colors" href="tel:+18775468724">+1 877 546 8724</a>
+</p>
+<p class="text-sm font-light text-cyan-200/90 pt-1">
+<a class="hover:underline flex items-center gap-1.5" href="https://linkedin.com" rel="noreferrer" target="_blank">
+<span>Reach out on LinkedIn</span>
+<span>→</span>
+</a>
+</p>
+<p class="text-sm font-light text-white/70 pt-2 border-t border-white/10">
+            675 US-1, North Brunswick Township, NJ 08902
+          </p>
+</div>
+<div class="grid grid-cols-2 gap-8">
+<div>
+<h4 class="text-xs uppercase tracking-widest text-white/50 font-semibold mb-4 font-mono">Sitemap</h4>
+<ul class="space-y-3 text-sm font-light">
+<li><a class="hover:text-white transition-colors" href="#">Homepage</a></li>
+<li><a class="hover:text-white transition-colors" href="#platform">Platform</a></li>
+<li><a class="hover:text-white transition-colors" href="#pipeline-section">Pipeline</a></li>
+<li><a class="hover:text-white transition-colors" href="#science-jump">Our Science</a></li>
+<li><a class="hover:text-white transition-colors" href="#pipeline-section">Conditions</a></li>
+<li><a class="hover:text-white transition-colors" href="#news-events">Publications</a></li>
+<li><a class="hover:text-white transition-colors" href="#collaborate-section">Partnerships</a></li>
+<li><a class="hover:text-white transition-colors" href="#contact">Contact</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-xs uppercase tracking-widest text-white/50 font-semibold mb-4 font-mono">Legal &amp; Policy</h4>
+<ul class="space-y-3 text-sm font-light">
+<li><a class="hover:text-white transition-colors" href="#">Terms and Conditions</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Institutional Research Terms</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Regulatory Designations</a></li>
+</ul>
+</div>
+</div>
+<!-- Social Links & Series Eight credit -->
+<div class="pt-6 border-t border-white/10 flex flex-wrap items-center justify-between text-xs text-white/50 font-mono gap-4">
+<div>
+            © 2026 Linus Biotechnology, Inc. All rights reserved.
+          </div>
+<div class="text-white/40">
+            Site by Series Eight
+          </div>
+</div>
+</div>
+</div>
+</footer>
+</main>
+<!-- ========================================================================= -->
+<!-- JAVASCRIPT ANIMATIONS & INTERACTIVE BEHAVIORS                             -->
+<!-- ========================================================================= -->
+<!-- 1. Ambient Background Particle Canvas -->
+<script>
+  (function initAmbientBackdrop() {
+    const canvas = document.getElementById('ambient-ocean-backdrop');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let w, h;
+
+    function resize() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    const particles = [];
+    for (let i = 0; i < 40; i++) {
+      particles.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: 20 + Math.random() * 60,
+        vx: (Math.random() - 0.5) * 0.25,
+        vy: (Math.random() - 0.5) * 0.25,
+        alpha: 0.05 + Math.random() * 0.1
+      });
+    }
+
+    function loop() {
+      ctx.clearRect(0, 0, w, h);
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < -100) p.x = w + 100;
+        if (p.x > w + 100) p.x = -100;
+        if (p.y < -100) p.y = h + 100;
+        if (p.y > h + 100) p.y = -100;
+
+        const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r);
+        g.addColorStop(0, `rgba(44, 164, 196, ${p.alpha})`);
+        g.addColorStop(1, 'rgba(24, 75, 102, 0)');
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = g;
+        ctx.fill();
+      }
+      requestAnimationFrame(loop);
+    }
+    loop();
+  })();
+</script>
+<!-- 2. Hero Marine Flow Canvas -->
+<script>
+  (function initHeroMarineCanvas() {
+    const canvas = document.getElementById('marine-hero-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let isPaused = false;
+    let width, height;
+
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    const nodes = [];
+    const nodeCount = 50;
+    for (let i = 0; i < nodeCount; i++) {
+      nodes.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        radius: 20 + Math.random() * 85,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
+        alpha: 0.15 + Math.random() * 0.3,
+        pulse: Math.random() * Math.PI * 2
+      });
+    }
+
+    function draw() {
+      if (!isPaused) {
+        ctx.fillStyle = '#164660';
+        ctx.fillRect(0, 0, width, height);
+
+        for (let i = 0; i < nodes.length; i++) {
+          const n = nodes[i];
+          n.x += n.vx;
+          n.y += n.vy;
+          n.pulse += 0.012;
+
+          if (n.x < -100) n.x = width + 100;
+          if (n.x > width + 100) n.x = -100;
+          if (n.y < -100) n.y = height + 100;
+          if (n.y > height + 100) n.y = -100;
+
+          const currentR = n.radius + Math.sin(n.pulse) * 8;
+          const grad = ctx.createRadialGradient(n.x - currentR * 0.25, n.y - currentR * 0.25, currentR * 0.1, n.x, n.y, currentR);
+          grad.addColorStop(0, `rgba(75, 175, 205, ${n.alpha + 0.15})`);
+          grad.addColorStop(0.5, `rgba(32, 105, 138, ${n.alpha * 0.7})`);
+          grad.addColorStop(1, 'rgba(22, 70, 96, 0)');
+
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, currentR, 0, Math.PI * 2);
+          ctx.fillStyle = grad;
+          ctx.fill();
+        }
+      }
+      requestAnimationFrame(draw);
+    }
+    draw();
+
+    const pauseBtn = document.getElementById('hero-pause-btn');
+    const pauseText = document.getElementById('hero-pause-text');
+    if (pauseBtn && pauseText) {
+      pauseBtn.addEventListener('click', () => {
+        isPaused = !isPaused;
+        pauseText.textContent = isPaused ? 'Play' : 'Pause';
+      });
+    }
+  })();
+</script>
+<!-- 3. Smart Navbar -->
+<script>
+  (function initSmartNavbar() {
+    const header = document.getElementById('site-header');
+    const navPill = document.getElementById('nav-pill');
+    if (!header) return;
+
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    function updateNavbar() {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY <= 60) {
+        header.style.transform = 'translateY(0)';
+        if (navPill) navPill.classList.remove('glass-nav-scrolled');
+      } else if (currentScrollY > lastScrollY && currentScrollY > 120) {
+        header.style.transform = 'translateY(-115%)';
+      } else if (currentScrollY < lastScrollY) {
+        header.style.transform = 'translateY(0)';
+        if (navPill) navPill.classList.add('glass-nav-scrolled');
+      }
+
+      lastScrollY = currentScrollY;
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateNavbar);
+        ticking = true;
+      }
+    }, { passive: true });
+  })();
+</script>
+<!-- 4. Video Pinning & Bidirectional Scrollytelling Mechanics -->
+<script>
+  const videoStates = [
+    { paused: false },
+    { paused: false },
+    { paused: false }
+  ];
+
+  let currentActiveAccordion = 0;
+  let isProgrammaticScrolling = false;
+  let scrollTimeout = null;
+
+  function openAccordion(index) {
+    if (currentActiveAccordion === index && document.getElementById(`acc-panel-${index}`).style.maxHeight !== '0px') {
+      return;
+    }
+    currentActiveAccordion = index;
+
+    for (let i = 0; i < 3; i++) {
+      const panel = document.getElementById(`acc-panel-${i}`);
+      const item = document.getElementById(`acc-item-${i}`);
+      const icon = item.querySelector('.accordion-icon');
+
+      if (i === index) {
+        panel.style.maxHeight = '500px';
+        panel.style.opacity = '1';
+        icon.innerHTML = '&minus;';
+        item.classList.add('border-cyan-600/50');
+      } else {
+        panel.style.maxHeight = '0px';
+        panel.style.opacity = '0';
+        icon.innerHTML = '+';
+        item.classList.remove('border-cyan-600/50');
+      }
+    }
+  }
+
+  // Accordion click fast jump
+  window.handleAccordionClick = function(index) {
+    openAccordion(index);
+
+    const targetVideoCard = document.getElementById(`video-card-${index}`);
+    if (targetVideoCard) {
+      isProgrammaticScrolling = true;
+      clearTimeout(scrollTimeout);
+
+      const rect = targetVideoCard.getBoundingClientRect();
+      const absoluteTop = window.pageYOffset + rect.top;
+      const targetScroll = Math.max(0, absoluteTop - 140);
+
+      window.scrollTo({
+        top: targetScroll,
+        behavior: 'smooth'
+      });
+
+      scrollTimeout = setTimeout(() => {
+        isProgrammaticScrolling = false;
+      }, 800);
+    }
+  };
+
+  // Scroll listener threshold
+  (function initScrollObserver() {
+    function checkVideoThresholds() {
+      if (isProgrammaticScrolling) return;
+
+      const v0 = document.getElementById('video-card-0');
+      const v1 = document.getElementById('video-card-1');
+      const v2 = document.getElementById('video-card-2');
+      if (!v0 || !v1 || !v2) return;
+
+      const windowHeight = window.innerHeight;
+      const r1 = v1.getBoundingClientRect();
+      const r2 = v2.getBoundingClientRect();
+
+      const triggerThreshold = windowHeight * 0.88;
+
+      let activeIdx = 0;
+
+      if (r2.top <= triggerThreshold && r2.bottom > windowHeight * 0.15) {
+        activeIdx = 2;
+      } else if (r1.top <= triggerThreshold && r1.bottom > windowHeight * 0.15) {
+        activeIdx = 1;
+      } else {
+        activeIdx = 0;
+      }
+
+      if (activeIdx !== currentActiveAccordion) {
+        openAccordion(activeIdx);
+      }
+    }
+
+    window.addEventListener('scroll', checkVideoThresholds, { passive: true });
+    window.addEventListener('resize', checkVideoThresholds, { passive: true });
+    setTimeout(checkVideoThresholds, 200);
+  })();
+
+  // Video Pause/Play Controls
+  document.querySelectorAll('.video-pause-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const idx = parseInt(btn.getAttribute('data-canvas'), 10);
+      videoStates[idx].paused = !videoStates[idx].paused;
+      const label = btn.querySelector('.pause-label');
+      if (label) {
+        label.textContent = videoStates[idx].paused ? 'Play' : 'Pause';
+      }
+    });
+  });
+
+  // VIDEO 1 CANVAS
+  (function initCanvas0() {
+    const c = document.getElementById('canvas-video-0');
+    if (!c) return;
+    const ctx = c.getContext('2d');
+    let w = c.width = 500;
+    let h = c.height = 625;
+    let tick = 0;
+
+    const particles = [];
+    for (let i = 0; i < 45; i++) {
+      particles.push({
+        x: w * 0.5,
+        y: h * 0.6,
+        vx: (Math.random() - 0.5) * 3.5,
+        vy: - (Math.random() * 3 + 1.5),
+        radius: 1.5 + Math.random() * 3,
+        life: Math.random() * 100,
+        maxLife: 80 + Math.random() * 60
+      });
+    }
+
+    function render() {
+      if (!videoStates[0].paused) {
+        tick++;
+        ctx.fillStyle = '#08141f';
+        ctx.fillRect(0, 0, w, h);
+
+        const bgGrad = ctx.createRadialGradient(w * 0.5, h * 0.55, 30, w * 0.5, h * 0.55, 320);
+        bgGrad.addColorStop(0, 'rgba(30, 85, 115, 0.4)');
+        bgGrad.addColorStop(0.5, 'rgba(15, 45, 65, 0.2)');
+        bgGrad.addColorStop(1, 'rgba(8, 20, 31, 0)');
+        ctx.fillStyle = bgGrad;
+        ctx.fillRect(0, 0, w, h);
+
+        const centerX = w * 0.5;
+        const centerY = h * 0.58;
+        for (let r = 280; r >= 20; r -= 16) {
+          const wave = Math.sin(tick * 0.02 + r * 0.08) * 2.5;
+          ctx.beginPath();
+          ctx.arc(centerX, centerY, r + wave, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(224, 112, 54, ${0.12 + (r / 350) * 0.45})`;
+          ctx.lineWidth = 3;
+          ctx.stroke();
+        }
+
+        const laserY = centerY - 10;
+        const laserX = centerX + Math.sin(tick * 0.04) * 45;
+
+        const beamGrad = ctx.createLinearGradient(laserX, 0, laserX, laserY);
+        beamGrad.addColorStop(0, 'rgba(255, 255, 255, 0.9)');
+        beamGrad.addColorStop(0.6, 'rgba(255, 170, 90, 0.7)');
+        beamGrad.addColorStop(1, 'rgba(255, 80, 20, 0.95)');
+
+        ctx.beginPath();
+        ctx.moveTo(laserX, 0);
+        ctx.lineTo(laserX, laserY);
+        ctx.strokeStyle = beamGrad;
+        ctx.lineWidth = 4;
+        ctx.stroke();
+
+        const flash = ctx.createRadialGradient(laserX, laserY, 2, laserX, laserY, 35);
+        flash.addColorStop(0, '#ffffff');
+        flash.addColorStop(0.3, '#ffa442');
+        flash.addColorStop(0.7, 'rgba(235, 90, 30, 0.5)');
+        flash.addColorStop(1, 'rgba(235, 90, 30, 0)');
+        ctx.beginPath();
+        ctx.arc(laserX, laserY, 35, 0, Math.PI * 2);
+        ctx.fillStyle = flash;
+        ctx.fill();
+
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          p.life++;
+          if (p.life > p.maxLife || p.y < 0) {
+            p.x = laserX + (Math.random() - 0.5) * 6;
+            p.y = laserY;
+            p.vx = (Math.random() - 0.5) * 3.5;
+            p.vy = - (Math.random() * 3.2 + 1.2);
+            p.life = 0;
+          }
+          const alpha = 1 - (p.life / p.maxLife);
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255, 200, 120, ${alpha})`;
+          ctx.fill();
+        }
+
+        ctx.beginPath();
+        ctx.setLineDash([6, 6]);
+        ctx.moveTo(40, laserY);
+        ctx.lineTo(w - 40, laserY);
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
+      requestAnimationFrame(render);
+    }
+    render();
+  })();
+
+  // VIDEO 2 CANVAS
+  (function initCanvas1() {
+    const c = document.getElementById('canvas-video-1');
+    if (!c) return;
+    const ctx = c.getContext('2d');
+    let w = c.width = 500;
+    let h = c.height = 625;
+    let tick = 0;
+
+    function render() {
+      if (!videoStates[1].paused) {
+        tick++;
+        ctx.fillStyle = '#06131c';
+        ctx.fillRect(0, 0, w, h);
+
+        for (let y = 140; y < h - 100; y += 42) {
+          const offsetY = Math.sin(tick * 0.03 + y * 0.05) * 12;
+          ctx.beginPath();
+          ctx.moveTo(30, y + offsetY);
+          ctx.bezierCurveTo(w * 0.35, y - 20 + offsetY, w * 0.65, y + 25 + offsetY, w - 30, y + offsetY);
+          ctx.strokeStyle = `rgba(240, 140, 60, ${0.15 + Math.sin(y + tick * 0.05) * 0.08})`;
+          ctx.lineWidth = 18;
+          ctx.lineCap = 'round';
+          ctx.stroke();
+
+          ctx.beginPath();
+          ctx.moveTo(30, y + offsetY);
+          ctx.bezierCurveTo(w * 0.35, y - 20 + offsetY, w * 0.65, y + 25 + offsetY, w - 30, y + offsetY);
+          ctx.strokeStyle = 'rgba(255, 215, 175, 0.4)';
+          ctx.lineWidth = 3;
+          ctx.stroke();
+        }
+
+        for (let i = 0; i < 9; i++) {
+          const cx = 90 + (i % 3) * 150 + Math.sin(tick * 0.04 + i) * 14;
+          const cy = 190 + Math.floor(i / 3) * 130 + Math.cos(tick * 0.04 + i) * 10;
+          const grad = ctx.createRadialGradient(cx - 8, cy - 8, 4, cx, cy, 32);
+          grad.addColorStop(0, '#fed7aa');
+          grad.addColorStop(0.5, '#ea580c');
+          grad.addColorStop(1, 'rgba(154, 52, 18, 0.2)');
+
+          ctx.beginPath();
+          ctx.arc(cx, cy, 30, 0, Math.PI * 2);
+          ctx.fillStyle = grad;
+          ctx.fill();
+          ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+          ctx.lineWidth = 1.5;
+          ctx.stroke();
+        }
+
+        const scanX = w * 0.5 + Math.cos(tick * 0.035) * 110;
+        const scanY = h * 0.5 + Math.sin(tick * 0.04) * 75;
+
+        ctx.beginPath();
+        ctx.arc(scanX, scanY, 46, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(56, 189, 248, 0.6)';
+        ctx.lineWidth = 1.8;
+        ctx.setLineDash([8, 6]);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        ctx.beginPath();
+        ctx.arc(scanX, scanY, 13, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
+        ctx.fill();
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = 2.5;
+        ctx.stroke();
+      }
+      requestAnimationFrame(render);
+    }
+    render();
+  })();
+
+  // VIDEO 3 CANVAS
+  (function initCanvas2() {
+    const c = document.getElementById('canvas-video-2');
+    if (!c) return;
+    const ctx = c.getContext('2d');
+    let w = c.width = 500;
+    let h = c.height = 625;
+    let tick = 0;
+
+    const networkNodes = [];
+    const rows = 6;
+    const cols = 5;
+    for (let r = 0; r < rows; r++) {
+      for (let col = 0; col < cols; col++) {
+        networkNodes.push({
+          baseX: 70 + col * 90,
+          baseY: 85 + r * 90,
+          seed: Math.random() * 10,
+          color: (r + col) % 3 === 0 ? '#ea580c' : ((r + col) % 2 === 0 ? '#38bdf8' : '#818cf8')
+        });
+      }
+    }
+
+    function render() {
+      if (!videoStates[2].paused) {
+        tick++;
+        ctx.fillStyle = '#071622';
+        ctx.fillRect(0, 0, w, h);
+
+        const radial = ctx.createRadialGradient(w * 0.5, h * 0.5, 40, w * 0.5, h * 0.5, 300);
+        radial.addColorStop(0, 'rgba(38, 130, 168, 0.35)');
+        radial.addColorStop(0.7, 'rgba(14, 44, 61, 0.2)');
+        radial.addColorStop(1, 'rgba(7, 22, 34, 0)');
+        ctx.fillStyle = radial;
+        ctx.fillRect(0, 0, w, h);
+
+        for (let i = 0; i < networkNodes.length; i++) {
+          const na = networkNodes[i];
+          const ax = na.baseX + Math.sin(tick * 0.03 + na.seed) * 8;
+          const ay = na.baseY + Math.cos(tick * 0.03 + na.seed) * 8;
+
+          for (let j = i + 1; j < networkNodes.length; j++) {
+            const nb = networkNodes[j];
+            const bx = nb.baseX + Math.sin(tick * 0.03 + nb.seed) * 8;
+            const by = nb.baseY + Math.cos(tick * 0.03 + nb.seed) * 8;
+            const dist = Math.hypot(ax - bx, ay - by);
+
+            if (dist < 105) {
+              ctx.beginPath();
+              ctx.moveTo(ax, ay);
+              ctx.lineTo(bx, by);
+              const pulse = (Math.sin(tick * 0.05 + dist * 0.05) + 1) / 2;
+              ctx.strokeStyle = `rgba(56, 189, 248, ${0.1 + pulse * 0.35})`;
+              ctx.lineWidth = 1.2;
+              ctx.stroke();
+            }
+          }
+        }
+
+        for (let i = 0; i < networkNodes.length; i++) {
+          const n = networkNodes[i];
+          const nx = n.baseX + Math.sin(tick * 0.03 + n.seed) * 8;
+          const ny = n.baseY + Math.cos(tick * 0.03 + n.seed) * 8;
+
+          ctx.beginPath();
+          ctx.arc(nx, ny, 5.5, 0, Math.PI * 2);
+          ctx.fillStyle = n.color;
+          ctx.fill();
+        }
+
+        const coreX = w * 0.5;
+        const coreY = h * 0.52;
+        const coreGrad = ctx.createRadialGradient(coreX - 8, coreY - 8, 5, coreX, coreY, 50);
+        coreGrad.addColorStop(0, '#fed7aa');
+        coreGrad.addColorStop(0.4, '#ea580c');
+        coreGrad.addColorStop(0.8, '#9a3412');
+        coreGrad.addColorStop(1, 'rgba(154, 52, 18, 0)');
+
+        ctx.beginPath();
+        ctx.arc(coreX, coreY, 46 + Math.sin(tick * 0.04) * 4, 0, Math.PI * 2);
+        ctx.fillStyle = coreGrad;
+        ctx.fill();
+      }
+      requestAnimationFrame(render);
+    }
+    render();
+  })();
+
+  // 5. Transitional Strand Simulation Canvas
+  (function initStrandCanvas() {
+    const c = document.getElementById('transitional-strand-canvas');
+    if (!c) return;
+    const ctx = c.getContext('2d');
+    let paused = false;
+    let w, h;
+
+    function resize() {
+      w = c.width = c.parentElement.offsetWidth || window.innerWidth;
+      h = c.height = c.parentElement.offsetHeight || 600;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    let tick = 0;
+    function render() {
+      if (!paused) {
+        tick++;
+        ctx.fillStyle = '#184b66';
+        ctx.fillRect(0, 0, w, h);
+
+        for (let i = 0; i < 7; i++) {
+          ctx.beginPath();
+          const yOffset = h * 0.2 + i * 45;
+          ctx.moveTo(0, yOffset);
+
+          for (let x = 0; x <= w; x += 30) {
+            const y = yOffset + Math.sin(x * 0.005 + tick * 0.02 + i) * 35 + Math.cos(x * 0.01 + tick * 0.015) * 20;
+            ctx.lineTo(x, y);
+          }
+
+          ctx.strokeStyle = `rgba(44, 164, 196, ${0.14 + i * 0.06})`;
+          ctx.lineWidth = 2.2 + (i % 3);
+          ctx.stroke();
+        }
+
+        for (let j = 0; j < 5; j++) {
+          const nx = ((tick * (2 + j) * 1.6) % (w + 200)) - 100;
+          const ny = h * 0.2 + (j * 45) + Math.sin(nx * 0.005 + tick * 0.02 + j) * 35;
+          
+          const g = ctx.createRadialGradient(nx, ny, 2, nx, ny, 25);
+          g.addColorStop(0, '#ffffff');
+          g.addColorStop(0.4, 'rgba(44, 164, 196, 0.85)');
+          g.addColorStop(1, 'rgba(44, 164, 196, 0)');
+          
+          ctx.beginPath();
+          ctx.arc(nx, ny, 25, 0, Math.PI * 2);
+          ctx.fillStyle = g;
+          ctx.fill();
+        }
+      }
+      requestAnimationFrame(render);
+    }
+    render();
+
+    const pauseBtn = document.getElementById('strand-pause-btn');
+    const pauseText = document.getElementById('strand-pause-text');
+    if (pauseBtn && pauseText) {
+      pauseBtn.addEventListener('click', () => {
+        paused = !paused;
+        pauseText.textContent = paused ? 'Play' : 'Pause';
+      });
+    }
+
+    const quotePauseBtn = document.getElementById('quote-pause-btn');
+    const quotePauseText = document.getElementById('quote-pause-text');
+    if (quotePauseBtn && quotePauseText) {
+      quotePauseBtn.addEventListener('click', () => {
+        paused = !paused;
+        quotePauseText.textContent = paused ? 'Play' : 'Pause';
+      });
+    }
+  })();
+
+  // 6. 3D Wave Mesh Sequencing Array Canvas
+  (function initMeshCanvas() {
+    const c = document.getElementById('mesh-particles-canvas');
+    if (!c) return;
+    const ctx = c.getContext('2d');
+    let w = c.width = 500;
+    let h = c.height = 500;
+    let tick = 0;
+
+    const cols = 24;
+    const rows = 24;
+
+    function render() {
+      tick += 0.025;
+      ctx.fillStyle = '#081c29';
+      ctx.fillRect(0, 0, w, h);
+
+      const centerX = w * 0.5;
+      const centerY = h * 0.52;
+
+      for (let r = 0; r < rows; r++) {
+        for (let col = 0; col < cols; col++) {
+          const u = (col - cols / 2);
+          const v = (r - rows / 2);
+          const dist = Math.hypot(u, v);
+          
+          const elevation = Math.sin(dist * 0.4 - tick * 1.8) * 26 + Math.cos(u * 0.3 + tick) * 12;
+
+          const isoX = centerX + (u - v) * 11;
+          const isoY = centerY + (u + v) * 5.8 - elevation;
+
+          const size = Math.max(1, 1.5 + (elevation + 30) / 18);
+          const alpha = 0.2 + (elevation + 38) / 80;
+
+          ctx.beginPath();
+          ctx.arc(isoX, isoY, size, 0, Math.PI * 2);
+          ctx.fillStyle = dist < 4 ? `rgba(255, 170, 90, ${alpha + 0.3})` : `rgba(56, 189, 248, ${alpha})`;
+          ctx.fill();
+        }
+      }
+      requestAnimationFrame(render);
+    }
+    render();
+  })();
+</script>
+</body></html>
