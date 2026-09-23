@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
@@ -7,10 +7,10 @@
 <meta name="description" content="ABYSS is a field intelligence platform for mapping the physical, chemical, and biological signals that move through the ocean over time."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script>
-tailwind.config={theme:{extend:{colors:{void:'#04080f',deep:'#08101c',abyss:'#0c1a26',marine:'#0e2535',teal:'#144860',mid:'#1a6070',aqua:'#24b4c0',foam:'#edf5f5',mist:'#f3f7f6'},fontFamily:{sans:['Instrument Sans','Inter','sans-serif'],body:['Inter','sans-serif'],mono:['JetBrains Mono','monospace']}}}};
+tailwind.config={theme:{extend:{colors:{void:'#04080f',deep:'#08101c',abyss:'#0c1a26',marine:'#0e2535',teal:'#144860',mid:'#1a6070',aqua:'#24b4c0',foam:'#edf5f5',mist:'#f3f7f6'},fontFamily:{sans:['Instrument Sans','Inter','sans-serif'],body:['Inter','sans-serif'],mono:['Instrument Sans','monospace']}}}};
 </script>
 <style>
 /* ============================================================
@@ -63,7 +63,7 @@ body{font-family:'Instrument Sans','Inter',-apple-system,sans-serif;background:v
 .hero-hed{font-size:clamp(3.7rem,10vw,10rem);font-weight:300;line-height:.96;letter-spacing:-.045em;}
 .ed-h2{font-size:clamp(2.4rem,5.2vw,5.2rem);font-weight:300;line-height:1.07;letter-spacing:-.032em;}
 .sec-h3{font-size:clamp(1.7rem,3vw,3.2rem);font-weight:300;line-height:1.1;letter-spacing:-.022em;}
-.lbl{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:500;}
+.lbl{font-family:'Instrument Sans',sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;}
 
 /* BUTTONS */
 .btn-a{display:inline-flex;align-items:center;gap:12px;background:rgba(36,180,192,.11);border:1px solid rgba(36,180,192,.28);color:var(--aqua);font-size:13.5px;font-weight:500;padding:11px 18px 11px 22px;border-radius:100px;transition:background 400ms var(--ease),border-color 400ms var(--ease),transform 400ms var(--ease);letter-spacing:.02em;}
@@ -182,23 +182,23 @@ body{font-family:'Instrument Sans','Inter',-apple-system,sans-serif;background:v
     <!-- Desktop nav -->
     <nav class="hidden lg:flex items-center gap-6 text-[13px] font-medium text-white/82" aria-label="Primary">
       <div class="relative group">
-        <button class="flex items-center gap-1.5 hover:text-white py-2 transition-colors">Platform<svg class="w-3 h-3 text-white/45 transition-transform group-hover:rotate-180 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <div class="drop-glass absolute top-full left-0 mt-2 w-52 rounded-2xl py-2 px-1.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 translate-y-1 group-hover:translate-y-0">
+        <button class="flex items-center gap-1.5 hover:text-white pb-3 pt-2 transition-colors">Platform<svg class="w-3 h-3 text-white/45 transition-transform group-hover:rotate-180 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="drop-glass absolute top-full left-0 w-52 rounded-2xl py-2 px-1.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 translate-y-0.5 group-hover:translate-y-0">
           <a href="platform.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white">Our Platform</a>
           <a href="science.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white">Our Science</a>
           <a href="pipeline.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white">Pipeline</a>
         </div>
       </div>
       <div class="relative group">
-        <button class="flex items-center gap-1.5 hover:text-white py-2 transition-colors">Explore<svg class="w-3 h-3 text-white/45 transition-transform group-hover:rotate-180 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <div class="drop-glass absolute top-full left-0 mt-2 w-52 rounded-2xl py-2 px-1.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 translate-y-1 group-hover:translate-y-0">
+        <button class="flex items-center gap-1.5 hover:text-white pb-3 pt-2 transition-colors">Explore<svg class="w-3 h-3 text-white/45 transition-transform group-hover:rotate-180 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="drop-glass absolute top-full left-0 w-52 rounded-2xl py-2 px-1.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 translate-y-0.5 group-hover:translate-y-0">
           <a href="projects.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white">Field Projects</a>
           <a href="journal.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white">Journal</a>
         </div>
       </div>
       <div class="relative group">
-        <button class="flex items-center gap-1.5 hover:text-white py-2 transition-colors">Company<svg class="w-3 h-3 text-white/45 transition-transform group-hover:rotate-180 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <div class="drop-glass absolute top-full left-0 mt-2 w-52 rounded-2xl py-2 px-1.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 translate-y-1 group-hover:translate-y-0">
+        <button class="flex items-center gap-1.5 hover:text-white pb-3 pt-2 transition-colors">Company<svg class="w-3 h-3 text-white/45 transition-transform group-hover:rotate-180 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="drop-glass absolute top-full left-0 w-52 rounded-2xl py-2 px-1.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 translate-y-0.5 group-hover:translate-y-0">
           <a href="about.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white">About ABYSS</a>
           <a href="partnerships.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white">Partnerships</a>
           <a href="careers.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white">Careers</a>
@@ -251,7 +251,7 @@ body{font-family:'Instrument Sans','Inter',-apple-system,sans-serif;background:v
   <!-- Copy — depth layer (shifts less than video on mouse) -->
   <div id="hero-copy" class="relative z-10 w-full max-w-[1480px] mx-auto px-6 sm:px-12 lg:px-20 pb-16 sm:pb-0 pt-24 sm:pt-20">
     <div class="max-w-5xl">
-      <div class="lbl text-white/42 mb-7 tracking-[.3em]">ABYSS — Ocean Intelligence Platform</div>
+      <div class="lbl text-white/32 mb-7 tracking-[.28em]">Field Intelligence Platform</div>
       <h1 id="hero-hed" class="hero-hed text-white mb-8">
         THE OCEAN<br/>IS NOT<br/><em style="font-style:normal;color:rgba(220,246,248,.88);">EMPTY.</em>
       </h1>
@@ -474,81 +474,114 @@ body{font-family:'Instrument Sans','Inter',-apple-system,sans-serif;background:v
 </section>
 
 <!-- ============================================================ -->
-<!-- 5. PIPELINE -->
+<!-- 5. FROM SIGNAL TO UNDERSTANDING — 2×2 Editorial Cards       -->
 <!-- ============================================================ -->
 <section id="pipeline" style="background:#0c1a26;overflow:hidden;">
-  <!-- Ambient -->
-  <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse at 50% 70%,rgba(36,180,192,.055),transparent 58%);" aria-hidden="true"></div>
   <div class="relative z-10 max-w-[1480px] mx-auto px-6 sm:px-12 lg:px-20 py-24 sm:py-32">
-    <div class="lbl text-[#24b4c0]/55 mb-5 tracking-[.22em]">Exploration pipeline</div>
-    <h2 class="ed-h2 text-white mb-4" style="max-width:580px;">From signal to understanding</h2>
-    <p class="text-white/40 font-light mb-16 sm:mb-20 text-base sm:text-lg" style="font-family:'Inter',sans-serif;max-width:500px;line-height:1.72;">
-      The ABYSS pipeline connects the moment of observation to a living picture of the ocean's changing systems.
-    </p>
-
-    <!-- Stages -->
-    <div class="relative">
-      <!-- Connecting line (desktop) -->
-      <div class="hidden lg:block absolute top-[18px] left-0 right-0 h-px" style="background:rgba(36,180,192,.1);">
-        <div id="pipe-line" style="height:100%;width:0%;background:linear-gradient(90deg,#24b4c0,rgba(36,180,192,.2));transition:width 1s var(--ease-slow);"></div>
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-16 gap-6">
+      <div>
+        <div class="lbl text-[#24b4c0]/55 mb-4 tracking-[.22em]">Exploration pipeline</div>
+        <h2 class="ed-h2 text-white" style="max-width:560px;">From signal to<br/>understanding</h2>
       </div>
-
-      <div id="pipe-stages" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-4">
-        <!-- Stage 0 -->
-        <div class="pipe-stage active" data-ps="0">
-          <div class="flex lg:flex-col items-start gap-5 lg:gap-0">
-            <div class="stage-dot w-[14px] h-[14px] rounded-full bg-[#24b4c0] shrink-0 mt-1.5 lg:mt-0" style="box-shadow:0 0 18px rgba(36,180,192,.55);"></div>
-            <div class="lg:mt-7">
-              <div class="stage-lbl lbl text-[#24b4c0] mb-3">01 MAP</div>
-              <h4 class="text-base font-medium text-white mb-2.5">Spatial Observation</h4>
-              <p class="text-white/38 font-light text-sm leading-relaxed" style="font-family:'Inter',sans-serif;">ROVs, AUVs, and moored instruments collect position-indexed observations across depth profiles and ocean provinces.</p>
-            </div>
-          </div>
-        </div>
-        <!-- Stage 1 -->
-        <div class="pipe-stage" data-ps="1">
-          <div class="flex lg:flex-col items-start gap-5 lg:gap-0">
-            <div class="stage-dot w-[14px] h-[14px] rounded-full bg-white/18 shrink-0 mt-1.5 lg:mt-0"></div>
-            <div class="lg:mt-7">
-              <div class="stage-lbl lbl text-white/38 mb-3">02 SENSE</div>
-              <h4 class="text-base font-medium text-white/55 mb-2.5">Signal Acquisition</h4>
-              <p class="text-white/28 font-light text-sm leading-relaxed" style="font-family:'Inter',sans-serif;">Physical, chemical, and acoustic signals captured as continuous streams, preserving temporal context that point samples destroy.</p>
-            </div>
-          </div>
-        </div>
-        <!-- Stage 2 -->
-        <div class="pipe-stage" data-ps="2">
-          <div class="flex lg:flex-col items-start gap-5 lg:gap-0">
-            <div class="stage-dot w-[14px] h-[14px] rounded-full bg-white/18 shrink-0 mt-1.5 lg:mt-0"></div>
-            <div class="lg:mt-7">
-              <div class="stage-lbl lbl text-white/38 mb-3">03 MODEL</div>
-              <h4 class="text-base font-medium text-white/55 mb-2.5">Intelligence Integration</h4>
-              <p class="text-white/28 font-light text-sm leading-relaxed" style="font-family:'Inter',sans-serif;">Machine learning models fuse spatial, temporal, and environmental layers into coherent field representations of changing ocean systems.</p>
-            </div>
-          </div>
-        </div>
-        <!-- Stage 3 -->
-        <div class="pipe-stage" data-ps="3">
-          <div class="flex lg:flex-col items-start gap-5 lg:gap-0">
-            <div class="stage-dot w-[14px] h-[14px] rounded-full bg-white/18 shrink-0 mt-1.5 lg:mt-0"></div>
-            <div class="lg:mt-7">
-              <div class="stage-lbl lbl text-white/38 mb-3">04 UNDERSTAND</div>
-              <h4 class="text-base font-medium text-white/55 mb-2.5">Living Atlas</h4>
-              <p class="text-white/28 font-light text-sm leading-relaxed" style="font-family:'Inter',sans-serif;">Field teams, researchers, and partners access a continuously updated picture of the ocean's physical, chemical, and biological state.</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      <a href="pipeline.html" class="btn-a shrink-0 self-start sm:self-end">Full pipeline<span class="arr"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
     </div>
 
-    <div class="mt-16 pt-10 flex flex-wrap items-center justify-between gap-6" style="border-top:1px solid rgba(36,180,192,.08);">
-      <p class="text-white/30 font-light text-sm" style="font-family:'Inter',sans-serif;max-width:420px;">The pipeline is designed around three linked questions: what is changing, where is it changing, and what happens next?</p>
-      <a href="pipeline.html" class="btn-a">Full pipeline<span class="arr"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+    <!-- 2×2 grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+
+      <!-- Card 01 MAP -->
+      <div class="sig-card group relative rounded-3xl p-8 sm:p-10 overflow-hidden cursor-default" style="background:rgba(255,255,255,.028);border:1px solid rgba(36,180,192,.1);transition:border-color 500ms cubic-bezier(0.22,1,0.36,1);" onmouseenter="this.style.borderColor='rgba(36,180,192,.38)'" onmouseleave="this.style.borderColor='rgba(36,180,192,.1)'">
+        <!-- Ghost number -->
+        <div aria-hidden="true" style="position:absolute;right:-12px;bottom:-28px;font-family:'Instrument Sans',sans-serif;font-size:clamp(7rem,14vw,13rem);font-weight:700;line-height:1;color:rgba(36,180,192,.04);pointer-events:none;user-select:none;">01</div>
+        <!-- SVG illustration: sonar rings emanating from AUV -->
+        <div style="position:absolute;top:20px;right:24px;width:80px;height:80px;opacity:.18;transition:opacity 500ms;" class="sig-svg">
+          <svg viewBox="0 0 80 80" fill="none" class="w-full h-full">
+            <circle cx="40" cy="40" r="6" fill="#24b4c0" opacity=".8"/>
+            <circle cx="40" cy="40" r="16" stroke="#24b4c0" stroke-width="1.2" opacity=".6"/>
+            <circle cx="40" cy="40" r="26" stroke="#24b4c0" stroke-width="1" opacity=".4"/>
+            <circle cx="40" cy="40" r="36" stroke="#24b4c0" stroke-width=".7" opacity=".2"/>
+          </svg>
+        </div>
+        <div class="relative z-10">
+          <div class="lbl text-[#24b4c0] mb-4">01 · Map</div>
+          <h3 class="text-white text-2xl sm:text-3xl font-light mb-4 leading-snug">Spatial<br/>Observation</h3>
+          <p class="text-white/42 font-light text-sm leading-relaxed" style="font-family:'Inter',sans-serif;max-width:340px;">ROVs, AUVs, and moored instruments collect position-indexed observations across depth profiles and ocean provinces — building a three-dimensional record of a place over time.</p>
+        </div>
+      </div>
+
+      <!-- Card 02 SENSE -->
+      <div class="sig-card group relative rounded-3xl p-8 sm:p-10 overflow-hidden cursor-default" style="background:rgba(255,255,255,.028);border:1px solid rgba(36,180,192,.1);transition:border-color 500ms cubic-bezier(0.22,1,0.36,1);" onmouseenter="this.style.borderColor='rgba(36,180,192,.38)'" onmouseleave="this.style.borderColor='rgba(36,180,192,.1)'">
+        <div aria-hidden="true" style="position:absolute;right:-12px;bottom:-28px;font-family:'Instrument Sans',sans-serif;font-size:clamp(7rem,14vw,13rem);font-weight:700;line-height:1;color:rgba(36,180,192,.04);pointer-events:none;user-select:none;">02</div>
+        <!-- SVG illustration: vertical depth profile lines -->
+        <div style="position:absolute;top:20px;right:24px;width:80px;height:80px;opacity:.18;transition:opacity 500ms;" class="sig-svg">
+          <svg viewBox="0 0 80 80" fill="none" class="w-full h-full">
+            <path d="M20,4 C18,20 22,36 20,52 C18,68 22,76 20,80" stroke="#24b4c0" stroke-width="1.5" fill="none"/>
+            <path d="M36,4 C34,22 38,40 36,56 C34,72 38,80 36,80" stroke="#24b4c0" stroke-width="1.2" fill="none" opacity=".7"/>
+            <path d="M52,4 C50,18 54,34 52,50 C50,66 54,78 52,80" stroke="#24b4c0" stroke-width="1" fill="none" opacity=".45"/>
+            <line x1="14" y1="28" x2="60" y2="28" stroke="#24b4c0" stroke-width=".6" opacity=".35" stroke-dasharray="3 4"/>
+            <line x1="14" y1="52" x2="60" y2="52" stroke="#24b4c0" stroke-width=".6" opacity=".2" stroke-dasharray="3 4"/>
+          </svg>
+        </div>
+        <div class="relative z-10">
+          <div class="lbl text-[#24b4c0] mb-4">02 · Sense</div>
+          <h3 class="text-white text-2xl sm:text-3xl font-light mb-4 leading-snug">Signal<br/>Acquisition</h3>
+          <p class="text-white/42 font-light text-sm leading-relaxed" style="font-family:'Inter',sans-serif;max-width:340px;">Physical, chemical, and acoustic signals captured as continuous streams, preserving the temporal context that point samples destroy. Every reading is anchored to when and where it was taken.</p>
+        </div>
+      </div>
+
+      <!-- Card 03 MODEL -->
+      <div class="sig-card group relative rounded-3xl p-8 sm:p-10 overflow-hidden cursor-default" style="background:rgba(255,255,255,.028);border:1px solid rgba(36,180,192,.1);transition:border-color 500ms cubic-bezier(0.22,1,0.36,1);" onmouseenter="this.style.borderColor='rgba(36,180,192,.38)'" onmouseleave="this.style.borderColor='rgba(36,180,192,.1)'">
+        <div aria-hidden="true" style="position:absolute;right:-12px;bottom:-28px;font-family:'Instrument Sans',sans-serif;font-size:clamp(7rem,14vw,13rem);font-weight:700;line-height:1;color:rgba(36,180,192,.04);pointer-events:none;user-select:none;">03</div>
+        <!-- SVG illustration: connected node graph -->
+        <div style="position:absolute;top:20px;right:24px;width:80px;height:80px;opacity:.18;transition:opacity 500ms;" class="sig-svg">
+          <svg viewBox="0 0 80 80" fill="none" class="w-full h-full">
+            <circle cx="40" cy="40" r="5" fill="#24b4c0" opacity=".9"/>
+            <circle cx="16" cy="24" r="3.5" fill="#24b4c0" opacity=".6"/>
+            <circle cx="64" cy="24" r="3.5" fill="#24b4c0" opacity=".6"/>
+            <circle cx="16" cy="56" r="3.5" fill="#24b4c0" opacity=".6"/>
+            <circle cx="64" cy="56" r="3.5" fill="#24b4c0" opacity=".6"/>
+            <line x1="40" y1="40" x2="16" y2="24" stroke="#24b4c0" stroke-width=".9" opacity=".45"/>
+            <line x1="40" y1="40" x2="64" y2="24" stroke="#24b4c0" stroke-width=".9" opacity=".45"/>
+            <line x1="40" y1="40" x2="16" y2="56" stroke="#24b4c0" stroke-width=".9" opacity=".35"/>
+            <line x1="40" y1="40" x2="64" y2="56" stroke="#24b4c0" stroke-width=".9" opacity=".35"/>
+            <line x1="16" y1="24" x2="64" y2="24" stroke="#24b4c0" stroke-width=".6" opacity=".2"/>
+            <line x1="16" y1="56" x2="64" y2="56" stroke="#24b4c0" stroke-width=".6" opacity=".2"/>
+          </svg>
+        </div>
+        <div class="relative z-10">
+          <div class="lbl text-[#24b4c0] mb-4">03 · Model</div>
+          <h3 class="text-white text-2xl sm:text-3xl font-light mb-4 leading-snug">Intelligence<br/>Integration</h3>
+          <p class="text-white/42 font-light text-sm leading-relaxed" style="font-family:'Inter',sans-serif;max-width:340px;">Machine learning models fuse spatial, temporal, and environmental layers into coherent field representations of changing ocean systems. Patterns emerge only when observations accumulate.</p>
+        </div>
+      </div>
+
+      <!-- Card 04 UNDERSTAND -->
+      <div class="sig-card group relative rounded-3xl p-8 sm:p-10 overflow-hidden cursor-default" style="background:rgba(255,255,255,.028);border:1px solid rgba(36,180,192,.1);transition:border-color 500ms cubic-bezier(0.22,1,0.36,1);" onmouseenter="this.style.borderColor='rgba(36,180,192,.38)'" onmouseleave="this.style.borderColor='rgba(36,180,192,.1)'">
+        <div aria-hidden="true" style="position:absolute;right:-12px;bottom:-28px;font-family:'Instrument Sans',sans-serif;font-size:clamp(7rem,14vw,13rem);font-weight:700;line-height:1;color:rgba(36,180,192,.04);pointer-events:none;user-select:none;">04</div>
+        <!-- SVG illustration: open book / atlas -->
+        <div style="position:absolute;top:20px;right:24px;width:80px;height:80px;opacity:.18;transition:opacity 500ms;" class="sig-svg">
+          <svg viewBox="0 0 80 80" fill="none" class="w-full h-full">
+            <!-- Contour lines suggesting a map -->
+            <ellipse cx="40" cy="42" rx="12" ry="8" stroke="#24b4c0" stroke-width="1.4" opacity=".9"/>
+            <ellipse cx="40" cy="42" rx="22" ry="15" stroke="#24b4c0" stroke-width="1" opacity=".65"/>
+            <ellipse cx="40" cy="42" rx="33" ry="22" stroke="#24b4c0" stroke-width=".7" opacity=".38"/>
+            <line x1="40" y1="10" x2="40" y2="75" stroke="#24b4c0" stroke-width=".6" opacity=".2" stroke-dasharray="3 5"/>
+            <line x1="8" y1="42" x2="72" y2="42" stroke="#24b4c0" stroke-width=".6" opacity=".2" stroke-dasharray="3 5"/>
+          </svg>
+        </div>
+        <div class="relative z-10">
+          <div class="lbl text-[#24b4c0] mb-4">04 · Understand</div>
+          <h3 class="text-white text-2xl sm:text-3xl font-light mb-4 leading-snug">Living<br/>Atlas</h3>
+          <p class="text-white/42 font-light text-sm leading-relaxed" style="font-family:'Inter',sans-serif;max-width:340px;">Field teams, researchers, and partners access a continuously updated picture of the ocean's physical, chemical, and biological state — a living record, not a snapshot.</p>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
 <!-- ============================================================ -->
+
 <!-- 6. FEATURED PROJECTS -->
 <!-- ============================================================ -->
 <section id="projects" style="background:#080f1a;overflow:hidden;">
@@ -704,27 +737,55 @@ body{font-family:'Instrument Sans','Inter',-apple-system,sans-serif;background:v
       <div class="lg:col-span-6 flex justify-center lg:justify-end">
         <div class="relative w-full max-w-[480px] aspect-square">
           <svg viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-full h-full">
-            <path d="M20,78 C80,66 140,90 200,78 S320,66 380,78 S460,90 500,78" stroke="rgba(36,180,192,.22)" stroke-width="1.5" fill="none"/>
-            <path d="M20,78 L20,482 L480,482 L480,78 C420,90 360,66 300,78 S180,90 120,78 S60,66 20,78 Z" fill="rgba(20,72,96,.045)"/>
-            <rect x="20" y="78" width="460" height="58" fill="rgba(36,180,192,.04)"/>
-            <rect x="20" y="136" width="460" height="82" fill="rgba(20,96,112,.03)"/>
-            <rect x="20" y="218" width="460" height="104" fill="rgba(14,48,68,.03)"/>
-            <rect x="20" y="322" width="460" height="160" fill="rgba(8,24,36,.04)"/>
-            <text x="30" y="118" fill="rgba(13,37,48,.22)" font-size="10" font-family="monospace">0–200m EPIPELAGIC</text>
-            <text x="30" y="192" fill="rgba(13,37,48,.17)" font-size="10" font-family="monospace">200–1000m MESOPELAGIC</text>
-            <text x="30" y="284" fill="rgba(13,37,48,.13)" font-size="10" font-family="monospace">1000–4000m BATHYPELAGIC</text>
-            <text x="30" y="392" fill="rgba(13,37,48,.1)" font-size="10" font-family="monospace">4000–6000m ABYSSAL</text>
-            <path d="M80,482 Q120,444 160,462 Q200,480 240,457 Q280,432 320,452 Q360,470 400,447 L420,482 Z" fill="rgba(13,37,48,.07)"/>
-            <path d="M60,482 Q100,422 150,447 Q200,467 250,440 Q300,414 360,434 Q400,450 440,422 L440,482 Z" fill="rgba(13,37,48,.05)"/>
-            <circle cx="152" cy="108" r="4" fill="#24b4c0" opacity=".55"/>
-            <circle cx="302" cy="178" r="4" fill="#24b4c0" opacity=".42"/>
-            <circle cx="224" cy="292" r="4" fill="#24b4c0" opacity=".3"/>
-            <circle cx="384" cy="382" r="4" fill="#24b4c0" opacity=".2"/>
-            <line x1="152" y1="112" x2="152" y2="292" stroke="rgba(36,180,192,.1)" stroke-width="1" stroke-dasharray="4 4"/>
-            <line x1="302" y1="182" x2="302" y2="382" stroke="rgba(36,180,192,.07)" stroke-width="1" stroke-dasharray="4 4"/>
-            <ellipse cx="250" cy="352" rx="22" ry="8" fill="none" stroke="rgba(13,37,48,.18)" stroke-width="1.2"/>
-            <path d="M232,352 L250,342 L268,352" fill="none" stroke="rgba(13,37,48,.18)" stroke-width="1.2"/>
-            <path d="M20,76 C60,68 100,84 140,76 S220,68 260,76 S340,84 380,76 S440,68 480,76" stroke="rgba(36,180,192,.18)" stroke-width="1.5" fill="none"/>
+            <!-- Outer frame -->
+            <rect x="20" y="60" width="460" height="422" rx="6" stroke="rgba(36,180,192,.14)" stroke-width="1.2" fill="rgba(8,20,30,.04)"/>
+
+            <!-- Surface wave line -->
+            <path d="M20,60 C80,48 140,72 200,60 S320,48 380,60 S445,72 480,60" stroke="rgba(36,180,192,.55)" stroke-width="2" fill="none"/>
+
+            <!-- Zone 1: Epipelagic — brightest, most active -->
+            <rect x="20" y="60" width="460" height="80" fill="rgba(36,180,192,.09)"/>
+            <line x1="20" y1="140" x2="480" y2="140" stroke="rgba(36,180,192,.28)" stroke-width="1" stroke-dasharray="6 4"/>
+            <text x="32" y="106" fill="rgba(20,80,96,.72)" font-size="9.5" font-family="Instrument Sans,sans-serif" font-weight="600" letter-spacing="1.8">0–200 m</text>
+            <text x="32" y="119" fill="rgba(20,80,96,.52)" font-size="8.5" font-family="Instrument Sans,sans-serif" letter-spacing="1.2">EPIPELAGIC</text>
+
+            <!-- Zone 2: Mesopelagic — mid tone -->
+            <rect x="20" y="140" width="460" height="96" fill="rgba(20,96,112,.07)"/>
+            <line x1="20" y1="236" x2="480" y2="236" stroke="rgba(36,180,192,.18)" stroke-width="1" stroke-dasharray="5 5"/>
+            <text x="32" y="186" fill="rgba(13,60,78,.65)" font-size="9.5" font-family="Instrument Sans,sans-serif" font-weight="600" letter-spacing="1.8">200–1000 m</text>
+            <text x="32" y="199" fill="rgba(13,60,78,.42)" font-size="8.5" font-family="Instrument Sans,sans-serif" letter-spacing="1.2">MESOPELAGIC</text>
+
+            <!-- Zone 3: Bathypelagic — darker -->
+            <rect x="20" y="236" width="460" height="110" fill="rgba(10,42,62,.08)"/>
+            <line x1="20" y1="346" x2="480" y2="346" stroke="rgba(36,180,192,.11)" stroke-width="1" stroke-dasharray="4 6"/>
+            <text x="32" y="280" fill="rgba(13,46,62,.55)" font-size="9.5" font-family="Instrument Sans,sans-serif" font-weight="600" letter-spacing="1.8">1000–4000 m</text>
+            <text x="32" y="293" fill="rgba(13,46,62,.35)" font-size="8.5" font-family="Instrument Sans,sans-serif" letter-spacing="1.2">BATHYPELAGIC</text>
+
+            <!-- Zone 4: Abyssal — deepest, most subtle -->
+            <rect x="20" y="346" width="460" height="136" fill="rgba(6,24,38,.1)"/>
+            <text x="32" y="400" fill="rgba(13,37,48,.4)" font-size="9.5" font-family="Instrument Sans,sans-serif" font-weight="600" letter-spacing="1.8">4000–6000 m</text>
+            <text x="32" y="413" fill="rgba(13,37,48,.25)" font-size="8.5" font-family="Instrument Sans,sans-serif" letter-spacing="1.2">ABYSSAL</text>
+
+            <!-- Seabed relief -->
+            <path d="M20,482 Q80,446 130,460 Q180,475 230,452 Q280,430 330,448 Q380,466 430,440 L480,460 L480,482 Z" fill="rgba(13,37,48,.2)"/>
+            <path d="M20,482 Q60,455 110,468 Q160,480 210,460 Q260,440 310,455 Q360,470 420,448 L480,465 L480,482 Z" fill="rgba(13,37,48,.12)"/>
+
+            <!-- Sensor dots — distinct brightness per zone -->
+            <circle cx="158" cy="100" r="5" fill="#24b4c0" opacity=".82"/>
+            <circle cx="158" cy="100" r="12" stroke="#24b4c0" stroke-width="1" fill="none" opacity=".28"/>
+            <circle cx="310" cy="188" r="4.5" fill="#24b4c0" opacity=".6"/>
+            <circle cx="310" cy="188" r="11" stroke="#24b4c0" stroke-width="1" fill="none" opacity=".18"/>
+            <circle cx="228" cy="294" r="4" fill="#24b4c0" opacity=".38"/>
+            <circle cx="228" cy="294" r="10" stroke="#24b4c0" stroke-width=".8" fill="none" opacity=".1"/>
+            <circle cx="388" cy="390" r="3.5" fill="#24b4c0" opacity=".22"/>
+
+            <!-- Vertical sensor lines connecting dots across zones -->
+            <line x1="158" y1="105" x2="158" y2="294" stroke="rgba(36,180,192,.18)" stroke-width="1" stroke-dasharray="4 5"/>
+            <line x1="310" y1="193" x2="310" y2="390" stroke="rgba(36,180,192,.12)" stroke-width="1" stroke-dasharray="4 5"/>
+
+            <!-- AUV symbol in bathypelagic -->
+            <ellipse cx="252" cy="370" rx="24" ry="8" fill="none" stroke="rgba(36,180,192,.32)" stroke-width="1.4"/>
+            <path d="M234,370 L252,360 L270,370" fill="none" stroke="rgba(36,180,192,.32)" stroke-width="1.4"/>
           </svg>
         </div>
       </div>
@@ -746,18 +807,46 @@ body{font-family:'Instrument Sans','Inter',-apple-system,sans-serif;background:v
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
 
-      <!-- Article 1 -->
+      <!-- Article 1 — Transect Survey Map -->
       <article class="news-card group" onclick="location.href='article.html'">
-        <div class="ni aspect-[16/10] rounded-2xl mb-6 relative" style="background:#0e2535;">
+        <div class="ni aspect-[16/10] rounded-2xl mb-6 relative" style="background:#0a1e2c;">
           <svg class="absolute inset-0 w-full h-full" viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-            <rect width="400" height="250" fill="#0e2535"/>
-            <path d="M0,125 C80,100 160,150 240,125 S360,100 440,125" stroke="rgba(36,180,192,.3)" stroke-width="1.5" fill="none"/>
-            <path d="M0,145 C60,120 140,170 220,145 S340,120 420,145" stroke="rgba(36,180,192,.2)" stroke-width="1" fill="none"/>
-            <path d="M0,165 C80,140 160,190 240,165 S360,140 440,165" stroke="rgba(36,180,192,.14)" stroke-width="1" fill="none"/>
-            <circle cx="200" cy="125" r="6" fill="#24b4c0" opacity=".68"/>
-            <circle cx="200" cy="125" r="18" stroke="#24b4c0" stroke-width="1" fill="none" opacity=".22"/>
+            <defs>
+              <radialGradient id="a1rg" cx="40%" cy="50%" r="65%">
+                <stop offset="0%" stop-color="#1a5060" stop-opacity=".45"/>
+                <stop offset="100%" stop-color="#0a1e2c" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="400" height="250" fill="#0a1e2c"/>
+            <rect width="400" height="250" fill="url(#a1rg)"/>
+            <!-- Bathymetric contours -->
+            <path d="M-10,80 C60,68 120,92 200,78 S310,62 420,76" stroke="rgba(36,180,192,.32)" stroke-width="1.4" fill="none"/>
+            <path d="M-10,108 C50,96 130,120 210,104 S320,90 420,106" stroke="rgba(36,180,192,.22)" stroke-width="1.1" fill="none"/>
+            <path d="M-10,136 C70,122 140,148 220,132 S330,118 420,134" stroke="rgba(36,180,192,.16)" stroke-width="1" fill="none"/>
+            <path d="M-10,164 C80,150 150,176 230,160 S340,146 420,162" stroke="rgba(36,180,192,.1)" stroke-width=".8" fill="none"/>
+            <path d="M-10,192 C90,178 160,204 240,188 S350,174 420,190" stroke="rgba(36,180,192,.07)" stroke-width=".7" fill="none"/>
+            <!-- Transect lines (vertical dashed) -->
+            <line x1="80" y1="20" x2="80" y2="230" stroke="rgba(36,180,192,.22)" stroke-width="1" stroke-dasharray="5 5"/>
+            <line x1="200" y1="20" x2="200" y2="230" stroke="rgba(36,180,192,.22)" stroke-width="1" stroke-dasharray="5 5"/>
+            <line x1="320" y1="20" x2="320" y2="230" stroke="rgba(36,180,192,.22)" stroke-width="1" stroke-dasharray="5 5"/>
+            <!-- Sample stations on transects -->
+            <circle cx="80" cy="78" r="4" fill="#24b4c0" opacity=".85"/><circle cx="80" cy="78" r="10" stroke="#24b4c0" stroke-width=".8" fill="none" opacity=".3"/>
+            <circle cx="80" cy="136" r="3" fill="#24b4c0" opacity=".55"/>
+            <circle cx="200" cy="80" r="4.5" fill="#24b4c0" opacity=".9"/><circle cx="200" cy="80" r="12" stroke="#24b4c0" stroke-width="1" fill="none" opacity=".28"/>
+            <circle cx="200" cy="164" r="3" fill="#24b4c0" opacity=".5"/>
+            <circle cx="320" cy="76" r="4" fill="#24b4c0" opacity=".78"/>
+            <circle cx="320" cy="132" r="3" fill="#24b4c0" opacity=".48"/>
+            <!-- Labels -->
+            <text x="74" y="15" fill="rgba(36,180,192,.45)" font-size="8" font-family="Instrument Sans,sans-serif" font-weight="600" letter-spacing="1">T-01</text>
+            <text x="194" y="15" fill="rgba(36,180,192,.45)" font-size="8" font-family="Instrument Sans,sans-serif" font-weight="600" letter-spacing="1">T-02</text>
+            <text x="314" y="15" fill="rgba(36,180,192,.45)" font-size="8" font-family="Instrument Sans,sans-serif" font-weight="600" letter-spacing="1">T-03</text>
+            <!-- Scale bar -->
+            <line x1="318" y1="228" x2="390" y2="228" stroke="rgba(36,180,192,.35)" stroke-width="1"/>
+            <line x1="318" y1="224" x2="318" y2="232" stroke="rgba(36,180,192,.35)" stroke-width="1"/>
+            <line x1="390" y1="224" x2="390" y2="232" stroke="rgba(36,180,192,.35)" stroke-width="1"/>
+            <text x="340" y="222" fill="rgba(36,180,192,.4)" font-size="7.5" font-family="Instrument Sans,sans-serif">50 km</text>
           </svg>
-          <div class="absolute inset-0 bg-gradient-to-t from-black/42 to-transparent z-[2]"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/55 to-transparent z-[2]"></div>
         </div>
         <div class="lbl text-[#24b4c0] mb-2">Jul 07, 2026</div>
         <h3 class="ntit text-xl font-light leading-snug mb-2" style="color:#0d2530;">A new transect protocol for tracing seasonal ocean change</h3>
@@ -767,16 +856,44 @@ body{font-family:'Instrument Sans','Inter',-apple-system,sans-serif;background:v
         </div>
       </article>
 
-      <!-- Article 2 -->
+      <!-- Article 2 — Water Column Acoustic Propagation -->
       <article class="news-card group" onclick="location.href='article.html'">
-        <div class="ni aspect-[16/10] rounded-2xl mb-6 relative" style="background:#103042;">
+        <div class="ni aspect-[16/10] rounded-2xl mb-6 relative" style="background:#0c1e30;">
           <svg class="absolute inset-0 w-full h-full" viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-            <rect width="400" height="250" fill="#103042"/>
-            <g fill="none" stroke="rgba(36,180,192,.18)" stroke-width="1"><line x1="0" y1="62" x2="400" y2="62"/><line x1="0" y1="125" x2="400" y2="125"/><line x1="0" y1="188" x2="400" y2="188"/><line x1="100" y1="0" x2="100" y2="250"/><line x1="200" y1="0" x2="200" y2="250"/><line x1="300" y1="0" x2="300" y2="250"/></g>
-            <path d="M0,200 Q100,78 200,138 T400,98" stroke="rgba(36,180,192,.5)" stroke-width="2" fill="none"/>
-            <path d="M0,212 Q100,98 200,158 T400,118" stroke="rgba(36,180,192,.22)" stroke-width="1.5" fill="none"/>
+            <defs>
+              <radialGradient id="a2rg" cx="30%" cy="30%" r="70%">
+                <stop offset="0%" stop-color="#144860" stop-opacity=".5"/>
+                <stop offset="100%" stop-color="#0c1e30" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="400" height="250" fill="#0c1e30"/>
+            <rect width="400" height="250" fill="url(#a2rg)"/>
+            <!-- Depth axis -->
+            <line x1="48" y1="10" x2="48" y2="240" stroke="rgba(36,180,192,.25)" stroke-width="1"/>
+            <line x1="44" y1="30" x2="52" y2="30" stroke="rgba(36,180,192,.25)" stroke-width="1"/>
+            <line x1="44" y1="90" x2="52" y2="90" stroke="rgba(36,180,192,.2)" stroke-width="1"/>
+            <line x1="44" y1="150" x2="52" y2="150" stroke="rgba(36,180,192,.15)" stroke-width="1"/>
+            <line x1="44" y1="210" x2="52" y2="210" stroke="rgba(36,180,192,.1)" stroke-width="1"/>
+            <text x="8" y="33" fill="rgba(36,180,192,.55)" font-size="7.5" font-family="Instrument Sans,sans-serif">0m</text>
+            <text x="4" y="93" fill="rgba(36,180,192,.42)" font-size="7.5" font-family="Instrument Sans,sans-serif">500m</text>
+            <text x="0" y="153" fill="rgba(36,180,192,.3)" font-size="7.5" font-family="Instrument Sans,sans-serif">1000m</text>
+            <text x="0" y="213" fill="rgba(36,180,192,.2)" font-size="7.5" font-family="Instrument Sans,sans-serif">2000m</text>
+            <!-- Signal source -->
+            <circle cx="200" cy="30" r="6" fill="#24b4c0" opacity=".92"/>
+            <circle cx="200" cy="30" r="14" stroke="#24b4c0" stroke-width="1.2" fill="none" opacity=".35"/>
+            <!-- Acoustic propagation rings widening with depth -->
+            <ellipse cx="200" cy="82" rx="48" ry="14" stroke="rgba(36,180,192,.52)" stroke-width="1.4" fill="none"/>
+            <ellipse cx="200" cy="130" rx="88" ry="22" stroke="rgba(36,180,192,.38)" stroke-width="1.2" fill="none"/>
+            <ellipse cx="200" cy="174" rx="130" ry="30" stroke="rgba(36,180,192,.24)" stroke-width="1" fill="none"/>
+            <ellipse cx="200" cy="214" rx="170" ry="36" stroke="rgba(36,180,192,.14)" stroke-width=".8" fill="none"/>
+            <!-- Central propagation beam -->
+            <path d="M200,36 L200,214" stroke="rgba(36,180,192,.28)" stroke-width="1" stroke-dasharray="4 4"/>
+            <!-- Seafloor -->
+            <path d="M0,235 Q80,218 160,228 Q240,238 320,222 Q380,210 400,220 L400,250 L0,250 Z" fill="rgba(13,37,48,.55)"/>
+            <!-- Reflection signal -->
+            <path d="M200,225 L140,180 M200,225 L260,180" stroke="rgba(36,180,192,.2)" stroke-width=".8" stroke-dasharray="3 4"/>
           </svg>
-          <div class="absolute inset-0 bg-gradient-to-t from-black/42 to-transparent z-[2]"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/55 to-transparent z-[2]"></div>
         </div>
         <div class="lbl text-[#24b4c0] mb-2">Mar 19, 2026</div>
         <h3 class="ntit text-xl font-light leading-snug mb-2" style="color:#0d2530;">Water-column observatory reveals how weak signals travel across depth</h3>
@@ -786,23 +903,49 @@ body{font-family:'Instrument Sans','Inter',-apple-system,sans-serif;background:v
         </div>
       </article>
 
-      <!-- Article 3 -->
+      <!-- Article 3 — AUV Path / 3D Mapping -->
       <article class="news-card group" onclick="location.href='article.html'">
-        <div class="ni aspect-[16/10] rounded-2xl mb-6 relative" style="background:#0c2030;">
+        <div class="ni aspect-[16/10] rounded-2xl mb-6 relative" style="background:#081828;">
           <svg class="absolute inset-0 w-full h-full" viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-            <rect width="400" height="250" fill="#0c2030"/>
-            <g fill="#24b4c0">
-              <circle cx="82" cy="118" r="2.5" opacity=".62"/><circle cx="152" cy="78" r="1.8" opacity=".42"/>
-              <circle cx="222" cy="152" r="3" opacity=".7"/><circle cx="292" cy="88" r="2.2" opacity=".5"/>
-              <circle cx="352" cy="172" r="2.5" opacity=".55"/><circle cx="124" cy="172" r="1.8" opacity=".44"/>
-              <circle cx="322" cy="132" r="2.2" opacity=".58"/><circle cx="182" cy="202" r="1.5" opacity=".34"/>
-              <circle cx="254" cy="62" r="2" opacity=".48"/><circle cx="64" cy="198" r="1.8" opacity=".38"/>
+            <defs>
+              <radialGradient id="a3rg" cx="55%" cy="55%" r="60%">
+                <stop offset="0%" stop-color="#1a4860" stop-opacity=".4"/>
+                <stop offset="100%" stop-color="#081828" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="400" height="250" fill="#081828"/>
+            <rect width="400" height="250" fill="url(#a3rg)"/>
+            <!-- Isometric 3D grid floor -->
+            <g stroke="rgba(36,180,192,.1)" stroke-width=".8" fill="none">
+              <path d="M200,190 L60,150 M200,190 L340,150"/>
+              <path d="M60,150 L60,95 M340,150 L340,95"/>
+              <path d="M60,95 L200,55 L340,95"/>
+              <!-- Grid lines on floor -->
+              <path d="M107,136 L247,96 M154,122 L294,82 M247,136 L107,96 M294,122 L154,82"/>
             </g>
-            <circle cx="222" cy="152" r="18" fill="rgba(36,180,192,.11)"/>
-            <circle cx="82" cy="118" r="14" fill="rgba(36,180,192,.08)"/>
-            <circle cx="352" cy="172" r="16" fill="rgba(36,180,192,.09)"/>
+            <!-- AUV path — serpentine across the 3D space -->
+            <path d="M80,130 C110,100 150,115 180,90 S230,70 260,88 S310,108 340,88" stroke="#24b4c0" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+            <!-- AUV waypoints -->
+            <circle cx="80" cy="130" r="4" fill="#24b4c0" opacity=".8"/>
+            <circle cx="180" cy="90" r="5" fill="#24b4c0" opacity=".92"/><circle cx="180" cy="90" r="12" stroke="#24b4c0" stroke-width="1" fill="none" opacity=".28"/>
+            <circle cx="260" cy="88" r="4" fill="#24b4c0" opacity=".75"/>
+            <circle cx="340" cy="88" r="4.5" fill="#24b4c0" opacity=".7"/>
+            <!-- Shadow/projection on floor -->
+            <path d="M80,185 C110,168 150,175 180,162 S230,155 260,165 S310,172 340,162" stroke="rgba(36,180,192,.15)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-dasharray="5 4"/>
+            <!-- Vertical projection lines from AUV to floor -->
+            <line x1="80" y1="130" x2="80" y2="185" stroke="rgba(36,180,192,.12)" stroke-width=".8" stroke-dasharray="3 4"/>
+            <line x1="180" y1="90" x2="180" y2="162" stroke="rgba(36,180,192,.14)" stroke-width=".8" stroke-dasharray="3 4"/>
+            <line x1="260" y1="88" x2="260" y2="165" stroke="rgba(36,180,192,.12)" stroke-width=".8" stroke-dasharray="3 4"/>
+            <!-- Bioluminescent particle field -->
+            <g fill="#24b4c0">
+              <circle cx="120" cy="55" r="1.5" opacity=".38"/><circle cx="300" cy="60" r="1.2" opacity=".3"/>
+              <circle cx="240" cy="40" r="1.8" opacity=".42"/><circle cx="360" cy="130" r="1.3" opacity=".28"/>
+              <circle cx="55" cy="80" r="1.5" opacity=".35"/><circle cx="370" cy="50" r="1.2" opacity=".32"/>
+            </g>
+            <!-- Labels -->
+            <text x="155" y="83" fill="rgba(36,180,192,.55)" font-size="8" font-family="Instrument Sans,sans-serif" font-weight="600" letter-spacing="1">AUV-04</text>
           </svg>
-          <div class="absolute inset-0 bg-gradient-to-t from-black/42 to-transparent z-[2]"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/55 to-transparent z-[2]"></div>
         </div>
         <div class="lbl text-[#24b4c0] mb-2">Sep 09, 2025</div>
         <h3 class="ntit text-xl font-light leading-snug mb-2" style="color:#0d2530;">Mapping the deep: what autonomous observation reveals over time</h3>
@@ -1252,7 +1395,7 @@ const canvasPaused=isCoarse||rM;
     cg.addColorStop(0,'rgba(180,240,245,.9)');cg.addColorStop(.4,'rgba(36,180,192,.5)');cg.addColorStop(1,'rgba(36,180,192,0)');
     ctx.beginPath();ctx.arc(sx,h*.54,24,0,Math.PI*2);ctx.fillStyle=cg;ctx.fill();
     // Depth labels
-    ctx.fillStyle='rgba(36,180,192,.22)';ctx.font='10px JetBrains Mono,monospace';
+    ctx.fillStyle='rgba(36,180,192,.22)';ctx.font='600 10px Instrument Sans,sans-serif';
     ['0m','500m','1000m','2000m','3000m'].forEach((lbl,i)=>{ctx.fillText(lbl,12,68+i*56);});
     requestAnimationFrame(draw);
   }
