@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Pipeline — ABYSS Ocean Intelligence</title>
+<meta name="description" content="ABYSS Pipeline: four stages from ocean signal to field intelligence — MAP, SENSE, MODEL, UNDERSTAND."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@300;400;500;600&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root{--void:#04080f;--deep:#08101c;--abyss:#0c1a26;--aqua:#24b4c0;--foam:#eef5f4;--offwhite:#f0f4f3;--dark-text:#0d2530;--mid-text:#3d5f68;--ease:cubic-bezier(0.22,1,0.36,1);}
+*,*::before,*::after{box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{font-family:'Instrument Sans','Inter',-apple-system,sans-serif;background:var(--void);color:var(--offwhite);overflow-x:hidden;}
+::selection{background:rgba(36,180,192,.22);color:#fff;}
+.logo-symbol{transition:transform .95s var(--ease);}
+#site-header{will-change:transform;transition:transform .45s var(--ease);}
+#nav-pill{transition:background 600ms,border-color 600ms;}
+.glass-nav{backdrop-filter:blur(24px) saturate(160%)!important;background:rgba(6,18,28,.72)!important;border:1px solid rgba(180,230,235,.1)!important;box-shadow:0 16px 48px rgba(0,0,0,.28)!important;}
+.drop-glass{backdrop-filter:blur(24px);background:rgba(8,22,34,.9);border:1px solid rgba(180,230,235,.12);box-shadow:0 24px 60px rgba(0,0,0,.36);}
+.mob-panel{background:rgba(6,16,26,.93);backdrop-filter:blur(24px);border:1px solid rgba(180,230,235,.1);transition:opacity 350ms,transform 500ms,visibility 350ms;transform-origin:top right;}
+.mob-panel[data-open="false"]{opacity:0;transform:translateY(-10px) scale(.97);visibility:hidden;pointer-events:none;}
+.mob-panel[data-open="true"]{opacity:1;transform:none;visibility:visible;pointer-events:auto;}
+.media-el{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.045);transition:opacity 1100ms var(--ease),transform 1600ms var(--ease);z-index:1;background:#0c2535;}
+.media-el.is-ready{opacity:1;transform:scale(1);}
+.grain{position:absolute;inset:-25%;pointer-events:none;z-index:5;opacity:.042;mix-blend-mode:screen;width:150%;height:150%;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");background-size:220px;transform:rotate(5deg);}
+.lbl{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:500;}
+.btn-a{display:inline-flex;align-items:center;gap:12px;background:rgba(36,180,192,.11);border:1px solid rgba(36,180,192,.28);color:#24b4c0;font-size:13.5px;font-weight:500;padding:11px 18px 11px 22px;border-radius:100px;transition:background 400ms,transform 400ms;}
+.btn-a:hover{background:rgba(36,180,192,.2);transform:translateY(-1px);}
+.btn-a .arr{width:30px;height:30px;border-radius:50%;background:#24b4c0;color:#04080f;display:flex;align-items:center;justify-content:center;}
+/* Pipeline sidebar */
+.pip-node{width:40px;height:40px;border-radius:50%;border:2px solid rgba(36,180,192,.2);background:rgba(36,180,192,.05);display:flex;align-items:center;justify-content:center;transition:border-color 500ms,background 500ms,box-shadow 500ms;flex-shrink:0;font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,.3);font-weight:500;}
+.pip-node.active{border-color:#24b4c0;background:rgba(36,180,192,.12);box-shadow:0 0 20px rgba(36,180,192,.25);color:#24b4c0;}
+.pip-line{width:2px;flex:1;background:rgba(36,180,192,.1);position:relative;overflow:hidden;}
+.pip-line::after{content:'';position:absolute;top:0;left:0;right:0;height:0%;background:#24b4c0;transition:height 600ms var(--ease);}
+.pip-line.active::after{height:100%;}
+/* Stage panels */
+.stage-panel{min-height:100vh;display:flex;align-items:center;padding:80px 0;}
+/* Reveal */
+.reveal-up{opacity:0;transform:translateY(28px);transition:opacity 800ms var(--ease),transform 900ms var(--ease);}
+.revealed{opacity:1;transform:none;}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important;}.reveal-up{opacity:1;transform:none;}}
+</style>
+</head>
+<body class="antialiased">
+
+<!-- NAV (same as other pages) -->
+<header id="site-header" class="fixed top-0 left-0 w-full z-50 px-4 sm:px-6 lg:px-14 pt-4 sm:pt-5">
+  <div id="nav-pill" class="max-w-[1480px] mx-auto flex items-center justify-between px-5 sm:px-6 py-3 sm:py-3.5 rounded-full border border-transparent">
+    <a href="index.html" class="logo-container flex items-center gap-3 text-white">
+      <svg class="logo-symbol w-8 h-8 shrink-0" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="7.5" fill="currentColor"/><circle cx="50" cy="18" r="4.2" fill="currentColor" opacity=".82"/><circle cx="50" cy="82" r="4.2" fill="currentColor" opacity=".82"/><circle cx="18" cy="50" r="4.2" fill="currentColor" opacity=".82"/><circle cx="82" cy="50" r="4.2" fill="currentColor" opacity=".82"/><ellipse cx="50" cy="50" rx="40" ry="13" stroke="currentColor" stroke-width="1.1" opacity=".28" fill="none"/><ellipse cx="50" cy="50" rx="13" ry="40" stroke="currentColor" stroke-width="1.1" opacity=".28" fill="none"/></svg>
+      <span class="lbl text-white" style="letter-spacing:.26em;font-size:.9rem;">ABYSS</span>
+      <span class="hidden md:block lbl text-white/45" style="border-left:1px solid rgba(255,255,255,.14);padding-left:11px;margin-left:4px;letter-spacing:.16em;">Ocean Intelligence</span>
+    </a>
+    <nav class="hidden lg:flex items-center gap-6 text-[13px] font-medium text-white/82">
+      <div class="relative group"><button class="flex items-center gap-1.5 hover:text-white py-2 transition-colors">Platform<svg class="w-3 h-3 text-white/45 group-hover:rotate-180 transition-transform ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="drop-glass absolute top-full left-0 mt-2 w-52 rounded-2xl py-2 px-1.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"><a href="platform.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white hover:bg-white/8">Our Platform</a><a href="science.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white hover:bg-white/8">Our Science</a><a href="pipeline.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white hover:bg-white/8">Pipeline</a></div></div>
+      <div class="relative group"><button class="flex items-center gap-1.5 hover:text-white py-2 transition-colors">Explore<svg class="w-3 h-3 text-white/45 group-hover:rotate-180 transition-transform ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="drop-glass absolute top-full left-0 mt-2 w-52 rounded-2xl py-2 px-1.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"><a href="projects.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white hover:bg-white/8">Field Projects</a><a href="journal.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white hover:bg-white/8">Journal</a></div></div>
+      <div class="relative group"><button class="flex items-center gap-1.5 hover:text-white py-2 transition-colors">Company<svg class="w-3 h-3 text-white/45 group-hover:rotate-180 transition-transform ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="drop-glass absolute top-full left-0 mt-2 w-52 rounded-2xl py-2 px-1.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"><a href="about.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white hover:bg-white/8">About ABYSS</a><a href="partnerships.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white hover:bg-white/8">Partnerships</a><a href="careers.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white hover:bg-white/8">Careers</a></div></div>
+    </nav>
+    <div class="flex items-center gap-3">
+      <a href="contact.html" class="hidden lg:inline-flex btn-a text-[13px]">Contact<span class="arr"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      <button id="mob-toggle" class="lg:hidden w-10 h-10 rounded-full border border-white/15 bg-white/6 text-white flex items-center justify-center" style="backdrop-filter:blur(12px);" aria-label="Menu"><svg id="mob-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" stroke-width="1.7"/></svg></button>
+    </div>
+  </div>
+  <div id="mob-panel" class="mob-panel lg:hidden absolute left-4 right-4 top-[calc(100%-6px)] rounded-3xl p-5" data-open="false">
+    <div class="grid gap-1 text-white/88 text-sm"><a href="platform.html" class="rounded-2xl px-4 py-3.5 border border-transparent hover:border-white/10 hover:bg-white/5">Platform</a><a href="science.html" class="rounded-2xl px-4 py-3.5 border border-transparent hover:border-white/10 hover:bg-white/5">Science</a><a href="pipeline.html" class="rounded-2xl px-4 py-3.5 border border-transparent hover:border-white/10 hover:bg-white/5">Pipeline</a><a href="projects.html" class="rounded-2xl px-4 py-3.5 border border-transparent hover:border-white/10 hover:bg-white/5">Projects</a><a href="about.html" class="rounded-2xl px-4 py-3.5 border border-transparent hover:border-white/10 hover:bg-white/5">About</a><a href="contact.html" class="rounded-2xl px-4 py-3.5 border border-transparent hover:border-white/10 hover:bg-white/5">Contact</a></div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="relative w-full" style="height:72vh;min-height:560px;display:flex;align-items:flex-end;overflow:hidden;background:#0c2535;">
+  <div class="absolute inset-0" style="z-index:0;isolation:isolate;">
+    <video class="media-el" data-src="https://oceanexplorer.noaa.gov/wp-content/uploads/2025/04/no-boundaries-640x360-1.mp4" poster="abyss_hero.png" muted playsinline loop preload="metadata" aria-hidden="true"></video>
+    <div class="absolute inset-0" style="z-index:2;background:linear-gradient(168deg,rgba(4,8,15,.1) 0%,rgba(4,8,15,.04) 28%,rgba(4,8,15,.65) 72%,rgba(4,8,15,.97) 100%);"></div>
+    <div class="grain"></div>
+  </div>
+  <div class="relative z-10 w-full max-w-[1480px] mx-auto px-6 sm:px-12 lg:px-20 pb-16 sm:pb-20">
+    <div class="lbl text-white/42 mb-4 tracking-[.28em]">ABYSS — Pipeline</div>
+    <h1 class="text-white max-w-4xl" style="font-size:clamp(3rem,7.5vw,7.5rem);font-weight:300;line-height:.97;letter-spacing:-.04em;">From Signal to Understanding.</h1>
+    <p class="text-white/55 text-lg sm:text-xl font-light max-w-xl leading-relaxed mt-7" style="font-family:'Inter',sans-serif;">A four-stage pipeline that turns ocean observations into a continuously evolving field intelligence model.</p>
+  </div>
+</section>
+
+<!-- Bridge -->
+<div style="height:clamp(44px,6.5vw,110px);background:linear-gradient(180deg,#0c2535 0%,#eef5f4 100%);margin:-1px 0;" aria-hidden="true"></div>
+
+<!-- INTRO (Light) -->
+<section style="background:#eef5f4;">
+  <div class="max-w-[1480px] mx-auto px-6 sm:px-12 lg:px-20 py-20 sm:py-24">
+    <div class="lbl mb-5" style="color:#3d5f68;">Four stages</div>
+    <div class="flex flex-wrap gap-3 mb-10">
+      <span class="lbl px-4 py-2 rounded-full" style="color:#1a6070;background:rgba(36,180,192,.1);border:1px solid rgba(36,180,192,.2);">MAP</span>
+      <span class="lbl px-4 py-2 rounded-full" style="color:#1a6070;background:rgba(36,180,192,.1);border:1px solid rgba(36,180,192,.2);">SENSE</span>
+      <span class="lbl px-4 py-2 rounded-full" style="color:#1a6070;background:rgba(36,180,192,.1);border:1px solid rgba(36,180,192,.2);">MODEL</span>
+      <span class="lbl px-4 py-2 rounded-full" style="color:#1a6070;background:rgba(36,180,192,.1);border:1px solid rgba(36,180,192,.2);">UNDERSTAND</span>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <p class="font-light leading-relaxed text-base" style="color:#3d5f68;font-family:'Inter',sans-serif;">The ABYSS pipeline is not a linear process that terminates when data is collected. Each stage feeds back into the one before it. Modelling results inform where and when to sense. Sensing reveals gaps in the spatial map. Understanding — what we can finally say about the ocean state — generates the next generation of observing questions.</p>
+      <p class="font-light leading-relaxed text-base" style="color:#3d5f68;font-family:'Inter',sans-serif;">This is a continuous cycle. The pipeline operates indefinitely, as long as the field program runs. It does not produce a final report. It produces a continuously updated representation of a living ocean system.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Bridge -->
+<div style="height:clamp(44px,6.5vw,110px);background:linear-gradient(180deg,#eef5f4 0%,#0c1a26 100%);margin:-1px 0;" aria-hidden="true"></div>
+
+<!-- PIPELINE SCROLL STORY — WOW MOMENT -->
+<section id="pipeline-section" style="background:#0c1a26;position:relative;">
+  <div class="max-w-[1480px] mx-auto px-6 sm:px-12 lg:px-20 py-12 sm:py-16">
+    <div class="grid grid-cols-1 lg:grid-cols-[160px_1fr] gap-12 lg:gap-16 items-start">
+
+      <!-- LEFT: Sticky pipeline diagram -->
+      <div class="hidden lg:flex flex-col items-center sticky top-32 gap-0 pt-8" style="height:calc(100vh - 8rem);" id="pip-diagram">
+        <!-- Stage 1 node -->
+        <div class="pip-node active" id="pip-n0">01</div>
+        <div class="text-center mt-2 mb-1"><div class="lbl text-white/55 text-[9px]">MAP</div></div>
+        <!-- Line 1 -->
+        <div class="pip-line active" id="pip-l0" style="min-height:80px;max-height:140px;margin:4px 0;"></div>
+        <!-- Stage 2 node -->
+        <div class="pip-node" id="pip-n1">02</div>
+        <div class="text-center mt-2 mb-1"><div class="lbl text-white/55 text-[9px]">SENSE</div></div>
+        <!-- Line 2 -->
+        <div class="pip-line" id="pip-l1" style="min-height:80px;max-height:140px;margin:4px 0;"></div>
+        <!-- Stage 3 node -->
+        <div class="pip-node" id="pip-n2">03</div>
+        <div class="text-center mt-2 mb-1"><div class="lbl text-white/55 text-[9px]">MODEL</div></div>
+        <!-- Line 3 -->
+        <div class="pip-line" id="pip-l2" style="min-height:80px;max-height:140px;margin:4px 0;"></div>
+        <!-- Stage 4 node -->
+        <div class="pip-node" id="pip-n3">04</div>
+        <div class="text-center mt-2 mb-1"><div class="lbl text-white/55 text-[9px]">UNDERSTAND</div></div>
+      </div>
+
+      <!-- RIGHT: Scrolling content -->
+      <div id="pip-content">
+        <!-- Stage 1: MAP -->
+        <div class="stage-panel" data-stage="0" id="stage-0">
+          <div class="max-w-[640px]">
+            <div class="lbl text-[#24b4c0]/55 mb-4">Stage 01</div>
+            <h3 class="text-white mb-6" style="font-size:clamp(2rem,4vw,4rem);font-weight:300;line-height:1.07;letter-spacing:-.03em;">Map</h3>
+            <p class="text-white/52 font-light leading-relaxed mb-5" style="font-family:'Inter',sans-serif;">Before sensing begins, we build the spatial context. The MAP stage uses existing bathymetric datasets, satellite altimetry, prior expedition records, and model predictions to construct the working spatial model of the target province. This is not just a map — it is a set of spatial hypotheses about where interesting signals are most likely to occur.</p>
+            <p class="text-white/52 font-light leading-relaxed mb-5" style="font-family:'Inter',sans-serif;">ABYSS refines this map continuously. Every new survey pass updates the spatial model with higher-resolution data, correcting errors in prior datasets and revealing features that were invisible at lower resolution. Unmapped seamounts, canyon systems, and sediment transport paths emerge through accumulated observation.</p>
+            <p class="text-white/52 font-light leading-relaxed mb-8" style="font-family:'Inter',sans-serif;">The spatial model drives AUV mission planning. Path optimization algorithms use the map to maximize coverage efficiency while ensuring that statistically important regions receive proportionally more observation time.</p>
+            <div class="flex flex-wrap gap-3"><span class="lbl px-3 py-1.5 rounded-full text-[#24b4c0]/65" style="background:rgba(36,180,192,.08);border:1px solid rgba(36,180,192,.15);">Bathymetric datasets</span><span class="lbl px-3 py-1.5 rounded-full text-[#24b4c0]/65" style="background:rgba(36,180,192,.08);border:1px solid rgba(36,180,192,.15);">Satellite altimetry</span><span class="lbl px-3 py-1.5 rounded-full text-[#24b4c0]/65" style="background:rgba(36,180,192,.08);border:1px solid rgba(36,180,192,.15);">Spatial hypothesis model</span></div>
+          </div>
+        </div>
+
+        <!-- Stage 2: SENSE -->
+        <div class="stage-panel" data-stage="1" id="stage-1">
+          <div class="max-w-[640px]">
+            <div class="lbl text-[#24b4c0]/55 mb-4">Stage 02</div>
+            <h3 class="text-white mb-6" style="font-size:clamp(2rem,4vw,4rem);font-weight:300;line-height:1.07;letter-spacing:-.03em;">Sense</h3>
+            <p class="text-white/52 font-light leading-relaxed mb-5" style="font-family:'Inter',sans-serif;">Autonomous systems enter the field. The SENSE stage is where raw environmental signals are acquired: temperature, salinity, pressure, dissolved gases, acoustic backscatter, optical properties, biological indicators, and chemical tracers. Every measurement is time-stamped and geo-referenced with sub-meter accuracy.</p>
+            <p class="text-white/52 font-light leading-relaxed mb-5" style="font-family:'Inter',sans-serif;">ABYSS instruments are designed around modularity. A mission profile is selected based on the scientific questions being addressed. The sensor stack changes between deployments. What stays constant is the quality control framework — calibration standards, redundancy requirements, and data provenance recording.</p>
+            <p class="text-white/52 font-light leading-relaxed mb-8" style="font-family:'Inter',sans-serif;">Field teams maintain real-time communication with AUVs via acoustic modems. Mission parameters can be updated mid-deployment as the emerging data reveals unexpected conditions in the field.</p>
+            <div class="flex flex-wrap gap-3"><span class="lbl px-3 py-1.5 rounded-full text-[#24b4c0]/65" style="background:rgba(36,180,192,.08);border:1px solid rgba(36,180,192,.15);">AUV formation</span><span class="lbl px-3 py-1.5 rounded-full text-[#24b4c0]/65" style="background:rgba(36,180,192,.08);border:1px solid rgba(36,180,192,.15);">Multi-parameter sensing</span><span class="lbl px-3 py-1.5 rounded-full text-[#24b4c0]/65" style="background:rgba(36,180,192,.08);border:1px solid rgba(36,180,192,.15);">Acoustic telemetry</span></div>
+          </div>
+        </div>
+
+        <!-- Stage 3: MODEL -->
+        <div class="stage-panel" data-stage="2" id="stage-2">
+          <div class="max-w-[640px]">
+            <div class="lbl text-[#24b4c0]/55 mb-4">Stage 03</div>
+            <h3 class="text-white mb-6" style="font-size:clamp(2rem,4vw,4rem);font-weight:300;line-height:1.07;letter-spacing:-.03em;">Model</h3>
+            <p class="text-white/52 font-light leading-relaxed mb-5" style="font-family:'Inter',sans-serif;">Raw observations are calibrated, quality-controlled, and integrated into the ABYSS field model. The MODEL stage is where measurements become understanding: spatial interpolation fills gaps between survey tracks, temporal models reconstruct what was happening between visits, and multi-parameter correlations surface non-obvious relationships.</p>
+            <p class="text-white/52 font-light leading-relaxed mb-5" style="font-family:'Inter',sans-serif;">The field model is not a single fixed representation. It is a probabilistic estimate of the ocean state, updated with every new observation. Uncertainty is treated as first-class information — every model output includes confidence bounds, which narrow as the observation record grows.</p>
+            <p class="text-white/52 font-light leading-relaxed mb-8" style="font-family:'Inter',sans-serif;">Machine learning models are trained on the accumulating field record, identifying patterns in the data that inform future sensing strategies. The model learns the ocean's temporal rhythms and uses them to anticipate conditions between deployments.</p>
+            <div class="flex flex-wrap gap-3"><span class="lbl px-3 py-1.5 rounded-full text-[#24b4c0]/65" style="background:rgba(36,180,192,.08);border:1px solid rgba(36,180,192,.15);">Spatiotemporal integration</span><span class="lbl px-3 py-1.5 rounded-full text-[#24b4c0]/65" style="background:rgba(36,180,192,.08);border:1px solid rgba(36,180,192,.15);">Probabilistic field model</span><span class="lbl px-3 py-1.5 rounded-full text-[#24b4c0]/65" style="background:rgba(36,180,192,.08);border:1px solid rgba(36,180,192,.15);">Uncertainty quantification</span></div>
+          </div>
+        </div>
+
+        <!-- Stage 4: UNDERSTAND -->
+        <div class="stage-panel" data-stage="3" id="stage-3">
+          <div class="max-w-[640px]">
+            <div class="lbl text-[#24b4c0]/55 mb-4">Stage 04</div>
+            <h3 class="text-white mb-6" style="font-size:clamp(2rem,4vw,4rem);font-weight:300;line-height:1.07;letter-spacing:-.03em;">Understand</h3>
+            <p class="text-white/52 font-light leading-relaxed mb-5" style="font-family:'Inter',sans-serif;">The UNDERSTAND stage is the interface between the ABYSS field model and the humans who need to act on it. Field teams receive structured summaries of what changed since the last visit. Researchers receive queryable data with documented provenance. Partners receive atlas tiles and change maps for their specific region of interest.</p>
+            <p class="text-white/52 font-light leading-relaxed mb-5" style="font-family:'Inter',sans-serif;">Understanding is not the same as explaining. The ABYSS platform does not draw conclusions about why the ocean changed. It documents what changed, with what confidence, and at what resolution. Interpretation is the work of the researchers who built the scientific questions the pipeline was designed to address.</p>
+            <p class="text-white/52 font-light leading-relaxed mb-8" style="font-family:'Inter',sans-serif;">The UNDERSTAND output feeds directly back into the MAP stage. Where the field model is confident, future surveys can be optimized for efficiency. Where it is uncertain, the next deployment is directed to fill the gaps.</p>
+            <div class="flex flex-wrap gap-3"><span class="lbl px-3 py-1.5 rounded-full text-[#24b4c0]/65" style="background:rgba(36,180,192,.08);border:1px solid rgba(36,180,192,.15);">Field intelligence outputs</span><span class="lbl px-3 py-1.5 rounded-full text-[#24b4c0]/65" style="background:rgba(36,180,192,.08);border:1px solid rgba(36,180,192,.15);">Partner data delivery</span><span class="lbl px-3 py-1.5 rounded-full text-[#24b4c0]/65" style="background:rgba(36,180,192,.08);border:1px solid rgba(36,180,192,.15);">Cycle feedback</span></div>
+            <a href="projects.html" class="btn-a mt-8 inline-flex">Explore field projects<span class="arr"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Bridge -->
+<div style="height:clamp(44px,6.5vw,110px);background:linear-gradient(180deg,#0c1a26 0%,#eef5f4 100%);margin:-1px 0;" aria-hidden="true"></div>
+
+<!-- DATA QUALITY (Light) -->
+<section style="background:#eef5f4;">
+  <div class="max-w-[1480px] mx-auto px-6 sm:px-12 lg:px-20 py-24 sm:py-28">
+    <div class="lbl mb-5" style="color:#3d5f68;">Data standards</div>
+    <h2 class="mb-14" style="color:#0d2530;font-size:clamp(2rem,4vw,4rem);font-weight:300;line-height:1.07;letter-spacing:-.03em;max-width:500px;">Three non-negotiable data principles</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+      <div class="reveal-up" data-delay="0"><div class="text-5xl font-light mb-4" style="color:rgba(36,180,192,.4);">01</div><h4 class="text-xl font-medium mb-3" style="color:#0d2530;">Spatial integrity</h4><p class="text-sm font-light leading-relaxed" style="color:#3d5f68;font-family:'Inter',sans-serif;">Every observation is geo-referenced with full provenance: positioning system, accuracy estimate, and vessel/vehicle attitude at the time of measurement. Positional uncertainty is never removed — it is preserved alongside the data.</p></div>
+      <div class="reveal-up" data-delay="100"><div class="text-5xl font-light mb-4" style="color:rgba(36,180,192,.4);">02</div><h4 class="text-xl font-medium mb-3" style="color:#0d2530;">Temporal continuity</h4><p class="text-sm font-light leading-relaxed" style="color:#3d5f68;font-family:'Inter',sans-serif;">Gaps in the time series are modelled rather than filled with assumptions. The model makes explicit what it is inferring versus what was directly observed, and the confidence bound reflects the gap duration and data density on either side.</p></div>
+      <div class="reveal-up" data-delay="200"><div class="text-5xl font-light mb-4" style="color:rgba(36,180,192,.4);">03</div><h4 class="text-xl font-medium mb-3" style="color:#0d2530;">Chain of custody</h4><p class="text-sm font-light leading-relaxed" style="color:#3d5f68;font-family:'Inter',sans-serif;">From sensor calibration through to final field atlas tile, every transformation applied to the data is documented and reversible. No black-box processing steps. Every output can be traced back to specific field measurements.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:linear-gradient(180deg,#0d3a4a 0%,#07202c 42%,#040e14 80%,#04080f 100%);" class="text-white/78">
+  <div class="max-w-[1480px] mx-auto px-6 sm:px-12 lg:px-20 pt-24 sm:pt-32 pb-16">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+      <div class="lg:col-span-6 lg:sticky lg:top-32 space-y-6">
+        <div class="flex items-center gap-3 mb-5"><svg class="w-8 h-8 text-white" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="7.5" fill="currentColor"/><circle cx="50" cy="18" r="4" fill="currentColor" opacity=".8"/><circle cx="50" cy="82" r="4" fill="currentColor" opacity=".8"/><circle cx="18" cy="50" r="4" fill="currentColor" opacity=".8"/><circle cx="82" cy="50" r="4" fill="currentColor" opacity=".8"/><ellipse cx="50" cy="50" rx="38" ry="12" stroke="currentColor" stroke-width="1.1" opacity=".25" fill="none"/><ellipse cx="50" cy="50" rx="12" ry="38" stroke="currentColor" stroke-width="1.1" opacity=".25" fill="none"/></svg><span class="lbl text-white" style="letter-spacing:.24em;">ABYSS</span></div>
+        <h3 class="text-white" style="font-size:clamp(1.7rem,3vw,3rem);font-weight:300;line-height:1.1;letter-spacing:-.022em;">Making the hidden ocean legible.</h3>
+        <a href="contact.html" class="btn-a inline-flex mt-2">Get in touch<span class="arr"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      </div>
+      <div class="lg:col-span-6 space-y-14 pb-8">
+        <div class="grid grid-cols-3 gap-8">
+          <div><div class="lbl text-white/28 mb-5">Platform</div><ul class="space-y-3 text-sm font-light text-white/48"><li><a href="platform.html" class="hover:text-white">Platform</a></li><li><a href="science.html" class="hover:text-white">Science</a></li><li><a href="pipeline.html" class="hover:text-white">Pipeline</a></li><li><a href="projects.html" class="hover:text-white">Projects</a></li></ul></div>
+          <div><div class="lbl text-white/28 mb-5">Company</div><ul class="space-y-3 text-sm font-light text-white/48"><li><a href="about.html" class="hover:text-white">About</a></li><li><a href="partnerships.html" class="hover:text-white">Partnerships</a></li><li><a href="careers.html" class="hover:text-white">Careers</a></li><li><a href="journal.html" class="hover:text-white">Journal</a></li></ul></div>
+          <div><div class="lbl text-white/28 mb-5">Legal</div><ul class="space-y-3 text-sm font-light text-white/48"><li><a href="privacy.html" class="hover:text-white">Privacy</a></li><li><a href="terms.html" class="hover:text-white">Terms</a></li></ul></div>
+        </div>
+        <div class="pt-6" style="border-top:1px solid rgba(255,255,255,.055);"><div class="flex flex-wrap items-center justify-between gap-4 lbl text-white/25"><span>© 2026 ABYSS Ocean Intelligence</span><span>Built for the deep</span></div></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const hdr=document.getElementById('site-header'),pill=document.getElementById('nav-pill');
+  let lastY=window.scrollY,t=false;
+  function upd(){const y=window.scrollY;if(y<=50){hdr.style.transform='translateY(0)';pill.classList.remove('glass-nav');}else if(y>lastY&&y>100){hdr.style.transform='translateY(-110%)';}else if(y<lastY){hdr.style.transform='translateY(0)';pill.classList.add('glass-nav');}lastY=y;t=false;}
+  window.addEventListener('scroll',()=>{if(!t){requestAnimationFrame(upd);t=true;}},{passive:true});
+  const tog=document.getElementById('mob-toggle'),pan=document.getElementById('mob-panel'),ico=document.getElementById('mob-icon');
+  if(tog&&pan){function setM(o){pan.dataset.open=String(o);if(ico)ico.innerHTML=o?'<path d="M6 6l12 12M18 6L6 18" stroke-linecap="round" stroke-width="1.8"/>':'<path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" stroke-width="1.7"/>';}tog.addEventListener('click',()=>setM(pan.dataset.open!=='true'));pan.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setM(false)));} 
+  document.querySelectorAll('.logo-container').forEach(lc=>{const ls=lc.querySelector('.logo-symbol');if(!ls)return;lc.addEventListener('mouseenter',()=>{ls.style.transition='transform .95s cubic-bezier(0.22,1,0.36,1)';ls.style.transform='rotate(360deg)';});lc.addEventListener('mouseleave',()=>{ls.style.transition='none';ls.style.transform='';requestAnimationFrame(()=>requestAnimationFrame(()=>{ls.style.transition='transform .95s cubic-bezier(0.22,1,0.36,1)';}));});});
+  const done=new Set();
+  function hyd(v){if(!v||done.has(v))return;done.add(v);v.src=v.dataset.src;v.addEventListener('loadeddata',()=>{v.classList.add('is-ready');v.play().catch(()=>{});},{once:true});v.load();}
+  const vobs='IntersectionObserver' in window?new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){hyd(e.target);vobs.unobserve(e.target);}});},{rootMargin:'600px'}):null;
+  document.querySelectorAll('video[data-src]').forEach(v=>vobs?vobs.observe(v):hyd(v));
+  // Pipeline stage tracking
+  if('IntersectionObserver' in window){
+    const stages=[0,1,2,3];
+    function activateStage(idx){
+      stages.forEach(i=>{
+        const n=document.getElementById('pip-n'+i);
+        const l=document.getElementById('pip-l'+i);
+        if(i<=idx){if(n)n.classList.add('active');if(l&&i<idx)l.classList.add('active');}
+        else{if(n)n.classList.remove('active');if(l)l.classList.remove('active');}
+      });
+    }
+    activateStage(0);
+    const sObs=new IntersectionObserver(es=>{
+      es.forEach(e=>{if(e.isIntersecting){const idx=+(e.target.dataset.stage||0);activateStage(idx);}});
+    },{threshold:.3,rootMargin:'-10% 0px -10% 0px'});
+    document.querySelectorAll('[data-stage]').forEach(el=>sObs.observe(el));
+    // Reveal
+    const rObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){const d=+(e.target.dataset.delay||0);setTimeout(()=>e.target.classList.add('revealed'),d);rObs.unobserve(e.target);}});},{threshold:.15});
+    document.querySelectorAll('.reveal-up').forEach(el=>rObs.observe(el));
+  }
+})();
+</script>
+</body>
+</html>

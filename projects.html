@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Field Projects — ABYSS Ocean Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@300;400;500;600&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root{--void:#04080f;--deep:#08101c;--abyss:#0c1a26;--aqua:#24b4c0;--foam:#eef5f4;--offwhite:#f0f4f3;--dark-text:#0d2530;--mid-text:#3d5f68;--ease:cubic-bezier(0.22,1,0.36,1);}
+*,*::before,*::after{box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{font-family:'Instrument Sans','Inter',-apple-system,sans-serif;background:var(--void);color:var(--offwhite);overflow-x:hidden;}
+::selection{background:rgba(36,180,192,.22);color:#fff;}
+.logo-symbol{transition:transform .95s var(--ease);}
+#site-header{will-change:transform;transition:transform .45s var(--ease);}
+#nav-pill{transition:background 600ms,border-color 600ms;}
+.glass-nav{backdrop-filter:blur(24px) saturate(160%)!important;background:rgba(6,18,28,.72)!important;border:1px solid rgba(180,230,235,.1)!important;box-shadow:0 16px 48px rgba(0,0,0,.28)!important;}
+.drop-glass{backdrop-filter:blur(24px);background:rgba(8,22,34,.9);border:1px solid rgba(180,230,235,.12);box-shadow:0 24px 60px rgba(0,0,0,.36);}
+.mob-panel{background:rgba(6,16,26,.93);backdrop-filter:blur(24px);border:1px solid rgba(180,230,235,.1);transition:opacity 350ms,transform 500ms,visibility 350ms;transform-origin:top right;}
+.mob-panel[data-open="false"]{opacity:0;transform:translateY(-10px) scale(.97);visibility:hidden;pointer-events:none;}
+.mob-panel[data-open="true"]{opacity:1;transform:none;visibility:visible;pointer-events:auto;}
+.media-el{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.045);transition:opacity 1100ms var(--ease),transform 1600ms var(--ease);z-index:1;background:#0c2535;}
+.media-el.is-ready{opacity:1;transform:scale(1);}
+.grain{position:absolute;inset:-25%;pointer-events:none;z-index:5;opacity:.042;mix-blend-mode:screen;width:150%;height:150%;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");background-size:220px;transform:rotate(5deg);}
+.lbl{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:500;}
+.btn-a{display:inline-flex;align-items:center;gap:12px;background:rgba(36,180,192,.11);border:1px solid rgba(36,180,192,.28);color:#24b4c0;font-size:13.5px;font-weight:500;padding:11px 18px 11px 22px;border-radius:100px;transition:background 400ms,transform 400ms;}
+.btn-a:hover{background:rgba(36,180,192,.2);transform:translateY(-1px);}
+.btn-a .arr{width:30px;height:30px;border-radius:50%;background:#24b4c0;color:#04080f;display:flex;align-items:center;justify-content:center;}
+/* Project cards */
+.project-card{background:#fff;border-radius:24px;overflow:hidden;transition:transform 500ms var(--ease),box-shadow 500ms;opacity:0;transform:translateY(36px);border:1px solid rgba(13,37,48,.07);}
+.project-card.revealed{opacity:1;transform:none;}
+.project-card:hover{transform:translateY(-4px);box-shadow:0 24px 60px rgba(13,37,48,.12);}
+.card-img{overflow:hidden;aspect-ratio:16/10;}
+.card-img svg,.card-img>*{transition:transform 1400ms var(--ease);}
+.project-card:hover .card-img svg{transform:scale(1.04);}
+.card-arrow{width:38px;height:38px;border-radius:50%;background:var(--dark-text);color:#fff;display:flex;align-items:center;justify-content:center;transition:background 400ms,transform 400ms;}
+.project-card:hover .card-arrow{background:var(--aqua);transform:translateX(3px) translateY(-3px);}
+/* Status badges */
+.badge-live{background:rgba(36,180,192,.12);color:#24b4c0;border:1px solid rgba(36,180,192,.25);}
+.badge-val{background:rgba(20,72,96,.12);color:#1a6070;border:1px solid rgba(20,72,96,.2);}
+.badge-dev{background:rgba(13,37,48,.08);color:#3d5f68;border:1px solid rgba(13,37,48,.12);}
+.badge-done{background:rgba(13,37,48,.06);color:#7a9298;border:1px solid rgba(13,37,48,.08);}
+/* Filter pills */
+.filter-pill{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:10px 20px;border-radius:100px;cursor:pointer;transition:background 300ms,color 300ms,border-color 300ms;border:1px solid rgba(13,37,48,.14);color:#3d5f68;background:transparent;}
+.filter-pill.active,.filter-pill:hover{background:#0d2530;color:#f0f4f3;border-color:transparent;}
+/* Stats */
+.stat-item{text-align:center;}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important;}.project-card{opacity:1;transform:none;}}
+</style>
+</head>
+<body class="antialiased">
+
+<header id="site-header" class="fixed top-0 left-0 w-full z-50 px-4 sm:px-6 lg:px-14 pt-4 sm:pt-5">
+  <div id="nav-pill" class="max-w-[1480px] mx-auto flex items-center justify-between px-5 sm:px-6 py-3 sm:py-3.5 rounded-full border border-transparent">
+    <a href="index.html" class="logo-container flex items-center gap-3 text-white">
+      <svg class="logo-symbol w-8 h-8 shrink-0" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="7.5" fill="currentColor"/><circle cx="50" cy="18" r="4.2" fill="currentColor" opacity=".82"/><circle cx="50" cy="82" r="4.2" fill="currentColor" opacity=".82"/><circle cx="18" cy="50" r="4.2" fill="currentColor" opacity=".82"/><circle cx="82" cy="50" r="4.2" fill="currentColor" opacity=".82"/><ellipse cx="50" cy="50" rx="40" ry="13" stroke="currentColor" stroke-width="1.1" opacity=".28" fill="none"/><ellipse cx="50" cy="50" rx="13" ry="40" stroke="currentColor" stroke-width="1.1" opacity=".28" fill="none"/></svg>
+      <span class="lbl text-white" style="letter-spacing:.26em;font-size:.9rem;">ABYSS</span>
+      <span class="hidden md:block lbl text-white/45" style="border-left:1px solid rgba(255,255,255,.14);padding-left:11px;margin-left:4px;letter-spacing:.16em;">Ocean Intelligence</span>
+    </a>
+    <nav class="hidden lg:flex items-center gap-6 text-[13px] font-medium text-white/82">
+      <div class="relative group"><button class="flex items-center gap-1.5 hover:text-white py-2 transition-colors">Platform<svg class="w-3 h-3 text-white/45 group-hover:rotate-180 transition-transform ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="drop-glass absolute top-full left-0 mt-2 w-52 rounded-2xl py-2 px-1.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"><a href="platform.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white hover:bg-white/8">Our Platform</a><a href="science.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white hover:bg-white/8">Our Science</a><a href="pipeline.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white hover:bg-white/8">Pipeline</a></div></div>
+      <div class="relative group"><button class="flex items-center gap-1.5 hover:text-white py-2 transition-colors">Explore<svg class="w-3 h-3 text-white/45 group-hover:rotate-180 transition-transform ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="drop-glass absolute top-full left-0 mt-2 w-52 rounded-2xl py-2 px-1.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"><a href="projects.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white hover:bg-white/8">Field Projects</a><a href="journal.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white hover:bg-white/8">Journal</a></div></div>
+      <div class="relative group"><button class="flex items-center gap-1.5 hover:text-white py-2 transition-colors">Company<svg class="w-3 h-3 text-white/45 group-hover:rotate-180 transition-transform ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="drop-glass absolute top-full left-0 mt-2 w-52 rounded-2xl py-2 px-1.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"><a href="about.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white hover:bg-white/8">About ABYSS</a><a href="partnerships.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white hover:bg-white/8">Partnerships</a><a href="careers.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white hover:bg-white/8">Careers</a></div></div>
+    </nav>
+    <div class="flex items-center gap-3">
+      <a href="contact.html" class="hidden lg:inline-flex btn-a text-[13px]">Contact<span class="arr"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      <button id="mob-toggle" class="lg:hidden w-10 h-10 rounded-full border border-white/15 bg-white/6 text-white flex items-center justify-center" style="backdrop-filter:blur(12px);" aria-label="Menu"><svg id="mob-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" stroke-width="1.7"/></svg></button>
+    </div>
+  </div>
+  <div id="mob-panel" class="mob-panel lg:hidden absolute left-4 right-4 top-[calc(100%-6px)] rounded-3xl p-5" data-open="false">
+    <div class="grid gap-1 text-white/88 text-sm"><a href="platform.html" class="rounded-2xl px-4 py-3.5 border border-transparent hover:border-white/10 hover:bg-white/5">Platform</a><a href="science.html" class="rounded-2xl px-4 py-3.5 border border-transparent hover:border-white/10 hover:bg-white/5">Science</a><a href="pipeline.html" class="rounded-2xl px-4 py-3.5 border border-transparent hover:border-white/10 hover:bg-white/5">Pipeline</a><a href="projects.html" class="rounded-2xl px-4 py-3.5 border border-transparent hover:border-white/10 hover:bg-white/5">Projects</a><a href="about.html" class="rounded-2xl px-4 py-3.5 border border-transparent hover:border-white/10 hover:bg-white/5">About</a><a href="contact.html" class="rounded-2xl px-4 py-3.5 border border-transparent hover:border-white/10 hover:bg-white/5">Contact</a></div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="relative w-full" style="height:72vh;min-height:540px;display:flex;align-items:flex-end;overflow:hidden;background:#0c2535;">
+  <div class="absolute inset-0" style="z-index:0;isolation:isolate;">
+    <video class="media-el" data-src="https://oceanexplorer.noaa.gov/wp-content/uploads/2025/05/midwater-exploration-640x360-1.mp4" poster="abyss_hero.png" muted playsinline loop preload="metadata" aria-hidden="true"></video>
+    <div class="absolute inset-0" style="z-index:2;background:linear-gradient(168deg,rgba(4,8,15,.08) 0%,rgba(4,8,15,.04) 28%,rgba(4,8,15,.6) 68%,rgba(4,8,15,.96) 100%);"></div>
+    <div class="grain"></div>
+  </div>
+  <div class="relative z-10 w-full max-w-[1480px] mx-auto px-6 sm:px-12 lg:px-20 pb-16 sm:pb-20">
+    <div class="lbl text-white/42 mb-4 tracking-[.28em]">ABYSS — Field Programs</div>
+    <h1 class="text-white max-w-3xl" style="font-size:clamp(3rem,7.5vw,7.5rem);font-weight:300;line-height:.97;letter-spacing:-.04em;">Field Programs.</h1>
+    <p class="text-white/55 text-lg sm:text-xl font-light max-w-xl leading-relaxed mt-7" style="font-family:'Inter',sans-serif;">Each project is a living program — not a one-time survey. ABYSS deploys, listens, and refines as the ocean changes.</p>
+  </div>
+</section>
+
+<!-- Bridge -->
+<div style="height:clamp(44px,6.5vw,110px);background:linear-gradient(180deg,#0c2535 0%,#eef5f4 100%);margin:-1px 0;" aria-hidden="true"></div>
+
+<!-- FILTER ROW (Sticky) -->
+<div class="sticky top-[72px] z-40" style="background:#eef5f4;border-bottom:1px solid rgba(13,37,48,.07);">
+  <div class="max-w-[1480px] mx-auto px-6 sm:px-12 lg:px-20 py-4 flex flex-wrap gap-2">
+    <button class="filter-pill active">All Programs</button>
+    <button class="filter-pill">Mapping</button>
+    <button class="filter-pill">Sensing</button>
+    <button class="filter-pill">Modeling</button>
+  </div>
+</div>
+
+<!-- PROJECTS GRID -->
+<section style="background:#eef5f4;">
+  <div class="max-w-[1480px] mx-auto px-6 sm:px-12 lg:px-20 py-14 sm:py-20">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-7" id="projects-grid">
+
+      <!-- Project 01 -->
+      <a href="project-detail.html" class="project-card block" data-delay="0">
+        <div class="card-img" style="background:#0e2535;">
+          <svg viewBox="0 0 560 350" fill="none" class="w-full h-full" aria-hidden="true">
+            <!-- Bathymetric contour lines -->
+            <path d="M0,180 Q70,120 140,160 Q210,200 280,145 Q350,90 420,130 Q490,170 560,140" stroke="rgba(36,180,192,.35)" stroke-width="1.5" fill="none"/>
+            <path d="M0,210 Q60,165 130,190 Q200,215 270,172 Q340,130 410,165 Q480,200 560,172" stroke="rgba(36,180,192,.25)" stroke-width="1.2" fill="none"/>
+            <path d="M0,240 Q80,200 150,222 Q230,244 300,205 Q370,166 440,200 Q510,234 560,210" stroke="rgba(36,180,192,.18)" stroke-width="1" fill="none"/>
+            <path d="M0,270 Q90,240 160,255 Q250,272 320,240 Q400,208 460,238 Q520,268 560,248" stroke="rgba(36,180,192,.12)" stroke-width="1" fill="none"/>
+            <!-- AUV track -->
+            <path d="M30,160 L100,135 L200,150 L300,120 L400,140 L500,120 L540,125" stroke="rgba(36,180,192,.55)" stroke-width="2" stroke-dasharray="6 4" fill="none"/>
+            <!-- AUV symbol -->
+            <ellipse cx="540" cy="122" rx="12" ry="5" fill="rgba(36,180,192,.5)"/>
+            <!-- Depth markers -->
+            <text x="20" y="30" fill="rgba(36,180,192,.3)" font-size="10" font-family="monospace">PACIFIC — 0–6,000m</text>
+            <text x="20" y="50" fill="rgba(36,180,192,.2)" font-size="9" font-family="monospace">DEEP OCEAN MAPPING</text>
+          </svg>
+        </div>
+        <div class="p-6 sm:p-7">
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <span class="badge-live lbl px-3 py-1.5 rounded-full">Live</span>
+            <div class="flex flex-col items-end text-right"><div class="lbl text-[#3d5f68]">Pacific Ocean</div><div class="lbl text-[#7a9298] mt-0.5">2024–present</div></div>
+          </div>
+          <div class="lbl text-[#7a9298] mb-2">01</div>
+          <h3 class="text-xl sm:text-2xl font-light mb-3" style="color:#0d2530;letter-spacing:-.015em;line-height:1.2;">Deep Ocean Mapping</h3>
+          <p class="text-sm font-light leading-relaxed mb-5" style="color:#3d5f68;font-family:'Inter',sans-serif;">Systematic mapping connecting coastal seamounts to abyssal provinces, establishing longitudinal baselines for habitat change detection.</p>
+          <div class="card-arrow">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+      </a>
+
+      <!-- Project 02 -->
+      <a href="project-detail.html" class="project-card block" data-delay="100">
+        <div class="card-img" style="background:#0a1f2e;">
+          <svg viewBox="0 0 560 350" fill="none" class="w-full h-full" aria-hidden="true">
+            <!-- Water column cross-section -->
+            <rect x="0" y="0" width="560" height="350" fill="#0a1f2e"/>
+            <!-- Depth bands -->
+            <rect x="0" y="0" width="560" height="70" fill="rgba(36,180,192,.05)"/>
+            <rect x="0" y="70" width="560" height="100" fill="rgba(36,180,192,.03)"/>
+            <rect x="0" y="170" width="560" height="100" fill="rgba(36,180,192,.02)"/>
+            <!-- AUV paths (3 vehicles at different depths) -->
+            <path d="M30,35 C100,25 200,45 280,35 C360,25 440,42 530,35" stroke="rgba(36,180,192,.5)" stroke-width="2" fill="none"/>
+            <path d="M30,120 C90,110 190,130 280,120 C370,110 450,128 530,120" stroke="rgba(36,180,192,.4)" stroke-width="2" fill="none"/>
+            <path d="M30,220 C100,210 200,230 280,220 C360,210 440,228 530,220" stroke="rgba(36,180,192,.3)" stroke-width="1.5" fill="none"/>
+            <!-- Formation arrows -->
+            <line x1="280" y1="35" x2="280" y2="120" stroke="rgba(36,180,192,.18)" stroke-width="1" stroke-dasharray="4 4"/>
+            <line x1="280" y1="120" x2="280" y2="220" stroke="rgba(36,180,192,.12)" stroke-width="1" stroke-dasharray="4 4"/>
+            <text x="20" y="28" fill="rgba(36,180,192,.35)" font-size="9" font-family="monospace">3-AUV FORMATION</text>
+            <text x="20" y="300" fill="rgba(36,180,192,.2)" font-size="9" font-family="monospace">INDIAN OCEAN</text>
+          </svg>
+        </div>
+        <div class="p-6 sm:p-7">
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <span class="badge-val lbl px-3 py-1.5 rounded-full">In validation</span>
+            <div class="flex flex-col items-end text-right"><div class="lbl text-[#3d5f68]">Indian Ocean</div><div class="lbl text-[#7a9298] mt-0.5">2025–present</div></div>
+          </div>
+          <div class="lbl text-[#7a9298] mb-2">02</div>
+          <h3 class="text-xl sm:text-2xl font-light mb-3" style="color:#0d2530;letter-spacing:-.015em;line-height:1.2;">Autonomous Subsea Survey</h3>
+          <p class="text-sm font-light leading-relaxed mb-5" style="color:#3d5f68;font-family:'Inter',sans-serif;">Multi-AUV formation operations capturing 3D water column cross-sections with unprecedented spatial resolution.</p>
+          <div class="card-arrow"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </div>
+      </a>
+
+      <!-- Project 03 -->
+      <a href="project-detail.html" class="project-card block" data-delay="60">
+        <div class="card-img" style="background:#071624;">
+          <svg viewBox="0 0 560 350" fill="none" class="w-full h-full" aria-hidden="true">
+            <!-- Signal waves -->
+            <ellipse cx="280" cy="175" rx="60" ry="30" stroke="rgba(36,180,192,.4)" stroke-width="1.5" fill="none"/>
+            <ellipse cx="280" cy="175" rx="100" ry="50" stroke="rgba(36,180,192,.28)" stroke-width="1" fill="none"/>
+            <ellipse cx="280" cy="175" rx="145" ry="72" stroke="rgba(36,180,192,.18)" stroke-width="1" fill="none"/>
+            <ellipse cx="280" cy="175" rx="200" ry="100" stroke="rgba(36,180,192,.1)" stroke-width="1" fill="none"/>
+            <ellipse cx="280" cy="175" rx="260" ry="130" stroke="rgba(36,180,192,.06)" stroke-width="1" fill="none"/>
+            <!-- Source node -->
+            <circle cx="280" cy="175" r="8" fill="#24b4c0" opacity=".6"/>
+            <!-- Anomaly markers -->
+            <circle cx="160" cy="120" r="4" fill="rgba(36,180,192,.7)" stroke="rgba(36,180,192,.3)" stroke-width="4"/>
+            <circle cx="380" cy="240" r="4" fill="rgba(36,180,192,.7)" stroke="rgba(36,180,192,.3)" stroke-width="4"/>
+            <text x="20" y="28" fill="rgba(36,180,192,.35)" font-size="9" font-family="monospace">ACOUSTIC SIGNAL LIBRARY</text>
+            <text x="20" y="335" fill="rgba(36,180,192,.2)" font-size="9" font-family="monospace">NORTH ATLANTIC</text>
+          </svg>
+        </div>
+        <div class="p-6 sm:p-7">
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <span class="badge-dev lbl px-3 py-1.5 rounded-full">In development</span>
+            <div class="flex flex-col items-end text-right"><div class="lbl text-[#3d5f68]">Atlantic Ocean</div><div class="lbl text-[#7a9298] mt-0.5">Est. 2026</div></div>
+          </div>
+          <div class="lbl text-[#7a9298] mb-2">03</div>
+          <h3 class="text-xl sm:text-2xl font-light mb-3" style="color:#0d2530;letter-spacing:-.015em;line-height:1.2;">Marine Signal Intelligence</h3>
+          <p class="text-sm font-light leading-relaxed mb-5" style="color:#3d5f68;font-family:'Inter',sans-serif;">Acoustic and electromagnetic signal monitoring building the first library of marine signal anomalies and ecological correlates.</p>
+          <div class="card-arrow"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </div>
+      </a>
+
+      <!-- Project 04 -->
+      <a href="project-detail.html" class="project-card block" data-delay="160">
+        <div class="card-img" style="background:#060e18;">
+          <svg viewBox="0 0 560 350" fill="none" class="w-full h-full" aria-hidden="true">
+            <!-- Abyssal province grid -->
+            <path d="M0,200 Q100,180 200,195 Q280,210 380,185 Q460,165 560,180" stroke="rgba(36,180,192,.3)" stroke-width="1.5" fill="none"/>
+            <path d="M0,220 Q100,202 200,215 Q280,228 380,205 Q460,185 560,200" stroke="rgba(36,180,192,.2)" stroke-width="1" fill="none"/>
+            <path d="M0,240 Q110,224 210,235 Q290,246 390,223 Q470,205 560,218" stroke="rgba(36,180,192,.14)" stroke-width="1" fill="none"/>
+            <!-- Grid lines vertical -->
+            <line x1="140" y1="60" x2="140" y2="340" stroke="rgba(36,180,192,.06)" stroke-width="1"/>
+            <line x1="280" y1="60" x2="280" y2="340" stroke="rgba(36,180,192,.06)" stroke-width="1"/>
+            <line x1="420" y1="60" x2="420" y2="340" stroke="rgba(36,180,192,.06)" stroke-width="1"/>
+            <!-- Survey points -->
+            <circle cx="100" cy="195" r="4" fill="rgba(36,180,192,.6)"/><circle cx="200" cy="187" r="4" fill="rgba(36,180,192,.6)"/><circle cx="320" cy="182" r="4" fill="rgba(36,180,192,.6)"/><circle cx="440" cy="178" r="4" fill="rgba(36,180,192,.6)"/><circle cx="520" cy="180" r="4" fill="rgba(36,180,192,.6)"/>
+            <text x="20" y="28" fill="rgba(36,180,192,.35)" font-size="9" font-family="monospace">3800–5500m · ABYSSAL</text>
+            <text x="20" y="335" fill="rgba(36,180,192,.2)" font-size="9" font-family="monospace">PACIFIC-INDIAN CORRIDOR</text>
+          </svg>
+        </div>
+        <div class="p-6 sm:p-7">
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <span class="badge-done lbl px-3 py-1.5 rounded-full">Completed</span>
+            <div class="flex flex-col items-end text-right"><div class="lbl text-[#3d5f68]">Pacific-Indian</div><div class="lbl text-[#7a9298] mt-0.5">2022–2024</div></div>
+          </div>
+          <div class="lbl text-[#7a9298] mb-2">04</div>
+          <h3 class="text-xl sm:text-2xl font-light mb-3" style="color:#0d2530;letter-spacing:-.015em;line-height:1.2;">Abyssal Field Atlas</h3>
+          <p class="text-sm font-light leading-relaxed mb-5" style="color:#3d5f68;font-family:'Inter',sans-serif;">First systematic spatial inventory of the Western Pacific-Indian abyssal corridor at 3,800–5,500m depth.</p>
+          <div class="card-arrow"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </div>
+      </a>
+
+      <!-- Project 05 -->
+      <a href="project-detail.html" class="project-card block" data-delay="80">
+        <div class="card-img" style="background:#071018;">
+          <svg viewBox="0 0 560 350" fill="none" class="w-full h-full" aria-hidden="true">
+            <!-- 14 transects diagonal -->
+            <line x1="30" y1="40" x2="530" y2="310" stroke="rgba(36,180,192,.25)" stroke-width="1"/><line x1="70" y1="40" x2="560" y2="295" stroke="rgba(36,180,192,.2)" stroke-width="1"/><line x1="0" y1="60" x2="500" y2="320" stroke="rgba(36,180,192,.2)" stroke-width="1"/><line x1="0" y1="90" x2="460" y2="330" stroke="rgba(36,180,192,.15)" stroke-width="1"/><line x1="0" y1="120" x2="440" y2="340" stroke="rgba(36,180,192,.12)" stroke-width="1"/><line x1="20" y1="150" x2="540" y2="260" stroke="rgba(36,180,192,.12)" stroke-width="1"/>
+            <!-- Intersections = sampling points -->
+            <circle cx="150" cy="150" r="3" fill="rgba(36,180,192,.5)"/><circle cx="280" cy="190" r="3" fill="rgba(36,180,192,.5)"/><circle cx="400" cy="225" r="3" fill="rgba(36,180,192,.5)"/>
+            <text x="20" y="28" fill="rgba(36,180,192,.35)" font-size="9" font-family="monospace">14 TRANSECTS · SUBTROPICAL GYRE</text>
+            <text x="20" y="335" fill="rgba(36,180,192,.2)" font-size="9" font-family="monospace">NORTH ATLANTIC</text>
+          </svg>
+        </div>
+        <div class="p-6 sm:p-7">
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <span class="badge-done lbl px-3 py-1.5 rounded-full">Completed</span>
+            <div class="flex flex-col items-end text-right"><div class="lbl text-[#3d5f68]">North Atlantic</div><div class="lbl text-[#7a9298] mt-0.5">2023–2024</div></div>
+          </div>
+          <div class="lbl text-[#7a9298] mb-2">05</div>
+          <h3 class="text-xl sm:text-2xl font-light mb-3" style="color:#0d2530;letter-spacing:-.015em;line-height:1.2;">North Atlantic Baseline</h3>
+          <p class="text-sm font-light leading-relaxed mb-5" style="color:#3d5f68;font-family:'Inter',sans-serif;">Multi-parameter environmental baseline across 14 transects in the North Atlantic subtropical gyre.</p>
+          <div class="card-arrow"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </div>
+      </a>
+
+      <!-- Project 06 -->
+      <a href="project-detail.html" class="project-card block" data-delay="180">
+        <div class="card-img" style="background:#071a14;">
+          <svg viewBox="0 0 560 350" fill="none" class="w-full h-full" aria-hidden="true">
+            <!-- Reef acoustic patterns -->
+            <circle cx="160" cy="175" r="55" stroke="rgba(36,180,192,.3)" stroke-width="1.5" fill="none"/>
+            <circle cx="160" cy="175" r="85" stroke="rgba(36,180,192,.15)" stroke-width="1" fill="none"/>
+            <circle cx="160" cy="175" r="115" stroke="rgba(36,180,192,.08)" stroke-width="1" fill="none"/>
+            <circle cx="390" cy="160" r="50" stroke="rgba(36,180,192,.28)" stroke-width="1.5" fill="none"/>
+            <circle cx="390" cy="160" r="78" stroke="rgba(36,180,192,.12)" stroke-width="1" fill="none"/>
+            <!-- Reef structures -->
+            <path d="M90,210 Q130,190 160,175 Q190,160 220,175" stroke="rgba(36,180,192,.35)" stroke-width="2" fill="none"/>
+            <path d="M330,200 Q360,182 390,165 Q420,148 450,162" stroke="rgba(36,180,192,.35)" stroke-width="2" fill="none"/>
+            <!-- Hydrophone markers -->
+            <rect x="152" y="167" width="16" height="16" rx="4" fill="rgba(36,180,192,.3)" stroke="rgba(36,180,192,.5)" stroke-width="1"/>
+            <rect x="382" y="152" width="16" height="16" rx="4" fill="rgba(36,180,192,.3)" stroke="rgba(36,180,192,.5)" stroke-width="1"/>
+            <text x="20" y="28" fill="rgba(36,180,192,.35)" font-size="9" font-family="monospace">8 REEF SYSTEMS · PASSIVE ACOUSTIC</text>
+            <text x="20" y="335" fill="rgba(36,180,192,.2)" font-size="9" font-family="monospace">INDO-PACIFIC</text>
+          </svg>
+        </div>
+        <div class="p-6 sm:p-7">
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <span class="badge-done lbl px-3 py-1.5 rounded-full">Completed</span>
+            <div class="flex flex-col items-end text-right"><div class="lbl text-[#3d5f68]">Indo-Pacific</div><div class="lbl text-[#7a9298] mt-0.5">2023</div></div>
+          </div>
+          <div class="lbl text-[#7a9298] mb-2">06</div>
+          <h3 class="text-xl sm:text-2xl font-light mb-3" style="color:#0d2530;letter-spacing:-.015em;line-height:1.2;">Coral Reef Acoustic Survey</h3>
+          <p class="text-sm font-light leading-relaxed mb-5" style="color:#3d5f68;font-family:'Inter',sans-serif;">Passive acoustic monitoring across 8 reef systems documenting the acoustic fingerprints of healthy, degraded, and recovering reefs.</p>
+          <div class="card-arrow"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- STATS (Dark) -->
+<section style="background:#0c1a26;border-top:1px solid rgba(36,180,192,.08);">
+  <div class="max-w-[1480px] mx-auto px-6 sm:px-12 lg:px-20 py-20 sm:py-24">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12">
+      <div class="stat-item"><div class="text-white font-light mb-2" style="font-size:clamp(2.5rem,6vw,5.5rem);letter-spacing:-.04em;line-height:1;">6</div><div class="lbl text-white/35">Field programs</div></div>
+      <div class="stat-item"><div class="text-white font-light mb-2" style="font-size:clamp(2.5rem,6vw,5.5rem);letter-spacing:-.04em;line-height:1;">3</div><div class="lbl text-white/35">Ocean basins</div></div>
+      <div class="stat-item"><div class="text-white font-light mb-2" style="font-size:clamp(2.5rem,6vw,5.5rem);letter-spacing:-.04em;line-height:1;">12</div><div class="lbl text-white/35">Deployments</div></div>
+      <div class="stat-item"><div class="text-white font-light mb-2" style="font-size:clamp(2.5rem,6vw,5.5rem);letter-spacing:-.04em;line-height:1;">2.4B<span class="text-[#24b4c0]" style="font-size:.5em;vertical-align:super;">+</span></div><div class="lbl text-white/35">Data points</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="background:#080f1a;">
+  <div class="max-w-[1480px] mx-auto px-6 sm:px-12 lg:px-20 py-20 sm:py-24 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
+    <div>
+      <div class="lbl text-[#24b4c0]/55 mb-3">Work together</div>
+      <h3 class="text-white" style="font-size:clamp(1.8rem,3.5vw,3.2rem);font-weight:300;line-height:1.12;letter-spacing:-.02em;max-width:520px;">Collaborate with ABYSS on your next field program.</h3>
+    </div>
+    <a href="partnerships.html" class="btn-a shrink-0">Explore partnerships<span class="arr"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:linear-gradient(180deg,#0d3a4a 0%,#07202c 42%,#040e14 80%,#04080f 100%);" class="text-white/78">
+  <div class="max-w-[1480px] mx-auto px-6 sm:px-12 lg:px-20 pt-24 sm:pt-32 pb-16">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+      <div class="lg:col-span-6 lg:sticky lg:top-32 space-y-6">
+        <div class="flex items-center gap-3 mb-5"><svg class="w-8 h-8 text-white" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="7.5" fill="currentColor"/><circle cx="50" cy="18" r="4" fill="currentColor" opacity=".8"/><circle cx="50" cy="82" r="4" fill="currentColor" opacity=".8"/><circle cx="18" cy="50" r="4" fill="currentColor" opacity=".8"/><circle cx="82" cy="50" r="4" fill="currentColor" opacity=".8"/><ellipse cx="50" cy="50" rx="38" ry="12" stroke="currentColor" stroke-width="1.1" opacity=".25" fill="none"/><ellipse cx="50" cy="50" rx="12" ry="38" stroke="currentColor" stroke-width="1.1" opacity=".25" fill="none"/></svg><span class="lbl text-white" style="letter-spacing:.24em;">ABYSS</span></div>
+        <h3 class="text-white" style="font-size:clamp(1.7rem,3vw,3rem);font-weight:300;line-height:1.1;letter-spacing:-.022em;">Making the hidden ocean legible.</h3>
+        <a href="contact.html" class="btn-a inline-flex mt-2">Get in touch<span class="arr"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      </div>
+      <div class="lg:col-span-6 space-y-14 pb-8">
+        <div class="grid grid-cols-3 gap-8">
+          <div><div class="lbl text-white/28 mb-5">Platform</div><ul class="space-y-3 text-sm font-light text-white/48"><li><a href="platform.html" class="hover:text-white">Platform</a></li><li><a href="science.html" class="hover:text-white">Science</a></li><li><a href="pipeline.html" class="hover:text-white">Pipeline</a></li><li><a href="projects.html" class="hover:text-white">Projects</a></li></ul></div>
+          <div><div class="lbl text-white/28 mb-5">Company</div><ul class="space-y-3 text-sm font-light text-white/48"><li><a href="about.html" class="hover:text-white">About</a></li><li><a href="partnerships.html" class="hover:text-white">Partnerships</a></li><li><a href="careers.html" class="hover:text-white">Careers</a></li><li><a href="journal.html" class="hover:text-white">Journal</a></li></ul></div>
+          <div><div class="lbl text-white/28 mb-5">Legal</div><ul class="space-y-3 text-sm font-light text-white/48"><li><a href="privacy.html" class="hover:text-white">Privacy</a></li><li><a href="terms.html" class="hover:text-white">Terms</a></li></ul></div>
+        </div>
+        <div class="pt-6" style="border-top:1px solid rgba(255,255,255,.055);"><div class="flex flex-wrap items-center justify-between gap-4 lbl text-white/25"><span>© 2026 ABYSS Ocean Intelligence</span><span>Built for the deep</span></div></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const hdr=document.getElementById('site-header'),pill=document.getElementById('nav-pill');
+  let lastY=window.scrollY,t=false;
+  function upd(){const y=window.scrollY;if(y<=50){hdr.style.transform='translateY(0)';pill.classList.remove('glass-nav');}else if(y>lastY&&y>100){hdr.style.transform='translateY(-110%)';}else if(y<lastY){hdr.style.transform='translateY(0)';pill.classList.add('glass-nav');}lastY=y;t=false;}
+  window.addEventListener('scroll',()=>{if(!t){requestAnimationFrame(upd);t=true;}},{passive:true});
+  const tog=document.getElementById('mob-toggle'),pan=document.getElementById('mob-panel'),ico=document.getElementById('mob-icon');
+  if(tog&&pan){function setM(o){pan.dataset.open=String(o);if(ico)ico.innerHTML=o?'<path d="M6 6l12 12M18 6L6 18" stroke-linecap="round" stroke-width="1.8"/>':'<path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" stroke-width="1.7"/>';}tog.addEventListener('click',()=>setM(pan.dataset.open!=='true'));pan.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setM(false)));} 
+  document.querySelectorAll('.logo-container').forEach(lc=>{const ls=lc.querySelector('.logo-symbol');if(!ls)return;lc.addEventListener('mouseenter',()=>{ls.style.transition='transform .95s cubic-bezier(0.22,1,0.36,1)';ls.style.transform='rotate(360deg)';});lc.addEventListener('mouseleave',()=>{ls.style.transition='none';ls.style.transform='';requestAnimationFrame(()=>requestAnimationFrame(()=>{ls.style.transition='transform .95s cubic-bezier(0.22,1,0.36,1)';}));});});
+  const done=new Set();
+  function hyd(v){if(!v||done.has(v))return;done.add(v);v.src=v.dataset.src;v.addEventListener('loadeddata',()=>{v.classList.add('is-ready');v.play().catch(()=>{});},{once:true});v.load();}
+  const vobs='IntersectionObserver' in window?new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){hyd(e.target);vobs.unobserve(e.target);}});},{rootMargin:'600px'}):null;
+  document.querySelectorAll('video[data-src]').forEach(v=>vobs?vobs.observe(v):hyd(v));
+  // Stagger reveal for cards
+  if('IntersectionObserver' in window){
+    const rObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){const d=+(e.target.dataset.delay||0);setTimeout(()=>e.target.classList.add('revealed'),d);rObs.unobserve(e.target);}});},{threshold:.1});
+    document.querySelectorAll('.project-card').forEach(el=>rObs.observe(el));
+  } else {
+    document.querySelectorAll('.project-card').forEach(el=>el.classList.add('revealed'));
+  }
+  // Filter pills (visual toggle)
+  document.querySelectorAll('.filter-pill').forEach(p=>{p.addEventListener('click',function(){document.querySelectorAll('.filter-pill').forEach(x=>x.classList.remove('active'));this.classList.add('active');});});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Terms of Service — ABYSS Ocean Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@300;400;500;600&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root{--void:#04080f;--abyss:#0c1a26;--aqua:#24b4c0;--ease:cubic-bezier(0.22,1,0.36,1);}
+*,*::before,*::after{box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{font-family:'Instrument Sans','Inter',-apple-system,sans-serif;background:var(--void);color:#f0f4f3;overflow-x:hidden;}
+::selection{background:rgba(36,180,192,.22);color:#fff;}
+.logo-symbol{transition:transform .95s var(--ease);}
+#site-header{will-change:transform;transition:transform .45s var(--ease);}
+#nav-pill{transition:background 600ms,border-color 600ms;}
+.glass-nav{backdrop-filter:blur(24px) saturate(160%)!important;background:rgba(6,18,28,.72)!important;border:1px solid rgba(180,230,235,.1)!important;box-shadow:0 16px 48px rgba(0,0,0,.28)!important;}
+.drop-glass{backdrop-filter:blur(24px);background:rgba(8,22,34,.9);border:1px solid rgba(180,230,235,.12);box-shadow:0 24px 60px rgba(0,0,0,.36);}
+.mob-panel{background:rgba(6,16,26,.93);backdrop-filter:blur(24px);border:1px solid rgba(180,230,235,.1);transition:opacity 350ms,transform 500ms,visibility 350ms;transform-origin:top right;}
+.mob-panel[data-open="false"]{opacity:0;transform:translateY(-10px) scale(.97);visibility:hidden;pointer-events:none;}
+.mob-panel[data-open="true"]{opacity:1;transform:none;visibility:visible;pointer-events:auto;}
+.lbl{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:500;}
+.btn-a{display:inline-flex;align-items:center;gap:12px;background:rgba(36,180,192,.11);border:1px solid rgba(36,180,192,.28);color:#24b4c0;font-size:13.5px;font-weight:500;padding:11px 18px 11px 22px;border-radius:100px;transition:background 400ms,transform 400ms;}
+.btn-a:hover{background:rgba(36,180,192,.2);transform:translateY(-1px);}
+.btn-a .arr{width:30px;height:30px;border-radius:50%;background:#24b4c0;color:#04080f;display:flex;align-items:center;justify-content:center;}
+.prose h3{font-size:1.2rem;font-weight:500;color:#0d2530;margin:2.2rem 0 .8rem;}
+.prose p{font-size:1rem;line-height:1.75;color:#3d5f68;font-family:'Inter',sans-serif;margin-bottom:1rem;}
+.prose ul{list-style:disc;padding-left:1.5rem;margin-bottom:1rem;}
+.prose ul li{font-size:1rem;line-height:1.75;color:#3d5f68;font-family:'Inter',sans-serif;margin-bottom:.4rem;}
+.prose a{color:#1a6070;text-decoration:underline;}
+</style>
+</head>
+<body class="antialiased">
+
+<header id="site-header" class="fixed top-0 left-0 w-full z-50 px-4 sm:px-6 lg:px-14 pt-4 sm:pt-5">
+  <div id="nav-pill" class="max-w-[1480px] mx-auto flex items-center justify-between px-5 sm:px-6 py-3 sm:py-3.5 rounded-full border border-transparent">
+    <a href="index.html" class="logo-container flex items-center gap-3 text-white">
+      <svg class="logo-symbol w-8 h-8 shrink-0" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="7.5" fill="currentColor"/><circle cx="50" cy="18" r="4.2" fill="currentColor" opacity=".82"/><circle cx="50" cy="82" r="4.2" fill="currentColor" opacity=".82"/><circle cx="18" cy="50" r="4.2" fill="currentColor" opacity=".82"/><circle cx="82" cy="50" r="4.2" fill="currentColor" opacity=".82"/><ellipse cx="50" cy="50" rx="40" ry="13" stroke="currentColor" stroke-width="1.1" opacity=".28" fill="none"/><ellipse cx="50" cy="50" rx="13" ry="40" stroke="currentColor" stroke-width="1.1" opacity=".28" fill="none"/></svg>
+      <span class="lbl text-white" style="letter-spacing:.26em;font-size:.9rem;">ABYSS</span>
+    </a>
+    <nav class="hidden lg:flex items-center gap-6 text-[13px] font-medium text-white/82">
+      <div class="relative group"><button class="flex items-center gap-1.5 hover:text-white py-2 transition-colors">Platform<svg class="w-3 h-3 text-white/45 group-hover:rotate-180 transition-transform ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="drop-glass absolute top-full left-0 mt-2 w-52 rounded-2xl py-2 px-1.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"><a href="platform.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white hover:bg-white/8">Our Platform</a><a href="science.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white hover:bg-white/8">Our Science</a><a href="pipeline.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white hover:bg-white/8">Pipeline</a></div></div>
+      <div class="relative group"><button class="flex items-center gap-1.5 hover:text-white py-2 transition-colors">Explore<svg class="w-3 h-3 text-white/45 group-hover:rotate-180 transition-transform ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="drop-glass absolute top-full left-0 mt-2 w-52 rounded-2xl py-2 px-1.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"><a href="projects.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white hover:bg-white/8">Field Projects</a><a href="journal.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white hover:bg-white/8">Journal</a></div></div>
+      <div class="relative group"><button class="flex items-center gap-1.5 hover:text-white py-2 transition-colors">Company<svg class="w-3 h-3 text-white/45 group-hover:rotate-180 transition-transform ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="drop-glass absolute top-full left-0 mt-2 w-52 rounded-2xl py-2 px-1.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"><a href="about.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white hover:bg-white/8">About ABYSS</a><a href="partnerships.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white hover:bg-white/8">Partnerships</a><a href="careers.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white hover:bg-white/8">Careers</a></div></div>
+    </nav>
+    <div class="flex items-center gap-3">
+      <a href="contact.html" class="hidden lg:inline-flex btn-a text-[13px]">Contact<span class="arr"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      <button id="mob-toggle" class="lg:hidden w-10 h-10 rounded-full border border-white/15 bg-white/6 text-white flex items-center justify-center" style="backdrop-filter:blur(12px);" aria-label="Menu"><svg id="mob-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" stroke-width="1.7"/></svg></button>
+    </div>
+  </div>
+  <div id="mob-panel" class="mob-panel lg:hidden absolute left-4 right-4 top-[calc(100%-6px)] rounded-3xl p-5" data-open="false"><div class="grid gap-1 text-white/88 text-sm"><a href="platform.html" class="rounded-2xl px-4 py-3.5 border border-transparent hover:border-white/10 hover:bg-white/5">Platform</a><a href="about.html" class="rounded-2xl px-4 py-3.5 border border-transparent hover:border-white/10 hover:bg-white/5">About</a><a href="contact.html" class="rounded-2xl px-4 py-3.5 border border-transparent hover:border-white/10 hover:bg-white/5">Contact</a></div></div>
+</header>
+
+<section style="background:#0c1a26;padding-top:7rem;padding-bottom:4rem;" class="min-h-[40vh] flex items-end">
+  <div class="max-w-[1480px] mx-auto px-6 sm:px-12 lg:px-20">
+    <div class="lbl text-[#24b4c0]/55 mb-4">Legal</div>
+    <h1 class="text-white" style="font-size:clamp(2.5rem,6vw,6rem);font-weight:300;line-height:.97;letter-spacing:-.04em;">Terms of Service</h1>
+    <p class="text-white/42 mt-4" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;">Last updated: September 2026</p>
+  </div>
+</section>
+
+<div style="height:clamp(44px,5vw,90px);background:linear-gradient(180deg,#0c1a26 0%,#eef5f4 100%);margin:-1px 0;" aria-hidden="true"></div>
+
+<section style="background:#eef5f4;">
+  <div class="max-w-[1480px] mx-auto px-6 sm:px-12 lg:px-20 py-20 sm:py-28">
+    <div class="max-w-[720px] prose">
+
+      <h3>1. Acceptance of Terms</h3>
+      <p>By accessing or using the ABYSS Ocean Intelligence website and platform (collectively, the "Service"), you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use the Service. These terms apply to all visitors, users, and research partners who access or use the Service.</p>
+
+      <h3>2. Use of the Platform</h3>
+      <p>The ABYSS platform provides access to ocean field intelligence data, research tools, and data services for authorized research partners and institutions. Access to the platform requires approval from ABYSS and is subject to a separate data access agreement that defines the specific terms of use for your research program.</p>
+      <p>You agree to use the Service only for lawful purposes consistent with these terms and applicable law. You may not use the Service in any manner that could damage, disable, overburden, or impair our infrastructure, or interfere with any other party's use of the Service.</p>
+
+      <h3>3. Intellectual Property</h3>
+      <p>The ABYSS platform, including all software, data models, field intelligence outputs, and associated documentation, is the intellectual property of ABYSS Ocean Intelligence. Raw scientific data contributed by partner field programs may be subject to joint ownership arrangements as specified in individual data access agreements.</p>
+      <p>You may not reproduce, distribute, modify, or create derivative works from any content on the ABYSS website without express written permission, except as permitted for your authorized research activities under a data access agreement.</p>
+
+      <h3>4. Research Data and Attribution</h3>
+      <p>When using ABYSS field intelligence data in research publications or presentations, appropriate attribution must be given as specified in your data access agreement. ABYSS maintains a commitment to transparent data provenance and supports co-authorship practices consistent with the International Committee of Medical Journal Editors (ICMJE) guidelines adapted for ocean science.</p>
+      <p>Researchers using ABYSS data are expected to share derivative findings with ABYSS in a timely manner to support the continuous improvement of the field intelligence model.</p>
+
+      <h3>5. Prohibited Uses</h3>
+      <p>You may not use the Service for:</p>
+      <ul>
+        <li>Commercial exploitation of field data without a commercial license agreement</li>
+        <li>Activities that violate any applicable international law regarding ocean scientific research</li>
+        <li>Reverse engineering of platform algorithms or data models</li>
+        <li>Attempting to gain unauthorized access to restricted datasets or platform functions</li>
+        <li>Any purpose that conflicts with ABYSS's mission of open ocean science</li>
+      </ul>
+
+      <h3>6. Disclaimers</h3>
+      <p>The Service is provided "as is" without warranties of any kind, either express or implied. ABYSS does not warrant that the platform will be error-free, uninterrupted, or that field intelligence data will be complete, accurate, or suitable for any particular purpose. Ocean field data is inherently uncertain, and ABYSS data products are provided with associated confidence metrics that users should review and apply appropriately.</p>
+
+      <h3>7. Limitation of Liability</h3>
+      <p>To the maximum extent permitted by applicable law, ABYSS shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the Service, including but not limited to loss of data, research disruption, or decisions made based on field intelligence outputs.</p>
+      <p>ABYSS's total liability for any claim arising from your use of the Service shall not exceed the amounts paid by you to ABYSS in the twelve months preceding the claim, or one hundred US dollars if no amounts have been paid.</p>
+
+      <h3>8. Changes to Terms and Contact</h3>
+      <p>ABYSS reserves the right to modify these terms at any time. Changes will be effective immediately upon posting to this page. Continued use of the Service after changes constitutes acceptance of the updated terms. We will endeavor to notify active platform users of material changes via email.</p>
+      <p>For questions about these terms, contact us at <a href="mailto:legal@abyss.ocean">legal@abyss.ocean</a> or write to ABYSS Ocean Intelligence, 415 Mission Street, Suite 1200, San Francisco, CA 94105.</p>
+
+    </div>
+  </div>
+</section>
+
+<footer style="background:linear-gradient(180deg,#0d3a4a 0%,#040e14 80%,#04080f 100%);" class="text-white/78">
+  <div class="max-w-[1480px] mx-auto px-6 sm:px-12 lg:px-20 pt-24 pb-16">
+    <div class="flex flex-wrap items-center justify-between gap-8">
+      <div><div class="flex items-center gap-3 mb-4"><svg class="w-7 h-7 text-white" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="7.5" fill="currentColor"/><ellipse cx="50" cy="50" rx="38" ry="12" stroke="currentColor" stroke-width="1.1" opacity=".25" fill="none"/><ellipse cx="50" cy="50" rx="12" ry="38" stroke="currentColor" stroke-width="1.1" opacity=".25" fill="none"/></svg><span class="lbl text-white">ABYSS</span></div><p class="text-white/35 text-sm" style="font-family:'Inter',sans-serif;">© 2026 ABYSS Ocean Intelligence</p></div>
+      <div class="flex flex-wrap gap-6 text-sm font-light text-white/45"><a href="privacy.html" class="hover:text-white transition-colors">Privacy</a><a href="terms.html" class="hover:text-white transition-colors">Terms</a><a href="contact.html" class="hover:text-white transition-colors">Contact</a><a href="index.html" class="hover:text-white transition-colors">Home</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const hdr=document.getElementById('site-header'),pill=document.getElementById('nav-pill');
+  let lastY=window.scrollY,t=false;
+  function upd(){const y=window.scrollY;if(y<=50){hdr.style.transform='translateY(0)';pill.classList.remove('glass-nav');}else if(y>lastY&&y>100){hdr.style.transform='translateY(-110%)';}else if(y<lastY){hdr.style.transform='translateY(0)';pill.classList.add('glass-nav');}lastY=y;t=false;}
+  window.addEventListener('scroll',()=>{if(!t){requestAnimationFrame(upd);t=true;}},{passive:true});
+  const tog=document.getElementById('mob-toggle'),pan=document.getElementById('mob-panel');
+  if(tog&&pan)tog.addEventListener('click',()=>pan.dataset.open=pan.dataset.open!=='true'?'true':'false');
+  document.querySelectorAll('.logo-container').forEach(lc=>{const ls=lc.querySelector('.logo-symbol');if(!ls)return;lc.addEventListener('mouseenter',()=>{ls.style.transition='transform .95s cubic-bezier(0.22,1,0.36,1)';ls.style.transform='rotate(360deg)';});lc.addEventListener('mouseleave',()=>{ls.style.transition='none';ls.style.transform='';requestAnimationFrame(()=>requestAnimationFrame(()=>{ls.style.transition='transform .95s cubic-bezier(0.22,1,0.36,1)';}));});});
+})();
+</script>
+</body>
+</html>

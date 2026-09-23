@@ -1,0 +1,353 @@
+# ABYSS — Remaining Pages Build Notes
+# Written: September 2026
+# Status: 3 pages remaining. Use this file to build them later.
+# All pages must follow the existing ABYSS design system precisely.
+
+==================================================
+DESIGN SYSTEM REFERENCE (apply to all remaining pages)
+==================================================
+
+CSS VARIABLES (copy these into every page <style> block):
+  --void:#04080f        // deepest bg, hero/footer
+  --deep:#08101c        // dark section
+  --abyss:#0c1a26       // dark mid section
+  --aqua:#24b4c0        // accent, links, highlights
+  --foam:#eef5f4        // light section bg
+  --offwhite:#f0f4f3    // body text on dark
+  --dark-text:#0d2530   // body text on light
+  --mid-text:#3d5f68    // secondary text on light
+  --ease:cubic-bezier(0.22,1,0.36,1)
+
+TYPOGRAPHY:
+  Instrument Sans — headings, nav, buttons
+  Inter           — body prose
+  JetBrains Mono  — labels (.lbl class)
+
+  .lbl { font-family:'JetBrains Mono',monospace; font-size:10px;
+         letter-spacing:.22em; text-transform:uppercase; font-weight:500; }
+
+  Hero h1: clamp(3.5rem,9vw,9rem), weight 300, line-height .97, letter-spacing -.04em
+
+BUTTONS:
+  .btn-a — aqua ghost pill (use on dark bg)
+  .btn-b — dark pill with aqua arrow (use on light bg)
+
+BRIDGES between sections:
+  <div style="height:clamp(44px,6.5vw,110px);
+    background:linear-gradient(180deg,[FROM_COLOR] 0%,[TO_COLOR] 100%);
+    margin:-1px 0;" aria-hidden="true"></div>
+
+SECTION COLOR RHYTHM:
+  Hero → dark (#0c1a26 or #0c2535)
+  Bridge → light (#eef5f4)
+  Content light (#eef5f4)
+  Bridge → dark (#0c1a26)
+  Dark content
+  Bridge → light
+  Light content
+  Footer: gradient #0d3a4a → #04080f
+
+SHARED NAVBAR: Copy verbatim from science.html or pipeline.html
+SHARED FOOTER: Copy verbatim from science.html or pipeline.html
+
+REVEAL ANIMATION (use on all cards/sections):
+  CSS: .reveal-up { opacity:0; transform:translateY(28px);
+       transition:opacity 800ms var(--ease),transform 900ms var(--ease); }
+       .revealed { opacity:1; transform:none; }
+  JS:  IntersectionObserver with threshold:0.1, add 'revealed' class on intersect
+
+==================================================
+PAGE 1: article.html  — ARTICLE DETAIL
+==================================================
+
+WOW MOMENT: Cinematic reading experience — large typographic pullquotes,
+  SVG data diagrams break up the prose, and a sticky reading-progress bar
+  at the top of the page fills as user scrolls.
+
+STRUCTURE:
+  1. HERO (dark #0c1a26)
+     - Back arrow link: "← Journal"
+     - Category badge (Field Release) + Date
+     - Large h1: "A new transect protocol for tracing seasonal ocean change"
+     - Author byline: "Dr. Maya Okafor · Dr. Sarah Chen"
+     - Read time: "12 min read"
+     - Thin horizontal rule
+
+  2. READING PROGRESS BAR
+     - Fixed at top of page (below nav), full-width
+     - 1px tall, aqua color (#24b4c0)
+     - Width driven by scroll position: JS scrollY / (docHeight - viewportH) * 100%
+     - Starts at 0, fills to 100% as user reaches bottom
+
+  3. ARTICLE BODY (light #eef5f4)
+     - Single column, max-width 680px, centered
+     - Leading paragraph (larger font ~1.25rem)
+     - h3 section headers
+     - Body paragraphs (Inter, 1rem, line-height 1.8)
+     - SVG DIAGRAM 1 (embed inline): Transect protocol diagram — three parallel
+       dashed vertical lines (T1/T2/T3) crossing three horizontal contour bands.
+       Caption below.
+     - PULLQUOTE (large, italic or light weight, centered, aqua left-border):
+       "The gap between what models predict and what the ocean does is not a modelling 
+       problem. It is an observation density problem."
+     - Body continues (4–5 more paragraphs covering the data, the methodology,
+       the findings from 18 months)
+     - SVG DIAGRAM 2: Time series chart — x=months 1–18, y=anomaly delta.
+       Aqua line plot with dots, showing seasonal peaks.
+     - Conclusions section
+
+  4. TAGS + SHARE (light)
+     - Tags: #transects #seasonality #methodology #fieldwork
+     - Share: plain text "Share this" with copy-link button (no social icons)
+
+  5. NEXT/PREV NAVIGATION (dark #0c1a26)
+     - Left: ← Previous article (Water-column observatory)
+     - Right: Next article → (Mapping the deep)
+
+  6. RELATED ARTICLES (light, 3-column grid, same cards as journal.html)
+     - 2 related article cards from journal.html
+
+  7. FOOTER (same as all other pages)
+
+JS NEEDED:
+  - Reading progress bar: window.addEventListener('scroll', ...) updates
+    document.getElementById('progress-bar').style.width = pct + '%'
+  - Estimate: ~40 lines of JS total
+
+==================================================
+PAGE 2: partnerships.html  — PARTNERSHIPS
+==================================================
+
+WOW MOMENT: Animated partner orbit — an SVG canvas shows the ABYSS logo
+  at center with 5 partner category nodes orbiting around it. On hover each
+  node expands to show a label. The animation is a gentle CSS rotation
+  (animation: spin 60s linear infinite on the orbit ring, counter-rotated
+  on each node label so text stays readable). This is the HERO's right-column
+  visual. It should feel like a living ecosystem, not a logo wall.
+
+STRUCTURE:
+  1. HERO (dark #0c1a26, split grid)
+     - Left: lbl "Partnerships" / h1 "Work with ABYSS." / p subtitle
+     - Right: THE ORBIT SVG ANIMATION
+       SVG size: 400×400. Center: ABYSS mark (logo circles, r=36px circle).
+       5 orbiting nodes at r=160px from center, evenly spaced (72° apart):
+         - Research Institutions
+         - Government Agencies
+         - Technology Partners
+         - Conservation Organizations
+         - Industry
+       Each node: small circle (r=8) with text label.
+       CSS animation: @keyframes orbit { to { transform: rotate(360deg); }}
+       Applied to an outer <g> that contains all 5 nodes.
+       Counter-animation on each label <text>: rotate(-360deg) so text stays upright.
+       Outer ring: stroke-dasharray orbit ring (dashed circle at r=160).
+       Connecting lines (opacity .15) from center to each node.
+
+  2. INTRO (light)
+     - Two-column. Left: heading "Science is not done alone."
+     - Right: 3 paragraphs explaining how ABYSS works with partners
+
+  3. PARTNER TYPES (dark, 3-col grid of 3 cards)
+     CARD 1: Research Partners
+       - Icon: SVG (nodes connected = network)
+       - Title, description, what partners get
+     CARD 2: Government / Regulatory
+       - Icon: SVG (shield/document)
+       - Title, description
+     CARD 3: Industry / Technology
+       - Icon: SVG (gear/circuit)
+       - Title, description
+     Style: border:1px solid rgba(36,180,192,.12), hover border aqua,
+             border-radius:20px, padding:28px
+
+  4. CURRENT PARTNERS STRIP (light)
+     - Heading "Selected collaborators"
+     - 6 placeholder institution names in a simple monospace list grid
+       (Woods Hole Oceanographic Institution / MBARI / IFREMER /
+        CSIRO / NOAA Ocean Exploration / University of Southampton)
+     - Note: "We do not display logos — institutional relationships are described
+       in detail in our field program documentation."
+
+  5. HOW TO PARTNER (dark, 3-step horizontal)
+     - Step 1: Express interest (email / form)
+     - Step 2: Scoping call (3-week)
+     - Step 3: Data access agreement + program design
+
+  6. CTA (light)
+     - h2 + p + contact button
+
+  7. FOOTER
+
+JS NEEDED:
+  - CSS animation only — no JS required for orbit SVG
+  - Standard nav/reveal JS (~30 lines)
+
+==================================================
+PAGE 3: contact.html  — CONTACT
+==================================================
+
+WOW MOMENT: The form is set inside a dark glass card that sits OVER a
+  background canvas animation — the bioluminescent particle drift canvas
+  (cv1 from index.html). As user types in any field, particles near the
+  cursor position gently accelerate (optional — if too complex, just keep
+  the static canvas). The overall visual is: floating particles in the dark
+  ocean, and in the center a glass form panel. Very calm, premium, memorable.
+
+STRUCTURE:
+  1. HERO (dark, centered, no video)
+     - Background: #04080f with bioluminescent canvas (canvas element,
+       same bioluminescence code as index.html cv1: cyan dots drift upward,
+       slowly, random sizes 1.5–3.5px, opacity 0.3–0.7)
+     - Centered heading: "Get in touch."
+     - Subtitle: "We respond to every inquiry. Response time is typically 2–3 business days."
+
+  2. CONTACT FORM (centered glass card over canvas, max-width 580px)
+     - Glass card: backdrop-filter:blur(20px), background:rgba(8,22,34,.72),
+       border:1px solid rgba(180,230,235,.12), border-radius:24px, padding:40px
+     - Fields:
+         Name (text input)
+         Institution / Organization (text input)
+         Email (email input)
+         Subject (select dropdown):
+           Research Partnership / Field Data Access / Technology Integration /
+           Press / General Inquiry
+         Message (textarea, min-height 120px)
+     - Submit button (btn-a style)
+     - On submit: show success state (green-free — use aqua text):
+       "Thank you. We'll be in touch within 2–3 business days."
+     - Field styling:
+         background:rgba(255,255,255,.05)
+         border:1px solid rgba(36,180,192,.18)
+         border-radius:12px
+         color:#f0f4f3
+         font-family:Inter
+         padding:14px 18px
+         on focus: border-color rgba(36,180,192,.5)
+
+  3. DIRECT CONTACT (below form, centered)
+     - hello@abyss.ocean
+     - 415 Mission Street, Suite 1200, San Francisco, CA 94105
+
+  4. FOOTER
+
+JS NEEDED:
+  - Canvas bioluminescence animation (same as index.html cv1, ~60 lines)
+  - Form submit handler (prevent default, show success state)
+  - Standard nav (~25 lines)
+
+==================================================
+ABOUT.HTML — STATUS CHECK
+==================================================
+
+about.html EXISTS in the directory. It was listed in the file system.
+HOWEVER — verify it before using. Open it and check:
+  - Does it reference LinusBio or medical content? If so, rewrite.
+  - Does it use the correct ABYSS design system colors? (--void, --aqua, etc.)
+  - Does it have the correct navbar and footer?
+  - If any doubt, rewrite using the structure below:
+
+ABOUT.HTML PLANNED STRUCTURE (for rewrite if needed):
+  WOW MOMENT: The team grid uses a hover-depth effect — on hover each team
+    member card slightly rises (translateY) and a subtle aqua ring appears.
+    The real WOW is the "mission wall": a full-width typographic section where
+    3 core principles are written at large scale and reveal line-by-line on scroll.
+
+  1. HERO (dark, typographic)
+     - h1: "We believe the ocean is not as unknown as it seems."
+     - Subheading + lbl
+
+  2. MISSION WALL (dark — WOW MOMENT)
+     - 3 large statements that scroll-reveal line by line:
+       "We observe. We do not interpret."
+       "We return. We do not sample once."
+       "We publish. We do not hoard."
+     - Each line: clamp(2rem,5vw,5rem), weight 300, white, line-height 1
+     - On scroll: opacity 0 → 1 + translateY(20px) → 0
+
+  3. STORY (light, 2-col)
+     - Left: h2 "How ABYSS began"
+     - Right: 3–4 paragraphs on founding story (fictional/plausible)
+     - Founded 2021 by Dr. Maya Okafor + Dr. Sarah Chen after seeing ocean
+       intelligence gaps during their work at Scripps / WHOI respectively.
+     - Mission: build the infrastructure the ocean science community needed
+       but no one was building.
+
+  4. VALUES (dark, 4-col grid)
+     - Open science / Precision over quantity / Long-term commitment /
+       Rigorous attribution
+     - Each: icon (SVG), title, 2-line description
+
+  5. TEAM (light)
+     - 5 team members in a 3+2 grid:
+       Dr. Maya Okafor — CSO (deep water ecology background)
+       Dr. Sarah Chen — CEO (oceanographic engineering)
+       Dr. Rajiv Menon — Signal Systems Lead (acoustic signal processing)
+       Dr. James Osei — Data Architecture Lead (ML, spatiotemporal)
+       Dr. Aiko Tanaka — Field Operations Lead (AUV/ROV ops)
+     - Each card: name, title, lbl "discipline", 2-line bio
+     - Hover: translateY(-4px), aqua border
+
+  6. TIMELINE (dark, horizontal scroll or vertical stacked)
+     - 2021: ABYSS founded
+     - 2022: First field deployment (North Pacific baseline)
+     - 2023: NOAA partnership / North Atlantic baseline complete
+     - 2024: Deep Ocean Mapping program launch / platform v1
+     - 2025: Autonomous Subsea Survey begins / 3-AUV formation ops
+     - 2026: Platform opens to research partners
+
+  7. CTA (light)
+     - "Join the team" → careers.html
+     - "Partner with us" → partnerships.html
+
+  8. FOOTER
+
+==================================================
+SUMMARY — PAGES REMAINING
+==================================================
+
+| Page             | Status      | Complexity | WOW moment                          |
+|------------------|-------------|------------|-------------------------------------|
+| article.html     | NOT STARTED | Medium     | Reading progress bar + SVG diagrams |
+| partnerships.html| NOT STARTED | Medium     | Orbit SVG animation                 |
+| contact.html     | NOT STARTED | Low-Medium | Bioluminescent canvas + glass form  |
+| about.html       | VERIFY      | Medium     | Mission wall reveal + team grid     |
+
+==================================================
+GIT STATUS NOTE
+==================================================
+
+Files currently in repo (built):
+  index.html         ✅ Full redesign — homepage
+  platform.html      ✅ Platform page, arch visualization
+  science.html       ✅ Depth zone storytelling
+  pipeline.html      ✅ Sticky left pipeline diagram
+  projects.html      ✅ 6 project cards, filter row
+  project-detail.html ✅ Full detail — count-up metrics, SVG tiles
+  journal.html       ✅ Featured article + 6-article grid
+  careers.html       ✅ Expandable role cards
+  privacy.html       ✅ Clean legal prose
+  terms.html         ✅ Clean legal prose
+
+Files to verify / complete:
+  about.html         ⚠️  EXISTS — check for old content before using
+  article.html       ❌  NOT BUILT
+  partnerships.html  ❌  NOT BUILT
+  contact.html       ❌  NOT BUILT
+
+==================================================
+MEDIA SOURCES (NOAA — all public domain)
+==================================================
+
+Hero / Quote / article bg:
+  https://oceanexplorer.noaa.gov/wp-content/uploads/2021/04/ex1708-glass-squid.mp4
+
+Platform / Projects / Project Detail:
+  https://oceanexplorer.noaa.gov/wp-content/uploads/2025/05/midwater-exploration-640x360-1.mp4
+
+Science / Cinematic:
+  https://oceanexplorer.noaa.gov/wp-content/uploads/2018/05/dark-640x360-1.mp4
+
+Pipeline / No-Boundaries:
+  https://oceanexplorer.noaa.gov/wp-content/uploads/2025/04/no-boundaries-640x360-1.mp4
+
+Attribution: "Ocean footage courtesy NOAA Ocean Exploration, public domain."

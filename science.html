@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Science — ABYSS Ocean Intelligence</title>
+<meta name="description" content="The science behind ABYSS: longitudinal ocean observation, depth zone monitoring, and signal type intelligence."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@300;400;500;600&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root{--void:#04080f;--deep:#08101c;--abyss:#0c1a26;--teal:#144860;--mid:#1a6070;--aqua:#24b4c0;--foam:#eef5f4;--offwhite:#f0f4f3;--dark-text:#0d2530;--mid-text:#3d5f68;--ease:cubic-bezier(0.22,1,0.36,1);}
+*,*::before,*::after{box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{font-family:'Instrument Sans','Inter',-apple-system,sans-serif;background:var(--void);color:var(--offwhite);overflow-x:hidden;}
+::selection{background:rgba(36,180,192,.22);color:#fff;}
+.logo-symbol{transition:transform .95s var(--ease);}
+#site-header{will-change:transform;transition:transform .45s var(--ease);}
+#nav-pill{transition:background 600ms,border-color 600ms;}
+.glass-nav{backdrop-filter:blur(24px) saturate(160%)!important;background:rgba(6,18,28,.72)!important;border:1px solid rgba(180,230,235,.1)!important;box-shadow:0 16px 48px rgba(0,0,0,.28)!important;}
+.drop-glass{backdrop-filter:blur(24px);background:rgba(8,22,34,.9);border:1px solid rgba(180,230,235,.12);box-shadow:0 24px 60px rgba(0,0,0,.36);}
+.mob-panel{background:rgba(6,16,26,.93);backdrop-filter:blur(24px);border:1px solid rgba(180,230,235,.1);transition:opacity 350ms,transform 500ms,visibility 350ms;transform-origin:top right;}
+.mob-panel[data-open="false"]{opacity:0;transform:translateY(-10px) scale(.97);visibility:hidden;pointer-events:none;}
+.mob-panel[data-open="true"]{opacity:1;transform:none;visibility:visible;pointer-events:auto;}
+.media-el{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.045);transition:opacity 1100ms var(--ease),transform 1600ms var(--ease);z-index:1;background:#0c2535;}
+.media-el.is-ready{opacity:1;transform:scale(1);}
+.grain{position:absolute;inset:-25%;pointer-events:none;z-index:5;opacity:.042;mix-blend-mode:screen;width:150%;height:150%;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");background-size:220px;transform:rotate(5deg);}
+.lbl{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:500;}
+.btn-a{display:inline-flex;align-items:center;gap:12px;background:rgba(36,180,192,.11);border:1px solid rgba(36,180,192,.28);color:#24b4c0;font-size:13.5px;font-weight:500;padding:11px 18px 11px 22px;border-radius:100px;transition:background 400ms,transform 400ms;}
+.btn-a:hover{background:rgba(36,180,192,.2);transform:translateY(-1px);}
+.btn-a .arr{width:30px;height:30px;border-radius:50%;background:#24b4c0;color:#04080f;display:flex;align-items:center;justify-content:center;}
+.btn-b{display:inline-flex;align-items:center;gap:12px;background:#0d2530;color:#f0f4f3;font-size:13.5px;font-weight:500;padding:11px 16px 11px 22px;border-radius:100px;transition:background 400ms,transform 400ms;}
+.btn-b:hover{background:#163040;transform:translateY(-1px);}
+.btn-b .arr{width:30px;height:30px;border-radius:50%;background:#24b4c0;color:#04080f;display:flex;align-items:center;justify-content:center;}
+/* Depth zones */
+.depth-zone{padding:80px 0;transition:background 800ms;}
+.zone-content{opacity:0;transform:translateX(40px);transition:opacity 700ms var(--ease),transform 700ms var(--ease);}
+.zone-content.revealed{opacity:1;transform:none;}
+/* Signal cards */
+.sig-card{border:1px solid rgba(20,72,96,.2);border-radius:20px;padding:24px;transition:border-color 400ms,background 400ms;}
+.sig-card:hover{border-color:rgba(36,180,192,.3);background:rgba(36,180,192,.04);}
+/* Pub cards */
+.pub-card{border:1px solid rgba(36,180,192,.1);border-radius:20px;padding:28px;transition:border-color 400ms;}
+.pub-card:hover{border-color:rgba(36,180,192,.3);}
+.reveal-up{opacity:0;transform:translateY(28px);transition:opacity 800ms var(--ease),transform 900ms var(--ease);}
+.revealed{opacity:1;transform:none;}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important;}.zone-content,.reveal-up{opacity:1;transform:none;}}
+</style>
+</head>
+<body class="antialiased">
+
+<!-- NAV -->
+<header id="site-header" class="fixed top-0 left-0 w-full z-50 px-4 sm:px-6 lg:px-14 pt-4 sm:pt-5">
+  <div id="nav-pill" class="max-w-[1480px] mx-auto flex items-center justify-between px-5 sm:px-6 py-3 sm:py-3.5 rounded-full border border-transparent">
+    <a href="index.html" class="logo-container flex items-center gap-3 text-white">
+      <svg class="logo-symbol w-8 h-8 shrink-0" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="7.5" fill="currentColor"/><circle cx="50" cy="18" r="4.2" fill="currentColor" opacity=".82"/><circle cx="50" cy="82" r="4.2" fill="currentColor" opacity=".82"/><circle cx="18" cy="50" r="4.2" fill="currentColor" opacity=".82"/><circle cx="82" cy="50" r="4.2" fill="currentColor" opacity=".82"/><ellipse cx="50" cy="50" rx="40" ry="13" stroke="currentColor" stroke-width="1.1" opacity=".28" fill="none"/><ellipse cx="50" cy="50" rx="13" ry="40" stroke="currentColor" stroke-width="1.1" opacity=".28" fill="none"/></svg>
+      <span class="lbl text-white" style="letter-spacing:.26em;font-size:.9rem;">ABYSS</span>
+      <span class="hidden md:block lbl text-white/45" style="border-left:1px solid rgba(255,255,255,.14);padding-left:11px;margin-left:4px;letter-spacing:.16em;">Ocean Intelligence</span>
+    </a>
+    <nav class="hidden lg:flex items-center gap-6 text-[13px] font-medium text-white/82">
+      <div class="relative group"><button class="flex items-center gap-1.5 hover:text-white py-2 transition-colors">Platform<svg class="w-3 h-3 text-white/45 group-hover:rotate-180 transition-transform ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="drop-glass absolute top-full left-0 mt-2 w-52 rounded-2xl py-2 px-1.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"><a href="platform.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white hover:bg-white/8">Our Platform</a><a href="science.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white hover:bg-white/8">Our Science</a><a href="pipeline.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white hover:bg-white/8">Pipeline</a></div></div>
+      <div class="relative group"><button class="flex items-center gap-1.5 hover:text-white py-2 transition-colors">Explore<svg class="w-3 h-3 text-white/45 group-hover:rotate-180 transition-transform ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="drop-glass absolute top-full left-0 mt-2 w-52 rounded-2xl py-2 px-1.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"><a href="projects.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white hover:bg-white/8">Field Projects</a><a href="journal.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white hover:bg-white/8">Journal</a></div></div>
+      <div class="relative group"><button class="flex items-center gap-1.5 hover:text-white py-2 transition-colors">Company<svg class="w-3 h-3 text-white/45 group-hover:rotate-180 transition-transform ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="drop-glass absolute top-full left-0 mt-2 w-52 rounded-2xl py-2 px-1.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"><a href="about.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white hover:bg-white/8">About ABYSS</a><a href="partnerships.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white hover:bg-white/8">Partnerships</a><a href="careers.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white hover:bg-white/8">Careers</a></div></div>
+    </nav>
+    <div class="flex items-center gap-3">
+      <a href="contact.html" class="hidden lg:inline-flex btn-a text-[13px]">Contact<span class="arr"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      <button id="mob-toggle" class="lg:hidden w-10 h-10 rounded-full border border-white/15 bg-white/6 text-white flex items-center justify-center" style="backdrop-filter:blur(12px);" aria-label="Menu"><svg id="mob-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" stroke-width="1.7"/></svg></button>
+    </div>
+  </div>
+  <div id="mob-panel" class="mob-panel lg:hidden absolute left-4 right-4 top-[calc(100%-6px)] rounded-3xl p-5" data-open="false">
+    <div class="grid gap-1 text-white/88 text-sm"><a href="platform.html" class="rounded-2xl px-4 py-3.5 border border-transparent hover:border-white/10 hover:bg-white/5">Platform</a><a href="science.html" class="rounded-2xl px-4 py-3.5 border border-transparent hover:border-white/10 hover:bg-white/5">Science</a><a href="pipeline.html" class="rounded-2xl px-4 py-3.5 border border-transparent hover:border-white/10 hover:bg-white/5">Pipeline</a><a href="projects.html" class="rounded-2xl px-4 py-3.5 border border-transparent hover:border-white/10 hover:bg-white/5">Projects</a><a href="about.html" class="rounded-2xl px-4 py-3.5 border border-transparent hover:border-white/10 hover:bg-white/5">About</a><a href="contact.html" class="rounded-2xl px-4 py-3.5 border border-transparent hover:border-white/10 hover:bg-white/5">Contact</a></div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="relative w-full" style="height:72vh;min-height:560px;display:flex;align-items:flex-end;overflow:hidden;background:#0c2535;">
+  <div class="absolute inset-0" style="z-index:0;isolation:isolate;">
+    <video class="media-el" data-src="https://oceanexplorer.noaa.gov/wp-content/uploads/2018/05/dark-640x360-1.mp4" poster="abyss_hero.png" muted playsinline loop preload="metadata" aria-hidden="true"></video>
+    <div class="absolute inset-0" style="z-index:2;background:linear-gradient(168deg,rgba(4,8,15,.1) 0%,rgba(4,8,15,.04) 28%,rgba(4,8,15,.65) 72%,rgba(4,8,15,.97) 100%);"></div>
+    <div class="grain"></div>
+  </div>
+  <div class="relative z-10 w-full max-w-[1480px] mx-auto px-6 sm:px-12 lg:px-20 pb-16 sm:pb-20">
+    <div class="lbl text-white/42 mb-4 tracking-[.28em]">ABYSS — Science</div>
+    <h1 class="text-white max-w-4xl" style="font-size:clamp(3rem,7.5vw,7.5rem);font-weight:300;line-height:.97;letter-spacing:-.04em;">Science Built for the Ocean's Complexity.</h1>
+    <p class="text-white/55 text-lg sm:text-xl font-light max-w-xl leading-relaxed mt-7" style="font-family:'Inter',sans-serif;">We design observation systems around the way the ocean actually works — not around what is convenient to measure.</p>
+  </div>
+</section>
+
+<!-- Bridge -->
+<div style="height:clamp(44px,6.5vw,110px);background:linear-gradient(180deg,#0c2535 0%,#eef5f4 100%);margin:-1px 0;" aria-hidden="true"></div>
+
+<!-- METHODOLOGY (Light) -->
+<section style="background:#eef5f4;">
+  <div class="max-w-[1480px] mx-auto px-6 sm:px-12 lg:px-20 py-24 sm:py-32">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+      <div>
+        <div class="lbl mb-5" style="color:#3d5f68;">Our approach</div>
+        <h2 style="color:#0d2530;font-size:clamp(2.2rem,4.5vw,4.5rem);font-weight:300;line-height:1.07;letter-spacing:-.03em;" class="mb-6">Longitudinal observation over point sampling.</h2>
+        <p class="font-light leading-relaxed mb-5 text-base" style="color:#3d5f68;font-family:'Inter',sans-serif;">The ocean is not static between observations. Treating it as such — building a picture from isolated measurements taken years apart — produces a record that is not a picture of the ocean, but a picture of our ability to reach it.</p>
+        <p class="font-light leading-relaxed mb-5 text-base" style="color:#3d5f68;font-family:'Inter',sans-serif;">The ABYSS approach is built around temporal density rather than spatial coverage alone. Repeated observation of the same province, across the same depth intervals, at intervals short enough to resolve seasonal and event-scale change — that is how you build a field intelligence model rather than a data archive.</p>
+        <p class="font-light leading-relaxed text-base" style="color:#3d5f68;font-family:'Inter',sans-serif;">Each ABYSS field program is designed around a multi-year observation commitment. We do not do one-time surveys. We return to the same coordinates until the change record is meaningful.</p>
+      </div>
+      <div class="flex items-center justify-center">
+        <!-- SVG: observation density over time -->
+        <svg viewBox="0 0 420 280" fill="none" class="w-full max-w-[400px]" aria-label="Observation density diagram">
+          <text x="10" y="20" fill="rgba(13,37,48,.45)" font-size="9" font-family="monospace">OBSERVATION DENSITY OVER TIME</text>
+          <!-- Axes -->
+          <line x1="40" y1="250" x2="400" y2="250" stroke="rgba(13,37,48,.2)" stroke-width="1"/>
+          <line x1="40" y1="250" x2="40" y2="30" stroke="rgba(13,37,48,.2)" stroke-width="1"/>
+          <!-- Grid lines -->
+          <line x1="40" y1="200" x2="400" y2="200" stroke="rgba(13,37,48,.06)" stroke-width="1"/>
+          <line x1="40" y1="150" x2="400" y2="150" stroke="rgba(13,37,48,.06)" stroke-width="1"/>
+          <line x1="40" y1="100" x2="400" y2="100" stroke="rgba(13,37,48,.06)" stroke-width="1"/>
+          <!-- Data curve (observation density builds over time) -->
+          <path d="M50,230 C80,225 110,215 140,200 S180,175 220,155 S280,115 330,85 S380,55 400,45" stroke="#24b4c0" stroke-width="2" fill="none"/>
+          <path d="M50,230 C80,225 110,215 140,200 S180,175 220,155 S280,115 330,85 S380,55 400,45 L400,250 L50,250 Z" fill="rgba(36,180,192,.07)"/>
+          <!-- Observation dots -->
+          <circle cx="90" cy="222" r="4" fill="rgba(36,180,192,.6)"/><circle cx="140" cy="202" r="4" fill="rgba(36,180,192,.6)"/><circle cx="190" cy="178" r="4" fill="rgba(36,180,192,.6)"/><circle cx="240" cy="152" r="4" fill="rgba(36,180,192,.7)"/><circle cx="290" cy="118" r="4" fill="rgba(36,180,192,.7)"/><circle cx="340" cy="82" r="4" fill="rgba(36,180,192,.8)"/><circle cx="390" cy="50" r="4" fill="#24b4c0"/>
+          <!-- Labels -->
+          <text x="42" y="265" fill="rgba(13,37,48,.38)" font-size="8" font-family="monospace">2022</text>
+          <text x="380" y="265" fill="rgba(13,37,48,.38)" font-size="8" font-family="monospace">2026</text>
+          <text x="10" y="254" fill="rgba(13,37,48,.38)" font-size="8" font-family="monospace">Low</text>
+          <text x="10" y="50" fill="rgba(13,37,48,.38)" font-size="8" font-family="monospace">High</text>
+          <!-- Label -->
+          <text x="200" y="276" text-anchor="middle" fill="rgba(13,37,48,.35)" font-size="9" font-family="monospace">Time</text>
+          <text x="14" y="155" fill="rgba(13,37,48,.35)" font-size="9" font-family="monospace" transform="rotate(-90 14 155)">Density</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Bridge -->
+<div style="height:clamp(44px,6.5vw,110px);background:linear-gradient(180deg,#eef5f4 0%,#0e3040 100%);margin:-1px 0;" aria-hidden="true"></div>
+
+<!-- DEPTH ZONES — WOW MOMENT -->
+<section id="depth-section">
+
+  <!-- Zone 1: Epipelagic -->
+  <div class="depth-zone" style="background:#0e3040;" data-zone="0">
+    <div class="max-w-[1480px] mx-auto px-6 sm:px-12 lg:px-20">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="zone-content">
+          <div class="lbl text-[#24b4c0]/55 mb-3">Surface zone</div>
+          <div class="text-white/10 font-light mb-4 select-none" style="font-size:clamp(4rem,10vw,10rem);line-height:1;letter-spacing:-.04em;">0–200m</div>
+          <h3 class="text-white font-light mb-5" style="font-size:clamp(1.8rem,3.5vw,3.5rem);letter-spacing:-.02em;">Epipelagic</h3>
+          <p class="text-white/45 font-light leading-relaxed mb-3" style="font-family:'Inter',sans-serif;font-size:.95rem;">ABYSS monitors temperature profiles, salinity gradients, dissolved oxygen, optical clarity, and surface-layer acoustic transmission. Turbulence, mixed layer depth, and bloom dynamics are tracked at sub-daily resolution.</p>
+          <div class="flex flex-wrap gap-2 mt-5"><span class="lbl text-[#24b4c0]/65 px-3 py-1.5 rounded-full" style="background:rgba(36,180,192,.1);border:1px solid rgba(36,180,192,.18);">Temperature</span><span class="lbl text-[#24b4c0]/65 px-3 py-1.5 rounded-full" style="background:rgba(36,180,192,.1);border:1px solid rgba(36,180,192,.18);">Salinity</span><span class="lbl text-[#24b4c0]/65 px-3 py-1.5 rounded-full" style="background:rgba(36,180,192,.1);border:1px solid rgba(36,180,192,.18);">Optical</span></div>
+        </div>
+        <div class="flex items-center justify-center">
+          <svg viewBox="0 0 300 220" fill="none" class="w-full max-w-[280px]" aria-hidden="true">
+            <!-- Surface ripples -->
+            <ellipse cx="150" cy="30" rx="140" ry="8" stroke="rgba(36,180,192,.25)" stroke-width="1.2" fill="none"/>
+            <ellipse cx="150" cy="50" rx="140" ry="10" stroke="rgba(36,180,192,.15)" stroke-width="1" fill="none"/>
+            <!-- Sunlight rays -->
+            <line x1="50" y1="0" x2="80" y2="180" stroke="rgba(36,180,192,.08)" stroke-width="8"/>
+            <line x1="120" y1="0" x2="140" y2="180" stroke="rgba(36,180,192,.08)" stroke-width="8"/>
+            <line x1="200" y1="0" x2="185" y2="180" stroke="rgba(36,180,192,.06)" stroke-width="6"/>
+            <!-- Sensors -->
+            <circle cx="90" cy="80" r="5" fill="#24b4c0" opacity=".7"/><circle cx="150" cy="60" r="5" fill="#24b4c0" opacity=".7"/><circle cx="210" cy="95" r="5" fill="#24b4c0" opacity=".7"/>
+            <!-- Depth label -->
+            <text x="15" y="185" fill="rgba(255,255,255,.2)" font-size="9" font-family="monospace">200m</text>
+            <line x1="15" y1="188" x2="280" y2="188" stroke="rgba(255,255,255,.1)" stroke-width=".8"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Zone 2: Mesopelagic -->
+  <div class="depth-zone" style="background:#092534;" data-zone="1">
+    <div class="max-w-[1480px] mx-auto px-6 sm:px-12 lg:px-20">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="zone-content" style="transition-delay:100ms;">
+          <div class="lbl text-[#24b4c0]/55 mb-3">Twilight zone</div>
+          <div class="text-white/10 font-light mb-4 select-none" style="font-size:clamp(4rem,10vw,10rem);line-height:1;letter-spacing:-.04em;">200–1000m</div>
+          <h3 class="text-white font-light mb-5" style="font-size:clamp(1.8rem,3.5vw,3.5rem);letter-spacing:-.02em;">Mesopelagic</h3>
+          <p class="text-white/45 font-light leading-relaxed mb-3" style="font-family:'Inter',sans-serif;font-size:.95rem;">ABYSS tracks the deep scattering layer, carbon flux from sinking particles, acoustic backscatter profiles, dissolved oxygen minimum zones, and diel vertical migrators. This is the ocean's primary carbon pump — and one of the least-sampled regions on Earth.</p>
+          <div class="flex flex-wrap gap-2 mt-5"><span class="lbl text-[#24b4c0]/65 px-3 py-1.5 rounded-full" style="background:rgba(36,180,192,.1);border:1px solid rgba(36,180,192,.18);">Acoustic</span><span class="lbl text-[#24b4c0]/65 px-3 py-1.5 rounded-full" style="background:rgba(36,180,192,.1);border:1px solid rgba(36,180,192,.18);">Carbon flux</span><span class="lbl text-[#24b4c0]/65 px-3 py-1.5 rounded-full" style="background:rgba(36,180,192,.1);border:1px solid rgba(36,180,192,.18);">Oxygen</span></div>
+        </div>
+        <div class="flex items-center justify-center">
+          <svg viewBox="0 0 300 220" fill="none" class="w-full max-w-[280px]" aria-hidden="true">
+            <!-- Backscatter layers -->
+            <ellipse cx="150" cy="80" rx="130" ry="18" fill="rgba(36,180,192,.06)" stroke="rgba(36,180,192,.15)" stroke-width="1"/>
+            <ellipse cx="150" cy="130" rx="120" ry="14" fill="rgba(36,180,192,.05)" stroke="rgba(36,180,192,.1)" stroke-width="1"/>
+            <!-- Particles (sinking) -->
+            <circle cx="80" cy="40" r="2" fill="rgba(36,180,192,.4)"/><circle cx="120" cy="65" r="2.5" fill="rgba(36,180,192,.35)"/><circle cx="160" cy="45" r="2" fill="rgba(36,180,192,.4)"/><circle cx="210" cy="70" r="2" fill="rgba(36,180,192,.35)"/>
+            <circle cx="90" cy="110" r="2" fill="rgba(36,180,192,.25)"/><circle cx="140" cy="125" r="2.5" fill="rgba(36,180,192,.2)"/><circle cx="190" cy="108" r="2" fill="rgba(36,180,192,.25)"/>
+            <!-- Arrows (downward) -->
+            <line x1="150" y1="155" x2="150" y2="195" stroke="rgba(36,180,192,.2)" stroke-width="1.5" stroke-dasharray="3 3"/>
+            <polygon points="145,193 150,200 155,193" fill="rgba(36,180,192,.2)"/>
+            <!-- Depth labels -->
+            <text x="15" y="25" fill="rgba(255,255,255,.2)" font-size="9" font-family="monospace">200m</text>
+            <text x="15" y="215" fill="rgba(255,255,255,.2)" font-size="9" font-family="monospace">1000m</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Zone 3: Bathypelagic -->
+  <div class="depth-zone" style="background:#06182a;" data-zone="2">
+    <div class="max-w-[1480px] mx-auto px-6 sm:px-12 lg:px-20">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="zone-content" style="transition-delay:100ms;">
+          <div class="lbl text-[#24b4c0]/55 mb-3">Midnight zone</div>
+          <div class="text-white/10 font-light mb-4 select-none" style="font-size:clamp(4rem,10vw,10rem);line-height:1;letter-spacing:-.04em;">1–4km</div>
+          <h3 class="text-white font-light mb-5" style="font-size:clamp(1.8rem,3.5vw,3.5rem);letter-spacing:-.02em;">Bathypelagic</h3>
+          <p class="text-white/45 font-light leading-relaxed mb-3" style="font-family:'Inter',sans-serif;font-size:.95rem;">No sunlight reaches here. ABYSS uses acoustic imaging, chemical sensors for hydrogen sulfide and methane plumes, and passive acoustic monitoring for biological activity. Deep currents and thermohaline circulation dynamics are tracked through temperature and salinity profiling.</p>
+          <div class="flex flex-wrap gap-2 mt-5"><span class="lbl text-[#24b4c0]/65 px-3 py-1.5 rounded-full" style="background:rgba(36,180,192,.1);border:1px solid rgba(36,180,192,.18);">Chemical</span><span class="lbl text-[#24b4c0]/65 px-3 py-1.5 rounded-full" style="background:rgba(36,180,192,.1);border:1px solid rgba(36,180,192,.18);">Deep current</span><span class="lbl text-[#24b4c0]/65 px-3 py-1.5 rounded-full" style="background:rgba(36,180,192,.1);border:1px solid rgba(36,180,192,.18);">Passive acoustic</span></div>
+        </div>
+        <div class="flex items-center justify-center">
+          <svg viewBox="0 0 300 220" fill="none" class="w-full max-w-[280px]" aria-hidden="true">
+            <!-- Current lines -->
+            <path d="M20,80 Q80,60 140,80 Q200,100 260,80" stroke="rgba(36,180,192,.2)" stroke-width="1.5" fill="none"/>
+            <path d="M20,120 Q90,140 150,120 Q210,100 280,120" stroke="rgba(36,180,192,.15)" stroke-width="1" fill="none"/>
+            <!-- Bioluminescence dots -->
+            <circle cx="70" cy="100" r="3" fill="rgba(36,180,192,.5)"/><circle cx="150" cy="85" r="2.5" fill="rgba(36,180,192,.45)"/><circle cx="220" cy="110" r="3" fill="rgba(36,180,192,.5)"/><circle cx="100" cy="150" r="2" fill="rgba(36,180,192,.35)"/>
+            <!-- AUV symbol -->
+            <ellipse cx="150" cy="165" rx="22" ry="7" fill="rgba(36,180,192,.15)" stroke="rgba(36,180,192,.35)" stroke-width="1.2"/>
+            <line x1="128" y1="165" x2="115" y2="165" stroke="rgba(36,180,192,.3)" stroke-width="1"/>
+            <line x1="172" y1="165" x2="185" y2="165" stroke="rgba(36,180,192,.3)" stroke-width="1"/>
+            <text x="150" y="168" text-anchor="middle" fill="rgba(36,180,192,.5)" font-size="7" font-family="monospace">AUV</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Zone 4: Abyssal -->
+  <div class="depth-zone" style="background:#04080f;" data-zone="3">
+    <div class="max-w-[1480px] mx-auto px-6 sm:px-12 lg:px-20">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="zone-content" style="transition-delay:100ms;">
+          <div class="lbl text-[#24b4c0]/55 mb-3">Abyss</div>
+          <div class="text-white/10 font-light mb-4 select-none" style="font-size:clamp(4rem,10vw,10rem);line-height:1;letter-spacing:-.04em;">4–6km</div>
+          <h3 class="text-white font-light mb-5" style="font-size:clamp(1.8rem,3.5vw,3.5rem);letter-spacing:-.02em;">Abyssal</h3>
+          <p class="text-white/45 font-light leading-relaxed mb-3" style="font-family:'Inter',sans-serif;font-size:.95rem;">The least-studied environment on Earth. ABYSS conducts high-resolution seabed mapping, macrofaunal distribution surveys via optical imaging, sediment interface sampling, and long-baseline acoustic positioning for precision navigation of instruments at the seafloor.</p>
+          <div class="flex flex-wrap gap-2 mt-5"><span class="lbl text-[#24b4c0]/65 px-3 py-1.5 rounded-full" style="background:rgba(36,180,192,.1);border:1px solid rgba(36,180,192,.18);">Seabed mapping</span><span class="lbl text-[#24b4c0]/65 px-3 py-1.5 rounded-full" style="background:rgba(36,180,192,.1);border:1px solid rgba(36,180,192,.18);">Biological</span><span class="lbl text-[#24b4c0]/65 px-3 py-1.5 rounded-full" style="background:rgba(36,180,192,.1);border:1px solid rgba(36,180,192,.18);">Sediment</span></div>
+        </div>
+        <div class="flex items-center justify-center">
+          <svg viewBox="0 0 300 220" fill="none" class="w-full max-w-[280px]" aria-hidden="true">
+            <!-- Seabed contours -->
+            <path d="M10,160 Q50,140 90,155 Q130,170 170,150 Q210,130 250,148 Q270,155 290,145" stroke="rgba(36,180,192,.35)" stroke-width="1.5" fill="none"/>
+            <path d="M10,175 Q50,155 90,170 Q130,185 170,165 Q210,145 250,163 Q270,170 290,160" stroke="rgba(36,180,192,.2)" stroke-width="1" fill="none"/>
+            <path d="M10,190 Q60,175 100,185 Q150,200 190,182 Q230,165 270,178 Q280,182 290,175 L290,220 L10,220 Z" fill="rgba(36,180,192,.06)" stroke="rgba(36,180,192,.15)" stroke-width="1"/>
+            <!-- Sonar pings from AUV -->
+            <circle cx="150" cy="110" r="25" stroke="rgba(36,180,192,.15)" stroke-width="1" fill="none"/>
+            <circle cx="150" cy="110" r="45" stroke="rgba(36,180,192,.08)" stroke-width="1" fill="none"/>
+            <!-- Organism dots (sparse) -->
+            <circle cx="60" cy="158" r="2.5" fill="rgba(36,180,192,.5)"/><circle cx="120" cy="152" r="2" fill="rgba(36,180,192,.4)"/><circle cx="200" cy="148" r="2.5" fill="rgba(36,180,192,.5)"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- Bridge -->
+<div style="height:clamp(44px,6.5vw,110px);background:linear-gradient(180deg,#04080f 0%,#eef5f4 100%);margin:-1px 0;" aria-hidden="true"></div>
+
+<!-- SIGNAL TYPES (Light) -->
+<section style="background:#eef5f4;">
+  <div class="max-w-[1480px] mx-auto px-6 sm:px-12 lg:px-20 py-24 sm:py-28">
+    <div class="lbl mb-5" style="color:#3d5f68;">What we monitor</div>
+    <h2 class="mb-14" style="color:#0d2530;font-size:clamp(2rem,4vw,4rem);font-weight:300;line-height:1.07;letter-spacing:-.03em;max-width:500px;">Six signal types. One coherent field picture.</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="sig-card reveal-up" data-delay="0"><div class="lbl text-[#1a6070] mb-3">Physical</div><p class="text-base font-medium mb-2" style="color:#0d2530;">Temperature · Salinity · Pressure</p><p class="text-sm font-light leading-relaxed" style="color:#3d5f68;font-family:'Inter',sans-serif;">The fundamental hydrographic backbone of every field program. Profiled at continuous depth resolution.</p></div>
+      <div class="sig-card reveal-up" data-delay="80"><div class="lbl text-[#1a6070] mb-3">Chemical</div><p class="text-base font-medium mb-2" style="color:#0d2530;">O₂ · CO₂ · Nutrients · Trace metals</p><p class="text-sm font-light leading-relaxed" style="color:#3d5f68;font-family:'Inter',sans-serif;">Dissolved gas concentrations and nutrient profiles that map productivity, carbon cycling, and ecosystem state.</p></div>
+      <div class="sig-card reveal-up" data-delay="160"><div class="lbl text-[#1a6070] mb-3">Acoustic</div><p class="text-base font-medium mb-2" style="color:#0d2530;">Active sonar · Passive ADCP · Bioacoustics</p><p class="text-sm font-light leading-relaxed" style="color:#3d5f68;font-family:'Inter',sans-serif;">Backscatter imagery, current profiling, and passive recording of biological and geological sound sources.</p></div>
+      <div class="sig-card reveal-up" data-delay="0"><div class="lbl text-[#1a6070] mb-3">Optical</div><p class="text-base font-medium mb-2" style="color:#0d2530;">Fluorescence · Turbidity · Camera imagery</p><p class="text-sm font-light leading-relaxed" style="color:#3d5f68;font-family:'Inter',sans-serif;">Light-based measurements from fluorometers and optical backscatter sensors, plus high-resolution video surveys.</p></div>
+      <div class="sig-card reveal-up" data-delay="80"><div class="lbl text-[#1a6070] mb-3">Biological</div><p class="text-base font-medium mb-2" style="color:#0d2530;">eDNA · Macrofauna · Microbial</p><p class="text-sm font-light leading-relaxed" style="color:#3d5f68;font-family:'Inter',sans-serif;">Environmental DNA sampling, visual biological surveys, and proxy indicators of microbial biomass and activity.</p></div>
+      <div class="sig-card reveal-up" data-delay="160"><div class="lbl text-[#1a6070] mb-3">Temporal</div><p class="text-base font-medium mb-2" style="color:#0d2530;">Change rates · Lag structure · Trends</p><p class="text-sm font-light leading-relaxed" style="color:#3d5f68;font-family:'Inter',sans-serif;">The time dimension: how conditions change between visits, and what the structure of that change tells us about forcing mechanisms.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Bridge -->
+<div style="height:clamp(44px,6.5vw,110px);background:linear-gradient(180deg,#eef5f4 0%,#0c1a26 100%);margin:-1px 0;" aria-hidden="true"></div>
+
+<!-- PUBLICATIONS (Dark) -->
+<section style="background:#0c1a26;">
+  <div class="max-w-[1480px] mx-auto px-6 sm:px-12 lg:px-20 py-24 sm:py-28">
+    <div class="lbl text-[#24b4c0]/55 mb-5">Research output</div>
+    <h2 class="text-white mb-14" style="font-size:clamp(2rem,4vw,4rem);font-weight:300;line-height:1.07;letter-spacing:-.03em;max-width:500px;">Selected publications</h2>
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+      <div class="pub-card reveal-up" data-delay="0">
+        <div class="lbl text-[#24b4c0]/55 mb-1">Progress in Oceanography · Jul 2026</div>
+        <h4 class="text-white font-light text-lg mb-3 leading-snug">Longitudinal water column observations across Pacific abyssal provinces: a new approach to temporal field modelling</h4>
+        <p class="text-white/38 text-sm mb-4" style="font-family:'Inter',sans-serif;">Okafor M., Chen S., Osei J., Menon R.</p>
+        <p class="text-white/45 text-sm font-light leading-relaxed mb-5" style="font-family:'Inter',sans-serif;">We present a 24-month record of repeated water column observations across six Pacific abyssal provinces and describe a temporal modelling framework for field intelligence.</p>
+        <a href="#" class="lbl text-[#24b4c0]/65 hover:text-[#24b4c0] transition-colors">DOI: 10.1016/j.pocean.2026.103021 →</a>
+      </div>
+      <div class="pub-card reveal-up" data-delay="100">
+        <div class="lbl text-[#24b4c0]/55 mb-1">Deep-Sea Research I · Feb 2026</div>
+        <h4 class="text-white font-light text-lg mb-3 leading-snug">Acoustic signal anomalies in the mesopelagic: correlates with biological activity and particle flux events</h4>
+        <p class="text-white/38 text-sm mb-4" style="font-family:'Inter',sans-serif;">Menon R., Chen S.</p>
+        <p class="text-white/45 text-sm font-light leading-relaxed mb-5" style="font-family:'Inter',sans-serif;">We document and characterize six categories of anomalous acoustic signal in the mesopelagic zone and their statistical associations with independently measured carbon flux and biological survey data.</p>
+        <a href="#" class="lbl text-[#24b4c0]/65 hover:text-[#24b4c0] transition-colors">DOI: 10.1016/j.dsr.2026.104089 →</a>
+      </div>
+      <div class="pub-card reveal-up" data-delay="200">
+        <div class="lbl text-[#24b4c0]/55 mb-1">Geophys. Research Letters · Oct 2025</div>
+        <h4 class="text-white font-light text-lg mb-3 leading-snug">Temporal lag between surface productivity anomalies and abyssal particle flux: evidence from 36 months of continuous observation</h4>
+        <p class="text-white/38 text-sm mb-4" style="font-family:'Inter',sans-serif;">Osei J., Okafor M.</p>
+        <p class="text-white/45 text-sm font-light leading-relaxed mb-5" style="font-family:'Inter',sans-serif;">Using three years of synchronized surface and deep-water observation data, we characterize the 4–5 month lag structure between surface productivity events and abyssal particle flux anomalies.</p>
+        <a href="#" class="lbl text-[#24b4c0]/65 hover:text-[#24b4c0] transition-colors">DOI: 10.1029/2025GL109342 →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Bridge -->
+<div style="height:clamp(44px,6.5vw,110px);background:linear-gradient(180deg,#0c1a26 0%,#eef5f4 100%);margin:-1px 0;" aria-hidden="true"></div>
+
+<!-- QUOTE -->
+<section style="background:#eef5f4;">
+  <div class="max-w-[1480px] mx-auto px-6 sm:px-12 lg:px-20 py-20 sm:py-24">
+    <div class="max-w-[800px] mx-auto text-center">
+      <div class="lbl mb-8" style="color:#3d5f68;">From the team</div>
+      <blockquote class="font-light leading-relaxed" style="font-size:clamp(1.4rem,2.8vw,2.5rem);color:#0d2530;letter-spacing:-.02em;line-height:1.35;">"The ocean generates more signal than we have ever had tools to read. Our job is to build those tools — and then return to the same coordinates until the change record is real."</blockquote>
+      <div class="mt-8">
+        <p class="font-medium" style="color:#0d2530;">Dr. Maya Okafor</p>
+        <p class="text-sm font-light" style="color:#3d5f68;font-family:'Inter',sans-serif;">Chief Science Officer, ABYSS</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:linear-gradient(180deg,#0d3a4a 0%,#07202c 42%,#040e14 80%,#04080f 100%);" class="text-white/78">
+  <div class="max-w-[1480px] mx-auto px-6 sm:px-12 lg:px-20 pt-24 sm:pt-32 pb-16">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+      <div class="lg:col-span-6 lg:sticky lg:top-32 space-y-6">
+        <div class="flex items-center gap-3 mb-5"><svg class="w-8 h-8 text-white" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="7.5" fill="currentColor"/><circle cx="50" cy="18" r="4" fill="currentColor" opacity=".8"/><circle cx="50" cy="82" r="4" fill="currentColor" opacity=".8"/><circle cx="18" cy="50" r="4" fill="currentColor" opacity=".8"/><circle cx="82" cy="50" r="4" fill="currentColor" opacity=".8"/><ellipse cx="50" cy="50" rx="38" ry="12" stroke="currentColor" stroke-width="1.1" opacity=".25" fill="none"/><ellipse cx="50" cy="50" rx="12" ry="38" stroke="currentColor" stroke-width="1.1" opacity=".25" fill="none"/></svg><span class="lbl text-white" style="letter-spacing:.24em;">ABYSS</span></div>
+        <h3 class="text-white" style="font-size:clamp(1.7rem,3vw,3rem);font-weight:300;line-height:1.1;letter-spacing:-.022em;">Making the hidden ocean legible.</h3>
+        <p class="text-white/38 font-light leading-relaxed" style="font-family:'Inter',sans-serif;max-width:360px;">Connecting field observations across depth, time, and change.</p>
+        <a href="contact.html" class="btn-a inline-flex mt-2">Get in touch<span class="arr"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      </div>
+      <div class="lg:col-span-6 space-y-14 pb-8">
+        <div class="p-8 rounded-3xl" style="background:rgba(255,255,255,.038);border:1px solid rgba(255,255,255,.06);"><div class="lbl text-[#24b4c0]/55 mb-5">Contact</div><p class="text-white text-lg font-light mb-2"><a href="mailto:hello@abyss.ocean" class="hover:text-[#24b4c0] transition-colors">hello@abyss.ocean</a></p><p class="text-white/48 text-sm" style="font-family:'Inter',sans-serif;">Open ocean · Global field systems</p></div>
+        <div class="grid grid-cols-3 gap-8">
+          <div><div class="lbl text-white/28 mb-5">Platform</div><ul class="space-y-3 text-sm font-light text-white/48"><li><a href="platform.html" class="hover:text-white transition-colors">Platform</a></li><li><a href="science.html" class="hover:text-white transition-colors">Science</a></li><li><a href="pipeline.html" class="hover:text-white transition-colors">Pipeline</a></li><li><a href="projects.html" class="hover:text-white transition-colors">Projects</a></li></ul></div>
+          <div><div class="lbl text-white/28 mb-5">Company</div><ul class="space-y-3 text-sm font-light text-white/48"><li><a href="about.html" class="hover:text-white transition-colors">About</a></li><li><a href="partnerships.html" class="hover:text-white transition-colors">Partnerships</a></li><li><a href="careers.html" class="hover:text-white transition-colors">Careers</a></li><li><a href="journal.html" class="hover:text-white transition-colors">Journal</a></li></ul></div>
+          <div><div class="lbl text-white/28 mb-5">Legal</div><ul class="space-y-3 text-sm font-light text-white/48"><li><a href="privacy.html" class="hover:text-white transition-colors">Privacy</a></li><li><a href="terms.html" class="hover:text-white transition-colors">Terms</a></li><li><a href="contact.html" class="hover:text-white transition-colors">Contact</a></li></ul></div>
+        </div>
+        <div class="pt-6" style="border-top:1px solid rgba(255,255,255,.055);"><p class="lbl text-white/22 leading-relaxed mb-3">Ocean footage: NOAA Ocean Exploration (public domain).</p><div class="flex flex-wrap items-center justify-between gap-4 lbl text-white/25"><span>© 2026 ABYSS Ocean Intelligence</span><span>Built for the deep</span></div></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const hdr=document.getElementById('site-header'),pill=document.getElementById('nav-pill');
+  let lastY=window.scrollY,t=false;
+  function upd(){const y=window.scrollY;if(y<=50){hdr.style.transform='translateY(0)';pill.classList.remove('glass-nav');}else if(y>lastY&&y>100){hdr.style.transform='translateY(-110%)';}else if(y<lastY){hdr.style.transform='translateY(0)';pill.classList.add('glass-nav');}lastY=y;t=false;}
+  window.addEventListener('scroll',()=>{if(!t){requestAnimationFrame(upd);t=true;}},{passive:true});
+  const tog=document.getElementById('mob-toggle'),pan=document.getElementById('mob-panel'),ico=document.getElementById('mob-icon');
+  if(tog&&pan){function setM(o){pan.dataset.open=String(o);if(ico)ico.innerHTML=o?'<path d="M6 6l12 12M18 6L6 18" stroke-linecap="round" stroke-width="1.8"/>':'<path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" stroke-width="1.7"/>';}tog.addEventListener('click',()=>setM(pan.dataset.open!=='true'));pan.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setM(false)));} 
+  document.querySelectorAll('.logo-container').forEach(lc=>{const ls=lc.querySelector('.logo-symbol');if(!ls)return;lc.addEventListener('mouseenter',()=>{ls.style.transition='transform .95s cubic-bezier(0.22,1,0.36,1)';ls.style.transform='rotate(360deg)';});lc.addEventListener('mouseleave',()=>{ls.style.transition='none';ls.style.transform='';requestAnimationFrame(()=>requestAnimationFrame(()=>{ls.style.transition='transform .95s cubic-bezier(0.22,1,0.36,1)';}));});});
+  const done=new Set();
+  function hyd(v){if(!v||done.has(v))return;done.add(v);v.src=v.dataset.src;v.addEventListener('loadeddata',()=>{v.classList.add('is-ready');v.play().catch(()=>{});},{once:true});v.load();}
+  const obs='IntersectionObserver' in window?new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){hyd(e.target);obs.unobserve(e.target);}});},{rootMargin:'600px'}):null;
+  document.querySelectorAll('video[data-src]').forEach(v=>obs?obs.observe(v):hyd(v));
+  // Reveal
+  if('IntersectionObserver' in window){
+    const rObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){const d=+(e.target.dataset.delay||0);setTimeout(()=>e.target.classList.add('revealed'),d);rObs.unobserve(e.target);}});},{threshold:.12});
+    document.querySelectorAll('.zone-content,.reveal-up').forEach(el=>rObs.observe(el));
+  }
+})();
+</script>
+</body>
+</html>

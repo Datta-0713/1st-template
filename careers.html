@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Careers — ABYSS Ocean Intelligence</title>
+<meta name="description" content="Work at ABYSS. A small, rigorous, deeply motivated team building ocean intelligence tools."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@300;400;500;600&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root{--void:#04080f;--deep:#08101c;--abyss:#0c1a26;--marine:#0e2535;--teal:#144860;--aqua:#24b4c0;--foam:#edf5f5;--offwhite:#f0f4f3;--muted:#7a9298;--dark-text:#0d2530;--mid-text:#3d5f68;--ease:cubic-bezier(0.22,1,0.36,1);}
+*,*::before,*::after{box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{font-family:'Instrument Sans','Inter',-apple-system,sans-serif;background:var(--void);color:var(--offwhite);overflow-x:hidden;}
+::selection{background:rgba(36,180,192,.22);color:#fff;}
+.logo-symbol{transition:transform .95s var(--ease);}
+#site-header{will-change:transform;transition:transform .45s var(--ease);}
+#nav-pill{transition:background 600ms,border-color 600ms,box-shadow 600ms;}
+.glass-nav{backdrop-filter:blur(24px) saturate(160%)!important;background:rgba(6,18,28,.72)!important;border:1px solid rgba(180,230,235,.1)!important;box-shadow:0 16px 48px rgba(0,0,0,.28)!important;}
+.drop-glass{backdrop-filter:blur(24px);background:rgba(8,22,34,.9);border:1px solid rgba(180,230,235,.12);box-shadow:0 24px 60px rgba(0,0,0,.36);}
+.mob-panel{background:rgba(6,16,26,.93);backdrop-filter:blur(24px);border:1px solid rgba(180,230,235,.1);transition:opacity 350ms,transform 500ms,visibility 350ms;transform-origin:top right;}
+.mob-panel[data-open="false"]{opacity:0;transform:translateY(-10px) scale(.97);visibility:hidden;pointer-events:none;}
+.mob-panel[data-open="true"]{opacity:1;transform:none;visibility:visible;pointer-events:auto;}
+.lbl{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:500;}
+.btn-a{display:inline-flex;align-items:center;gap:12px;background:rgba(36,180,192,.11);border:1px solid rgba(36,180,192,.28);color:#24b4c0;font-size:13.5px;font-weight:500;padding:11px 18px 11px 22px;border-radius:100px;transition:background 400ms,border-color 400ms,transform 400ms;}
+.btn-a:hover{background:rgba(36,180,192,.2);border-color:rgba(36,180,192,.5);transform:translateY(-1px);}
+.btn-a .arr{width:30px;height:30px;border-radius:50%;background:#24b4c0;color:#04080f;display:flex;align-items:center;justify-content:center;transition:transform 400ms;}
+.btn-a:hover .arr{transform:translateX(2px);}
+/* Role cards */
+.role-card{border:1px solid rgba(36,180,192,.1);border-radius:20px;cursor:pointer;transition:border-color 400ms,background 400ms;}
+.role-card:hover{border-color:rgba(36,180,192,.3);background:rgba(36,180,192,.03);}
+.role-card.open{border-color:rgba(36,180,192,.35);}
+.role-detail{overflow:hidden;max-height:0;transition:max-height 550ms cubic-bezier(0.16,1,0.3,1),opacity 450ms;}
+.role-detail.open{opacity:1;}
+/* Reveal */
+.reveal-up{opacity:0;transform:translateY(28px);transition:opacity 800ms var(--ease),transform 900ms var(--ease);}
+.revealed{opacity:1;transform:none;}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important;}.reveal-up{opacity:1;transform:none;}}
+</style>
+</head>
+<body class="antialiased">
+
+<!-- NAV -->
+<header id="site-header" class="fixed top-0 left-0 w-full z-50 px-4 sm:px-6 lg:px-14 pt-4 sm:pt-5">
+  <div id="nav-pill" class="max-w-[1480px] mx-auto flex items-center justify-between px-5 sm:px-6 py-3 sm:py-3.5 rounded-full border border-transparent">
+    <a href="index.html" class="logo-container flex items-center gap-3 text-white">
+      <svg class="logo-symbol w-8 h-8 shrink-0" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="7.5" fill="currentColor"/><circle cx="50" cy="18" r="4.2" fill="currentColor" opacity=".82"/><circle cx="50" cy="82" r="4.2" fill="currentColor" opacity=".82"/><circle cx="18" cy="50" r="4.2" fill="currentColor" opacity=".82"/><circle cx="82" cy="50" r="4.2" fill="currentColor" opacity=".82"/><circle cx="29" cy="29" r="3.2" fill="currentColor" opacity=".6"/><circle cx="71" cy="29" r="3.2" fill="currentColor" opacity=".6"/><circle cx="29" cy="71" r="3.2" fill="currentColor" opacity=".6"/><circle cx="71" cy="71" r="3.2" fill="currentColor" opacity=".6"/><ellipse cx="50" cy="50" rx="40" ry="13" stroke="currentColor" stroke-width="1.1" opacity=".28" fill="none"/><ellipse cx="50" cy="50" rx="13" ry="40" stroke="currentColor" stroke-width="1.1" opacity=".28" fill="none"/></svg>
+      <span class="lbl text-white" style="letter-spacing:.26em;font-size:.9rem;">ABYSS</span>
+      <span class="hidden md:block lbl text-white/45" style="border-left:1px solid rgba(255,255,255,.14);padding-left:11px;margin-left:4px;letter-spacing:.16em;">Ocean Intelligence</span>
+    </a>
+    <nav class="hidden lg:flex items-center gap-6 text-[13px] font-medium text-white/82">
+      <div class="relative group"><button class="flex items-center gap-1.5 hover:text-white py-2 transition-colors">Platform<svg class="w-3 h-3 text-white/45 group-hover:rotate-180 transition-transform ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="drop-glass absolute top-full left-0 mt-2 w-52 rounded-2xl py-2 px-1.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 translate-y-1 group-hover:translate-y-0"><a href="platform.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white hover:bg-white/8">Our Platform</a><a href="science.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white hover:bg-white/8">Our Science</a><a href="pipeline.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white hover:bg-white/8">Pipeline</a></div></div>
+      <div class="relative group"><button class="flex items-center gap-1.5 hover:text-white py-2 transition-colors">Explore<svg class="w-3 h-3 text-white/45 group-hover:rotate-180 transition-transform ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="drop-glass absolute top-full left-0 mt-2 w-52 rounded-2xl py-2 px-1.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 translate-y-1 group-hover:translate-y-0"><a href="projects.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white hover:bg-white/8">Field Projects</a><a href="journal.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white hover:bg-white/8">Journal</a></div></div>
+      <div class="relative group"><button class="flex items-center gap-1.5 hover:text-white py-2 transition-colors">Company<svg class="w-3 h-3 text-white/45 group-hover:rotate-180 transition-transform ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="drop-glass absolute top-full left-0 mt-2 w-52 rounded-2xl py-2 px-1.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 translate-y-1 group-hover:translate-y-0"><a href="about.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white hover:bg-white/8">About ABYSS</a><a href="partnerships.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white hover:bg-white/8">Partnerships</a><a href="careers.html" class="block px-4 py-2.5 rounded-xl text-[13px] text-white/88 hover:text-white hover:bg-white/8">Careers</a></div></div>
+    </nav>
+    <div class="flex items-center gap-3">
+      <a href="contact.html" class="hidden lg:inline-flex btn-a text-[13px]">Contact<span class="arr"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      <button id="mob-toggle" class="lg:hidden w-10 h-10 rounded-full border border-white/15 bg-white/6 text-white flex items-center justify-center" style="backdrop-filter:blur(12px);" aria-label="Menu"><svg id="mob-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" stroke-width="1.7"/></svg></button>
+    </div>
+  </div>
+  <div id="mob-panel" class="mob-panel lg:hidden absolute left-4 right-4 top-[calc(100%-6px)] rounded-3xl p-5" data-open="false">
+    <div class="grid gap-1 text-white/88 text-sm"><a href="platform.html" class="rounded-2xl px-4 py-3.5 border border-transparent hover:border-white/10 hover:bg-white/5">Platform<span class="float-right text-white/30">01</span></a><a href="science.html" class="rounded-2xl px-4 py-3.5 border border-transparent hover:border-white/10 hover:bg-white/5">Science<span class="float-right text-white/30">02</span></a><a href="pipeline.html" class="rounded-2xl px-4 py-3.5 border border-transparent hover:border-white/10 hover:bg-white/5">Pipeline<span class="float-right text-white/30">03</span></a><a href="projects.html" class="rounded-2xl px-4 py-3.5 border border-transparent hover:border-white/10 hover:bg-white/5">Projects<span class="float-right text-white/30">04</span></a><a href="about.html" class="rounded-2xl px-4 py-3.5 border border-transparent hover:border-white/10 hover:bg-white/5">About<span class="float-right text-white/30">05</span></a><a href="contact.html" class="rounded-2xl px-4 py-3.5 border border-transparent hover:border-white/10 hover:bg-white/5">Contact<span class="float-right text-white/30">06</span></a></div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section style="background:#0c1a26;padding-top:7rem;padding-bottom:5rem;" class="min-h-[55vh] flex items-end">
+  <div class="max-w-[1480px] mx-auto px-6 sm:px-12 lg:px-20">
+    <div class="lbl text-[#24b4c0]/55 mb-5 tracking-[.28em]">ABYSS — Careers</div>
+    <h1 class="text-white max-w-3xl" style="font-size:clamp(3rem,7.5vw,7.5rem);font-weight:300;line-height:.97;letter-spacing:-.04em;">Work at the Edge of the Known Ocean.</h1>
+    <p class="text-white/52 text-lg sm:text-xl font-light max-w-xl leading-relaxed mt-8" style="font-family:'Inter',sans-serif;">ABYSS is a small, rigorous, deeply motivated team. We hire for depth of thinking — not surface credentials.</p>
+  </div>
+</section>
+
+<!-- BRIDGE -->
+<div style="height:clamp(44px,5vw,90px);background:linear-gradient(180deg,#0c1a26 0%,#eef5f4 100%);margin:-1px 0;" aria-hidden="true"></div>
+
+<!-- CULTURE -->
+<section style="background:#eef5f4;">
+  <div class="max-w-[1480px] mx-auto px-6 sm:px-12 lg:px-20 py-24 sm:py-28">
+    <div class="lbl mb-5" style="color:#3d5f68;">What it's like to work here</div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mt-2">
+      <div class="reveal-up" data-delay="0"><h3 class="text-2xl font-light mb-4" style="color:#0d2530;">Genuinely hard problems</h3><p class="text-sm font-light leading-relaxed" style="color:#3d5f68;font-family:'Inter',sans-serif;">The ocean does not give up its information easily. We work on problems where the data is sparse, the environment is uncontrolled, and the stakes are real. If you want clean benchmarks, this is not the right place.</p></div>
+      <div class="reveal-up" data-delay="100"><h3 class="text-2xl font-light mb-4" style="color:#0d2530;">Small team, large scope</h3><p class="text-sm font-light leading-relaxed" style="color:#3d5f68;font-family:'Inter',sans-serif;">ABYSS operates across engineering, marine science, machine learning, and field operations. Everyone's work matters. Decisions are made in rooms where the people in those rooms are accountable to the results.</p></div>
+      <div class="reveal-up" data-delay="200"><h3 class="text-2xl font-light mb-4" style="color:#0d2530;">Field-first thinking</h3><p class="text-sm font-light leading-relaxed" style="color:#3d5f68;font-family:'Inter',sans-serif;">We build platforms for people operating in the field — at sea, at depth, in conditions that are not lab conditions. Our standards come from what works in the real environment, not what works in a presentation.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- BRIDGE -->
+<div style="height:clamp(44px,5vw,90px);background:linear-gradient(180deg,#eef5f4 0%,#0c1a26 100%);margin:-1px 0;" aria-hidden="true"></div>
+
+<!-- OPEN ROLES — WOW: expand interaction -->
+<section style="background:#0c1a26;">
+  <div class="max-w-[1480px] mx-auto px-6 sm:px-12 lg:px-20 py-24 sm:py-32">
+    <div class="lbl text-[#24b4c0]/55 mb-5">Open positions</div>
+    <h2 class="text-white mb-14" style="font-size:clamp(2rem,4vw,4rem);font-weight:300;line-height:1.07;letter-spacing:-.03em;max-width:500px;">Current openings</h2>
+
+    <div class="space-y-4" id="roles-list">
+
+      <!-- Role 0 -->
+      <div class="role-card p-7 sm:p-8" onclick="toggleRole(0)" data-role="0">
+        <div class="flex items-start justify-between gap-6">
+          <div>
+            <div class="flex flex-wrap items-center gap-3 mb-3">
+              <span class="lbl text-[#24b4c0]/55">Engineering</span>
+              <span class="lbl text-white/30">Monterey, CA</span>
+              <span class="lbl text-white/30">Full-time</span>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-light text-white">Senior Field Engineer</h3>
+          </div>
+          <div class="role-toggle text-2xl font-light text-white/38 shrink-0 transition-transform duration-300 select-none mt-1">+</div>
+        </div>
+        <div class="role-detail" id="rd0" style="opacity:0;">
+          <div class="pt-6 mt-6 border-t" style="border-color:rgba(36,180,192,.1);">
+            <p class="text-white/50 font-light text-sm leading-relaxed mb-5" style="font-family:'Inter',sans-serif;">Design, deploy, and maintain autonomous field systems in demanding ocean environments. You'll work at the intersection of mechanical engineering, electronics, and ocean operations — responsible for systems that work at 4,000m with no margin for improvisation.</p>
+            <ul class="space-y-2 text-white/45 text-sm font-light mb-6" style="font-family:'Inter',sans-serif;">
+              <li class="flex items-start gap-2"><span class="text-[#24b4c0] mt-0.5">—</span>5+ years experience with autonomous marine systems or subsea robotics</li>
+              <li class="flex items-start gap-2"><span class="text-[#24b4c0] mt-0.5">—</span>Deep knowledge of pressure vessels, buoyancy systems, and ocean-rated electronics</li>
+              <li class="flex items-start gap-2"><span class="text-[#24b4c0] mt-0.5">—</span>Willingness and ability to deploy offshore for extended periods</li>
+            </ul>
+            <a href="mailto:hello@abyss.ocean?subject=Senior Field Engineer" class="btn-a text-sm">Apply<span class="arr" style="width:26px;height:26px;"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Role 1 -->
+      <div class="role-card p-7 sm:p-8" onclick="toggleRole(1)" data-role="1">
+        <div class="flex items-start justify-between gap-6">
+          <div>
+            <div class="flex flex-wrap items-center gap-3 mb-3">
+              <span class="lbl text-[#24b4c0]/55">Research</span>
+              <span class="lbl text-white/30">Remote</span>
+              <span class="lbl text-white/30">Full-time</span>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-light text-white">Ocean Data Scientist</h3>
+          </div>
+          <div class="role-toggle text-2xl font-light text-white/38 shrink-0 transition-transform duration-300 select-none mt-1">+</div>
+        </div>
+        <div class="role-detail" id="rd1" style="opacity:0;">
+          <div class="pt-6 mt-6 border-t" style="border-color:rgba(36,180,192,.1);">
+            <p class="text-white/50 font-light text-sm leading-relaxed mb-5" style="font-family:'Inter',sans-serif;">Develop the statistical and machine learning methods that transform raw field observations into structured field intelligence. You'll work directly with messy, high-dimensional spatiotemporal data from ocean sensors — building models that need to work on incomplete, noisy records.</p>
+            <ul class="space-y-2 text-white/45 text-sm font-light mb-6" style="font-family:'Inter',sans-serif;">
+              <li class="flex items-start gap-2"><span class="text-[#24b4c0] mt-0.5">—</span>PhD or equivalent in oceanography, atmospheric science, or a quantitative field</li>
+              <li class="flex items-start gap-2"><span class="text-[#24b4c0] mt-0.5">—</span>Proficiency in spatiotemporal data analysis and ocean data formats (NetCDF, HDF5)</li>
+              <li class="flex items-start gap-2"><span class="text-[#24b4c0] mt-0.5">—</span>Experience with Bayesian methods, GP regression, or physically-informed ML</li>
+            </ul>
+            <a href="mailto:hello@abyss.ocean?subject=Ocean Data Scientist" class="btn-a text-sm">Apply<span class="arr" style="width:26px;height:26px;"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Role 2 -->
+      <div class="role-card p-7 sm:p-8" onclick="toggleRole(2)" data-role="2">
+        <div class="flex items-start justify-between gap-6">
+          <div>
+            <div class="flex flex-wrap items-center gap-3 mb-3">
+              <span class="lbl text-[#24b4c0]/55">Engineering</span>
+              <span class="lbl text-white/30">San Francisco, CA</span>
+              <span class="lbl text-white/30">Full-time</span>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-light text-white">Software Engineer — Signal Processing</h3>
+          </div>
+          <div class="role-toggle text-2xl font-light text-white/38 shrink-0 transition-transform duration-300 select-none mt-1">+</div>
+        </div>
+        <div class="role-detail" id="rd2" style="opacity:0;">
+          <div class="pt-6 mt-6 border-t" style="border-color:rgba(36,180,192,.1);">
+            <p class="text-white/50 font-light text-sm leading-relaxed mb-5" style="font-family:'Inter',sans-serif;">Build the real-time and batch signal processing infrastructure at the core of the ABYSS platform. You'll handle everything from raw acoustic and sensor data ingestion through to calibration, QA, and integration with the field model pipeline.</p>
+            <ul class="space-y-2 text-white/45 text-sm font-light mb-6" style="font-family:'Inter',sans-serif;">
+              <li class="flex items-start gap-2"><span class="text-[#24b4c0] mt-0.5">—</span>Strong systems programming background (C++, Rust, or equivalent)</li>
+              <li class="flex items-start gap-2"><span class="text-[#24b4c0] mt-0.5">—</span>Experience with real-time signal processing and time-series data pipelines</li>
+              <li class="flex items-start gap-2"><span class="text-[#24b4c0] mt-0.5">—</span>Familiarity with acoustic signal processing is a strong advantage</li>
+            </ul>
+            <a href="mailto:hello@abyss.ocean?subject=Software Engineer Signal Processing" class="btn-a text-sm">Apply<span class="arr" style="width:26px;height:26px;"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Role 3 -->
+      <div class="role-card p-7 sm:p-8" onclick="toggleRole(3)" data-role="3">
+        <div class="flex items-start justify-between gap-6">
+          <div>
+            <div class="flex flex-wrap items-center gap-3 mb-3">
+              <span class="lbl text-[#24b4c0]/55">Research</span>
+              <span class="lbl text-white/30">Monterey, CA</span>
+              <span class="lbl text-white/30">Contract</span>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-light text-white">Research Associate — Marine Biology</h3>
+          </div>
+          <div class="role-toggle text-2xl font-light text-white/38 shrink-0 transition-transform duration-300 select-none mt-1">+</div>
+        </div>
+        <div class="role-detail" id="rd3" style="opacity:0;">
+          <div class="pt-6 mt-6 border-t" style="border-color:rgba(36,180,192,.1);">
+            <p class="text-white/50 font-light text-sm leading-relaxed mb-5" style="font-family:'Inter',sans-serif;">Support biological signal interpretation for the ABYSS deep-ocean mapping programs. You'll work with optical survey data, eDNA records, and macrofaunal distribution datasets to build ground-truth annotation layers for the field models.</p>
+            <ul class="space-y-2 text-white/45 text-sm font-light mb-6" style="font-family:'Inter',sans-serif;">
+              <li class="flex items-start gap-2"><span class="text-[#24b4c0] mt-0.5">—</span>MSc or PhD in marine biology, ecology, or a related field</li>
+              <li class="flex items-start gap-2"><span class="text-[#24b4c0] mt-0.5">—</span>Experience identifying deep-sea megafauna and microhabitat types from video/image records</li>
+              <li class="flex items-start gap-2"><span class="text-[#24b4c0] mt-0.5">—</span>Quantitative analysis skills; R or Python for ecological data</li>
+            </ul>
+            <a href="mailto:hello@abyss.ocean?subject=Research Associate Marine Biology" class="btn-a text-sm">Apply<span class="arr" style="width:26px;height:26px;"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRIDGE -->
+<div style="height:clamp(44px,5vw,90px);background:linear-gradient(180deg,#0c1a26 0%,#eef5f4 100%);margin:-1px 0;" aria-hidden="true"></div>
+
+<!-- BENEFITS -->
+<section style="background:#eef5f4;">
+  <div class="max-w-[1480px] mx-auto px-6 sm:px-12 lg:px-20 py-24 sm:py-28">
+    <div class="lbl mb-5" style="color:#3d5f68;">Working at ABYSS</div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-2">
+      <div class="reveal-up" data-delay="0"><div class="w-10 h-10 mb-4 flex items-center justify-center rounded-xl" style="background:rgba(36,180,192,.1);"><svg class="w-5 h-5" fill="none" stroke="#24b4c0" viewBox="0 0 24 24"><path d="M3.055 11H5a2 2 0 0 1 2 2v1a2 2 0 0 0 2 2 2 2 0 0 1 2 2v2.945M8 3.935V5.5A2.5 2.5 0 0 0 10.5 8h.5a2 2 0 0 1 2 2 2 2 0 0 0 4 0 2 2 0 0 1 2-2h1.064M15 20.488V18a2 2 0 0 1 2-2h3.064M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h4 class="text-lg font-medium mb-2" style="color:#0d2530;">Field access</h4><p class="text-sm font-light leading-relaxed" style="color:#3d5f68;font-family:'Inter',sans-serif;">Opportunities to participate in ocean field programs — at sea, at depth, and at the frontier of what is measurable.</p></div>
+      <div class="reveal-up" data-delay="80"><div class="w-10 h-10 mb-4 flex items-center justify-center rounded-xl" style="background:rgba(36,180,192,.1);"><svg class="w-5 h-5" fill="none" stroke="#24b4c0" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h4 class="text-lg font-medium mb-2" style="color:#0d2530;">Research support</h4><p class="text-sm font-light leading-relaxed" style="color:#3d5f68;font-family:'Inter',sans-serif;">Publication support, conference travel, and a research stipend for continuing education in your field of work.</p></div>
+      <div class="reveal-up" data-delay="160"><div class="w-10 h-10 mb-4 flex items-center justify-center rounded-xl" style="background:rgba(36,180,192,.1);"><svg class="w-5 h-5" fill="none" stroke="#24b4c0" viewBox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 0 0-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 0 1 5.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 0 1 9.288 0M15 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm6 3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM7 10a2 2 0 1 1-4 0 2 2 0 0 1 4 0z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h4 class="text-lg font-medium mb-2" style="color:#0d2530;">Small team</h4><p class="text-sm font-light leading-relaxed" style="color:#3d5f68;font-family:'Inter',sans-serif;">No bureaucracy. Your work goes directly into systems that operate in the field. Credit is real and visible.</p></div>
+      <div class="reveal-up" data-delay="240"><div class="w-10 h-10 mb-4 flex items-center justify-center rounded-xl" style="background:rgba(36,180,192,.1);"><svg class="w-5 h-5" fill="none" stroke="#24b4c0" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0 1 12 2.944a11.955 11.955 0 0 1-8.618 3.04A12.02 12.02 0 0 0 3 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h4 class="text-lg font-medium mb-2" style="color:#0d2530;">Competitive package</h4><p class="text-sm font-light leading-relaxed" style="color:#3d5f68;font-family:'Inter',sans-serif;">Salary at market or above, equity participation, comprehensive health coverage, and flexible working arrangements.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- APPLICATION NOTE -->
+<section style="background:#0c1a26;">
+  <div class="max-w-[1480px] mx-auto px-6 sm:px-12 lg:px-20 py-20 sm:py-24 text-center">
+    <div class="lbl text-[#24b4c0]/55 mb-5">No listing that fits?</div>
+    <h3 class="text-white mb-5" style="font-size:clamp(1.6rem,3.2vw,3rem);font-weight:300;line-height:1.12;letter-spacing:-.02em;max-width:600px;margin:0 auto 1.5rem;">Interesting people, unlisted roles.</h3>
+    <p class="text-white/45 font-light mb-8" style="font-family:'Inter',sans-serif;max-width:480px;margin:0 auto 2rem;font-size:1rem;">If you're working on something related to ocean intelligence, autonomous sensing, or deep-field observation — we'd like to hear from you regardless of whether there's a formal opening.</p>
+    <a href="mailto:hello@abyss.ocean?subject=Speculative Application" class="btn-a">Send a note<span class="arr"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:linear-gradient(180deg,#0d3a4a 0%,#07202c 42%,#040e14 80%,#04080f 100%);position:relative;overflow:hidden;" class="text-white/78">
+  <div class="max-w-[1480px] mx-auto px-6 sm:px-12 lg:px-20 pt-24 sm:pt-32 pb-16">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+      <div class="lg:col-span-6 lg:sticky lg:top-32 space-y-6">
+        <div class="flex items-center gap-3 mb-5"><svg class="w-8 h-8 text-white" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="7.5" fill="currentColor"/><circle cx="50" cy="18" r="4" fill="currentColor" opacity=".8"/><circle cx="50" cy="82" r="4" fill="currentColor" opacity=".8"/><circle cx="18" cy="50" r="4" fill="currentColor" opacity=".8"/><circle cx="82" cy="50" r="4" fill="currentColor" opacity=".8"/><ellipse cx="50" cy="50" rx="38" ry="12" stroke="currentColor" stroke-width="1.1" opacity=".25" fill="none"/><ellipse cx="50" cy="50" rx="12" ry="38" stroke="currentColor" stroke-width="1.1" opacity=".25" fill="none"/></svg><span class="lbl text-white" style="letter-spacing:.24em;">ABYSS</span></div>
+        <h3 class="text-white" style="font-size:clamp(1.7rem,3vw,3rem);font-weight:300;line-height:1.1;letter-spacing:-.022em;">Making the hidden ocean legible.</h3>
+        <p class="text-white/38 font-light leading-relaxed" style="font-family:'Inter',sans-serif;max-width:360px;">Connecting field observations across depth, time, and change.</p>
+        <a href="contact.html" class="btn-a inline-flex mt-2">Get in touch<span class="arr"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      </div>
+      <div class="lg:col-span-6 space-y-14 pb-8">
+        <div class="p-8 rounded-3xl" style="background:rgba(255,255,255,.038);border:1px solid rgba(255,255,255,.06);"><div class="lbl text-[#24b4c0]/55 mb-5">Contact</div><p class="text-white text-lg font-light mb-2"><a href="mailto:hello@abyss.ocean" class="hover:text-[#24b4c0] transition-colors">hello@abyss.ocean</a></p><p class="text-white/48 text-sm" style="font-family:'Inter',sans-serif;">Open ocean · Global field systems</p></div>
+        <div class="grid grid-cols-3 gap-8">
+          <div><div class="lbl text-white/28 mb-5">Platform</div><ul class="space-y-3 text-sm font-light text-white/48"><li><a href="platform.html" class="hover:text-white transition-colors">Platform</a></li><li><a href="science.html" class="hover:text-white transition-colors">Science</a></li><li><a href="pipeline.html" class="hover:text-white transition-colors">Pipeline</a></li><li><a href="projects.html" class="hover:text-white transition-colors">Projects</a></li></ul></div>
+          <div><div class="lbl text-white/28 mb-5">Company</div><ul class="space-y-3 text-sm font-light text-white/48"><li><a href="about.html" class="hover:text-white transition-colors">About</a></li><li><a href="partnerships.html" class="hover:text-white transition-colors">Partnerships</a></li><li><a href="careers.html" class="hover:text-white transition-colors">Careers</a></li><li><a href="journal.html" class="hover:text-white transition-colors">Journal</a></li></ul></div>
+          <div><div class="lbl text-white/28 mb-5">Legal</div><ul class="space-y-3 text-sm font-light text-white/48"><li><a href="privacy.html" class="hover:text-white transition-colors">Privacy</a></li><li><a href="terms.html" class="hover:text-white transition-colors">Terms</a></li><li><a href="contact.html" class="hover:text-white transition-colors">Contact</a></li></ul></div>
+        </div>
+        <div class="pt-6" style="border-top:1px solid rgba(255,255,255,.055);"><p class="lbl text-white/22 leading-relaxed mb-3">Ocean footage: NOAA Ocean Exploration (public domain).</p><div class="flex flex-wrap items-center justify-between gap-4 lbl text-white/25"><span>© 2026 ABYSS Ocean Intelligence</span><span>Built for the deep</span></div></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Nav
+  const hdr=document.getElementById('site-header'),pill=document.getElementById('nav-pill');
+  let lastY=window.scrollY,t=false;
+  function upd(){const y=window.scrollY;if(y<=50){hdr.style.transform='translateY(0)';pill.classList.remove('glass-nav');}else if(y>lastY&&y>100){hdr.style.transform='translateY(-110%)';}else if(y<lastY){hdr.style.transform='translateY(0)';pill.classList.add('glass-nav');}lastY=y;t=false;}
+  window.addEventListener('scroll',()=>{if(!t){requestAnimationFrame(upd);t=true;}},{passive:true});
+  // Mobile
+  const tog=document.getElementById('mob-toggle'),pan=document.getElementById('mob-panel'),ico=document.getElementById('mob-icon');
+  if(tog&&pan){function setM(o){pan.dataset.open=String(o);if(ico)ico.innerHTML=o?'<path d="M6 6l12 12M18 6L6 18" stroke-linecap="round" stroke-width="1.8"/>':'<path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" stroke-width="1.7"/>';}tog.addEventListener('click',()=>setM(pan.dataset.open!=='true'));pan.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setM(false)));} 
+  // Logo
+  document.querySelectorAll('.logo-container').forEach(lc=>{const ls=lc.querySelector('.logo-symbol');if(!ls)return;lc.addEventListener('mouseenter',()=>{ls.style.transition='transform .95s cubic-bezier(0.22,1,0.36,1)';ls.style.transform='rotate(360deg)';});lc.addEventListener('mouseleave',()=>{ls.style.transition='none';ls.style.transform='';requestAnimationFrame(()=>requestAnimationFrame(()=>{ls.style.transition='transform .95s cubic-bezier(0.22,1,0.36,1)';}));});});
+  // Role expand
+  const openRoles=new Set();
+  window.toggleRole=function(idx){
+    const det=document.getElementById('rd'+idx);
+    const card=document.querySelector('[data-role="'+idx+'"]');
+    const tog=card?.querySelector('.role-toggle');
+    if(!det) return;
+    const isOpen=openRoles.has(idx);
+    if(isOpen){det.style.maxHeight='0';det.style.opacity='0';openRoles.delete(idx);card?.classList.remove('open');if(tog)tog.textContent='+';}
+    else{det.style.maxHeight=det.scrollHeight+'px';det.style.opacity='1';openRoles.add(idx);card?.classList.add('open');if(tog)tog.style.transform='rotate(45deg)';}
+  };
+  // Reveal
+  if('IntersectionObserver' in window){
+    const rObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){const d=+(e.target.dataset.delay||0);setTimeout(()=>e.target.classList.add('revealed'),d);rObs.unobserve(e.target);}});},{threshold:.15});
+    document.querySelectorAll('.reveal-up').forEach(el=>rObs.observe(el));
+  }
+})();
+</script>
+</body>
+</html>
