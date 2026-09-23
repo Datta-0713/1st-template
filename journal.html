@@ -9,11 +9,12 @@
 <style>
 :root{--void:#04080f;--abyss:#0c1a26;--aqua:#24b4c0;--foam:#eef5f4;--offwhite:#f0f4f3;--dark-text:#0d2530;--mid-text:#3d5f68;--ease:cubic-bezier(0.22,1,0.36,1);}
 *,*::before,*::after{box-sizing:border-box;}html{scroll-behavior:smooth;}
-body{font-family:'Instrument Sans','Inter',-apple-system,sans-serif;background:var(--void);color:var(--offwhite);overflow-x:hidden;}
+body{font-family:'Instrument Sans','Inter',-apple-system,sans-serif;background:var(--void);color:var(--offwhite);overflow-x:hidden;min-width:320px;}
 ::selection{background:rgba(36,180,192,.22);color:#fff;}
-.logo-symbol{transition:transform .95s var(--ease);}`n.logo-container:hover .logo-symbol{transform:rotate(360deg);}
+.logo-symbol{transition:transform .95s var(--ease);cursor:pointer;transform-origin:center;}
+.logo-container:hover .logo-symbol{transform:rotate(360deg);}
 #site-header{will-change:transform;transition:transform .45s var(--ease);}
-#nav-pill{transition:background 600ms,border-color 600ms;}
+#nav-pill{transition:background 600ms var(--ease),backdrop-filter 600ms var(--ease),border-color 600ms var(--ease),box-shadow 600ms var(--ease);}
 .glass-nav{backdrop-filter:blur(24px) saturate(160%)!important;background:rgba(6,18,28,.72)!important;border:1px solid rgba(180,230,235,.1)!important;box-shadow:0 16px 48px rgba(0,0,0,.28)!important;}
 .drop-glass{backdrop-filter:blur(24px);background:rgba(8,22,34,.9);border:1px solid rgba(180,230,235,.12);box-shadow:0 24px 60px rgba(0,0,0,.36);}
 .mob-panel{background:rgba(6,16,26,.93);backdrop-filter:blur(24px);border:1px solid rgba(180,230,235,.1);transition:opacity 350ms,transform 500ms,visibility 350ms;transform-origin:top right;}
@@ -122,7 +123,7 @@ body{font-family:'Instrument Sans','Inter',-apple-system,sans-serif;background:v
 </section>
 
 <!-- FILTER (Sticky) -->
-<div class="sticky top-[72px] z-40" style="background:#eef5f4;border-bottom:1px solid rgba(13,37,48,.07);">
+<div class="sticky top-[72px] z-40" style="backdrop-filter:blur(20px);background:rgba(238,245,244,.85);border-bottom:1px solid rgba(13,37,48,.07);">
   <div class="max-w-[1480px] mx-auto px-6 sm:px-12 lg:px-20 py-4 flex flex-wrap gap-2">
     <button class="filter-pill active">All</button>
     <button class="filter-pill">Field Release</button>

@@ -15,7 +15,8 @@
 html{scroll-behavior:smooth;}
 body{font-family:'Instrument Sans','Inter',-apple-system,sans-serif;background:var(--void);color:var(--offwhite);overflow-x:hidden;min-width:320px;}
 ::selection{background:rgba(36,180,192,.22);color:#fff;}
-.logo-symbol{transition:transform .95s var(--ease);}`n.logo-container:hover .logo-symbol{transform:rotate(360deg);}
+.logo-symbol{transition:transform .95s var(--ease);cursor:pointer;transform-origin:center;}
+.logo-container:hover .logo-symbol{transform:rotate(360deg);}
 #site-header{will-change:transform;transition:transform .45s var(--ease);}
 #nav-pill{transition:background 600ms var(--ease),backdrop-filter 600ms var(--ease),border-color 600ms var(--ease),box-shadow 600ms var(--ease);}
 .glass-nav{backdrop-filter:blur(24px) saturate(160%)!important;-webkit-backdrop-filter:blur(24px) saturate(160%)!important;background:rgba(6,18,28,.72)!important;border:1px solid rgba(180,230,235,.1)!important;box-shadow:0 16px 48px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.04)!important;}
@@ -57,6 +58,8 @@ body{font-family:'Instrument Sans','Inter',-apple-system,sans-serif;background:v
 
 /* ── ADVISORS ── */
 .advisor-item{font-family:'Inter',sans-serif;font-size:.9rem;color:rgba(13,37,48,.6);line-height:1.7;}
+.reveal-up{opacity:0;transform:translateY(28px);transition:opacity 800ms var(--ease),transform 900ms var(--ease);}
+.revealed{opacity:1;transform:none;}
 
 @media(max-width:768px){
   .tl-entry{flex-direction:column!important;transform:translateY(30px)!important;align-items:center;}
@@ -136,7 +139,7 @@ body{font-family:'Instrument Sans','Inter',-apple-system,sans-serif;background:v
 </header>
 
 <!-- ═══════════════ HERO ═══════════════ -->
-<section class="relative w-full flex items-end overflow-hidden" style="height:72vh;min-height:560px;background:#0c2535;">
+<section class="relative w-full flex items-end overflow-hidden" style="height:100vh;min-height:640px;background:#0c2535;">
   <div class="absolute inset-0 z-0 media-frame">
     <video class="media-el" data-src="https://oceanexplorer.noaa.gov/wp-content/uploads/2021/04/ex1708-glass-squid.mp4" poster="" muted playsinline loop preload="metadata" aria-hidden="true"></video>
     <div class="absolute inset-0 z-[2]" style="background:linear-gradient(168deg,rgba(4,8,15,.08) 0%,rgba(4,8,15,.04) 30%,rgba(4,8,15,.62) 72%,rgba(4,8,15,.96) 100%);"></div>
@@ -469,6 +472,12 @@ body{font-family:'Instrument Sans','Inter',-apple-system,sans-serif;background:v
     entries.forEach(el=>obs.observe(el));
   } else {
     entries.forEach(el=>el.classList.add('visible'));
+  }
+  if('IntersectionObserver' in window){
+    const rObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){const d=+(e.target.dataset.delay||0);setTimeout(()=>e.target.classList.add('revealed'),d);rObs.unobserve(e.target);}});},{threshold:.1});
+    document.querySelectorAll('.reveal-up').forEach(el=>rObs.observe(el));
+  } else {
+    document.querySelectorAll('.reveal-up').forEach(el=>el.classList.add('revealed'));
   }
 })();
 </script>

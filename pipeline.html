@@ -10,13 +10,13 @@
 <style>
 :root{--void:#04080f;--deep:#08101c;--abyss:#0c1a26;--aqua:#24b4c0;--foam:#eef5f4;--offwhite:#f0f4f3;--dark-text:#0d2530;--mid-text:#3d5f68;--ease:cubic-bezier(0.22,1,0.36,1);}
 *,*::before,*::after{box-sizing:border-box;}html{scroll-behavior:smooth;}
-body{font-family:'Instrument Sans','Inter',-apple-system,sans-serif;background:var(--void);color:var(--offwhite);overflow-x:hidden;}
+body{font-family:'Instrument Sans','Inter',-apple-system,sans-serif;background:var(--void);color:var(--offwhite);overflow-x:hidden;min-width:320px;}
 ::selection{background:rgba(36,180,192,.22);color:#fff;}
 .logo-symbol{transition:transform .95s var(--ease);}
 .logo-container:hover .logo-symbol{transform:rotate(360deg);}
 #site-header{will-change:transform;transition:transform .45s var(--ease);}
-#nav-pill{transition:background 600ms,border-color 600ms;}
-.glass-nav{backdrop-filter:blur(24px) saturate(160%)!important;background:rgba(6,18,28,.72)!important;border:1px solid rgba(180,230,235,.1)!important;box-shadow:0 16px 48px rgba(0,0,0,.28)!important;}
+#nav-pill{transition:background 600ms var(--ease),backdrop-filter 600ms var(--ease),border-color 600ms var(--ease),box-shadow 600ms var(--ease);}
+.glass-nav{backdrop-filter:blur(24px) saturate(160%)!important;-webkit-backdrop-filter:blur(24px) saturate(160%)!important;background:rgba(6,18,28,.72)!important;border:1px solid rgba(180,230,235,.1)!important;box-shadow:0 16px 48px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.04)!important;}
 .drop-glass{backdrop-filter:blur(24px);background:rgba(8,22,34,.9);border:1px solid rgba(180,230,235,.12);box-shadow:0 24px 60px rgba(0,0,0,.36);}
 .mob-panel{background:rgba(6,16,26,.93);backdrop-filter:blur(24px);border:1px solid rgba(180,230,235,.1);transition:opacity 350ms,transform 500ms,visibility 350ms;transform-origin:top right;}
 .mob-panel[data-open="false"]{opacity:0;transform:translateY(-10px) scale(.97);visibility:hidden;pointer-events:none;}
@@ -68,7 +68,7 @@ body{font-family:'Instrument Sans','Inter',-apple-system,sans-serif;background:v
 </header>
 
 <!-- HERO -->
-<section class="relative w-full" style="height:72vh;min-height:560px;display:flex;align-items:flex-end;overflow:hidden;background:#0c2535;">
+<section class="relative w-full" style="height:100vh;min-height:640px;display:flex;align-items:flex-end;overflow:hidden;background:#0c2535;">
   <div class="absolute inset-0" style="z-index:0;isolation:isolate;">
     <video class="media-el" data-src="https://oceanexplorer.noaa.gov/wp-content/uploads/2025/04/no-boundaries-640x360-1.mp4" poster="abyss_hero.png" muted playsinline loop preload="metadata" aria-hidden="true"></video>
     <div class="absolute inset-0" style="z-index:2;background:linear-gradient(168deg,rgba(4,8,15,.1) 0%,rgba(4,8,15,.04) 28%,rgba(4,8,15,.65) 72%,rgba(4,8,15,.97) 100%);"></div>
